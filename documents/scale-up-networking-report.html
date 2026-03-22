@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Recent ArXiv papers on scale-up networking design." />
+    <title>Scale-up Networking Report — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="index.html">Documents</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Research report</p>
+          <h1 class="page-title">Recent ArXiv papers on scale-up networking design</h1>
+          <p class="lead">A compact report covering recent papers on collective communication, photonic interconnect reconfiguration, hierarchical GPU communication, and network-aware scheduling.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>TL;DR</h2>
+          <ul class="muted">
+            <li>Communication is becoming more application-aware, not just flow-aware.</li>
+            <li>Hierarchy matters: NVLink, RDMA, and scale-up fabrics should be treated differently.</li>
+            <li>Programmable collective-control layers are becoming a serious systems direction.</li>
+            <li>Adaptive / reconfigurable photonic fabrics look promising when reconfiguration costs are modeled honestly.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">2026-03-18 · LLM serving</div>
+            <h2>Multi-stage Flow Scheduling for LLM Serving</h2>
+            <p class="muted">Proposes a stage-aware network scheduler for disaggregated LLM serving. The key idea is that scheduling should understand dependencies among KV retrieval, collectives, and transfers, instead of treating each flow independently.</p>
+            <p><a class="button secondary" href="https://arxiv.org/abs/2603.17456">ArXiv link</a></p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">2026-03-13 · MoE / NCCL</div>
+            <h2>NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL</h2>
+            <p class="muted">Introduces a unified MoE communication layer on top of NCCL Device API, with low-latency and high-throughput modes spanning NVLink and RDMA. Strongly relevant to hierarchical scale-up communication design.</p>
+            <p><a class="button secondary" href="https://arxiv.org/abs/2603.13606">ArXiv link</a></p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">2026-03-12 · Collective control</div>
+            <h2>NCCLbpf: Verified, Composable Policy Execution for GPU Collective Communication</h2>
+            <p class="muted">Adds a verified eBPF-style policy execution layer for NCCL plugins, pointing toward safe and programmable collective-control planes.</p>
+            <p><a class="button secondary" href="https://arxiv.org/abs/2603.11438">ArXiv link</a></p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">2026-02-11 · Photonic interconnects</div>
+            <h2>To Reconfigure or Not to Reconfigure</h2>
+            <p class="muted">Studies when topology reconfiguration is worth it for all-to-all communication in circuit-switched photonic interconnects. One of the most directly relevant papers for future scale-up fabric design.</p>
+            <p><a class="button secondary" href="https://arxiv.org/abs/2602.10468">ArXiv link</a></p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">2026-02-09 · Scale-up domains</div>
+            <h2>Harvest: Adaptive Photonic Switching Schedules for Collective Communication in Scale-up Domains</h2>
+            <p class="muted">Synthesizes topology reconfiguration schedules for collectives in photonic scale-up domains, balancing reconfiguration cost against congestion and propagation delay.</p>
+            <p><a class="button secondary" href="https://arxiv.org/abs/2602.09188">ArXiv link</a></p>
+          </article>
+        </section>
+
+        <section class="grid-2">
+          <article class="card section-card">
+            <h2>My take</h2>
+            <p class="muted">The strongest design signal across these papers is co-design: topology, runtime scheduling, and collective behavior are no longer separable. The most relevant reads for scale-up fabric design are <strong>Harvest</strong>, <strong>To Reconfigure or Not to Reconfigure</strong>, and <strong>NCCL EP</strong>.</p>
+          </article>
+          <article class="card section-card">
+            <h2>Reading order</h2>
+            <ol class="muted">
+              <li>Harvest</li>
+              <li>To Reconfigure or Not to Reconfigure</li>
+              <li>NCCL EP</li>
+              <li>NCCLbpf</li>
+              <li>Multi-stage Flow Scheduling for LLM Serving</li>
+            </ol>
+          </article>
+        </section>
+      </main>
+      <footer class="site-footer"><p>© <span id="year"></span> Ditto.</p></footer>
+    </div>
+  </body>
+</html>
