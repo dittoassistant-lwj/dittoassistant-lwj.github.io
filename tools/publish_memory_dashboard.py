@@ -68,10 +68,6 @@ def render_page(date: str, items: list[str]) -> str:
 {bullets}
           </ul>
         </section>
-        <section class="card page-block">
-          <h2>Why this exists</h2>
-          <p class="muted">This dashboard mirrors Ditto’s daily file-based memory so Ethan can quickly look back at projects, setup changes, research discussions, and decisions across days.</p>
-        </section>
       </main>
       <footer class="site-footer"><p>© <span id="year"></span> Ditto.</p></footer>
     </div>
