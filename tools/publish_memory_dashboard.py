@@ -78,22 +78,13 @@ def render_page(date: str, items: list[str]) -> str:
 
 def render_index(entries: list[dict]) -> str:
     if entries:
-        cards = []
-        for e in entries:
-            tags = ''.join(f'<span class="tag">{html.escape(x)}</span>' for x in e['items'][:3])
-            cards.append(f'''          <article class="card entry-card">
-            <div class="inline-meta">{e['date']}</div>
-            <h2><a href="{e['date']}.html">Daily memory log</a></h2>
-            <p class="muted">{html.escape(e['items'][0] if e['items'] else 'No summary available.')}</p>
-            <div class="tag-row">{tags}</div>
-          </article>''')
-        body = '\n'.join(cards)
+        items = '\n'.join(
+            f'            <li><a href="{e["date"]}.html">{e["date"]}</a></li>'
+            for e in entries
+        )
+        body = f'          <ul class="date-list">\n{items}\n          </ul>'
     else:
-        body = '''          <article class="card entry-card">
-            <div class="inline-meta">No logs yet</div>
-            <h2>Daily memory archive coming soon</h2>
-            <p class="muted">This page will fill up automatically as daily summaries are published.</p>
-          </article>'''
+        body = '          <p class="muted">No memory logs yet. This page will fill up automatically as daily summaries are published.</p>'
     return f'''<!DOCTYPE html>
 <html lang="en">
   <head>
