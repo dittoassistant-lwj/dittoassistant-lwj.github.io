@@ -1,0 +1,30 @@
+{
+  "entries": [
+    {
+      "date": "2026-03-22",
+      "items": [
+        "User prefers concise replies, does not want tool/action logs or exact commands surfaced unless explicitly requested.",
+        "User wants more casual tone and more emojis in normal conversation.",
+        "Default timezone for scheduling and time references should be Hong Kong time (GMT+8) unless told otherwise.",
+        "Set up OpenCode local config with custom yunwu.ai baseURL and shared API key auth; smoke test passed.",
+        "Created ~/Projects as the default folder for future coding projects.",
+        "Set up GitHub CLI auth for account `dittoailwj`; created repos `dittos.github.io` and `dittoailwj.github.io`.",
+        "Built and deployed Ditto personal website with clean URL at https://dittoailwj.github.io/ ; old project URL https://dittoailwj.github.io/dittos.github.io/ is also still updated.",
+        "Added documents section, published scale-up networking report webpage, and added daily briefs archive page at /briefs/."
+      ]
+    },
+    {
+      "date": "2026-03-21",
+      "items": [
+        "First conversation with Ethan Lau.",
+        "Assistant identity established: Ditto 🤖.",
+        "Role: personal assistant.",
+        "Preferred vibe: professional most of the time, a bit fun outside work settings.",
+        "Ethan is a network researcher specializing in scale-up networking.",
+        "Expectation: help offload research-related tasks to improve productivity.",
+        "User preference: call Ethan \"boss\" from now on.",
+        "User is currently in Hong Kong; use GMT+8 for time references in the future."
+      ]
+    }
+  ]
+}
