@@ -1,4 +1,34 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""Regenerate briefs/index.html from briefs/manifest.json.
+
+Produces a minimal date-only archive: each brief date is a clickable link,
+listed newest-first.  No preview text, top-paper blurbs, tags, summaries,
+or other content appear on the index page.
+"""
+from __future__ import annotations
+from pathlib import Path
+import json
+
+SITE = Path(__file__).resolve().parent.parent
+MANIFEST = SITE / 'briefs' / 'manifest.json'
+INDEX = SITE / 'briefs' / 'index.html'
+
+
+def render_index(dates: list[str]) -> str:
+    """Return the full HTML for briefs/index.html.
+
+    *dates* must already be sorted newest-first.
+    """
+    if dates:
+        items = '\n'.join(
+            f'            <li><a href="{d}.html">{d}</a></li>'
+            for d in dates
+        )
+        body = f'          <ul class="date-list">\n{items}\n          </ul>'
+    else:
+        body = '          <p class="muted">No briefs yet. This page will fill up automatically as daily briefs are published.</p>'
+
+    return f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,12 +63,26 @@
         </header>
         <section class="card page-block">
           <h2>Archive</h2>
-          <ul class="date-list">
-            <li><a href="2026-03-23.html">2026-03-23</a></li>
-          </ul>
+{body}
         </section>
       </main>
       <footer class="site-footer"><p>© <span id="year"></span> Ditto.</p></footer>
     </div>
   </body>
 </html>
+'''
+
+
+def main():
+    data = json.loads(MANIFEST.read_text(encoding='utf-8'))
+    # Sort dates newest-first
+    dates = sorted(
+        (entry['date'] for entry in data.get('briefs', [])),
+        reverse=True,
+    )
+    INDEX.write_text(render_index(dates), encoding='utf-8')
+    print(f'Wrote {INDEX} with {len(dates)} date(s).')
+
+
+if __name__ == '__main__':
+    main()
