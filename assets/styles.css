@@ -52,6 +52,16 @@ img { max-width: 100%; display: block; }
   top: 0.75rem;
   z-index: 20;
   backdrop-filter: blur(16px);
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.24s ease, opacity 0.24s ease;
+  will-change: transform, opacity;
+}
+
+.site-header.is-hidden {
+  transform: translateY(calc(-100% - 1rem));
+  opacity: 0;
+  pointer-events: none;
 }
 
 .navbar {
