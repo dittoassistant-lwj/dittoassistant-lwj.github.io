@@ -351,6 +351,14 @@ img { max-width: 100%; display: block; }
     padding-top: 0.6rem;
   }
 
+  .site-header {
+    position: static;
+    top: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
   .hero-copy,
   .hero-panel,
   .section-card,
