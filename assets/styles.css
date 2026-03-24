@@ -48,20 +48,11 @@ img { max-width: 100%; display: block; }
 }
 
 .site-header {
-  position: sticky;
-  top: 0.75rem;
-  z-index: 20;
+  position: relative;
+  top: auto;
+  z-index: 1;
   backdrop-filter: blur(16px);
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 0.24s ease, opacity 0.24s ease;
-  will-change: transform, opacity;
-}
-
-.site-header.is-hidden {
-  transform: translateY(calc(-100% - 1rem));
-  opacity: 0;
-  pointer-events: none;
+  margin-bottom: 1rem;
 }
 
 .navbar {
@@ -349,14 +340,6 @@ img { max-width: 100%; display: block; }
   .site-shell {
     width: min(calc(100% - 1rem), var(--max-width));
     padding-top: 0.6rem;
-  }
-
-  .site-header {
-    position: static;
-    top: auto;
-    transform: none !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
   }
 
   .hero-copy,
