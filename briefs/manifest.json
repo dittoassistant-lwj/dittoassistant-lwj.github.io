@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-03-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-24.html",
+      "url": "https://dittoailwj.github.io/briefs/2026-03-24.html",
+      "topPaper": {
+        "title": "CALVO: Improve Serving Efficiency for LLM Inferences with Intense Network Demands",
+        "arxiv": "https://arxiv.org/abs/2603.21257"
+      },
+      "papers": [
+        {
+          "title": "CALVO: Improve Serving Efficiency for LLM Inferences with Intense Network Demands",
+          "arxiv": "https://arxiv.org/abs/2603.21257"
+        },
+        {
+          "title": "LLMServingSim 2.0: A Unified Simulator for Heterogeneous and Disaggregated LLM Serving Infrastructure",
+          "arxiv": "https://arxiv.org/abs/2602.23036"
+        },
+        {
+          "title": "Comprehensive Deadlock Prevention for GPU Collective Communication",
+          "arxiv": "https://arxiv.org/abs/2303.06324"
+        }
+      ]
+    },
+    {
       "date": "2026-03-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-23.html",
