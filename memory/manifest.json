@@ -1,6 +1,19 @@
 {
   "entries": [
     {
+      "date": "2026-03-23",
+      "items": [
+        "Ran `openclaw doctor`; main issue flagged was missing Mistral API key / memory search provider setup.",
+        "Daily AI cluster networking brief successfully ran and published after some delay; brief and archive links were delivered.",
+        "User asked about several papers and repos, including OpenSUN-FPGA, a congestion-control paper for spraying, SGLB, and specific LoL esports results.",
+        "Migrated assistant identity away from the disabled Google account to a new Outlook account: `dittoassistant.lwj@outlook.com`.",
+        "Switched GitHub auth and website publishing to new GitHub account `dittoassistant-lwj`; new main site URL is `https://dittoassistant-lwj.github.io/`.",
+        "Added a daily memory dashboard to the personal website and wired an automatic nightly publish job.",
+        "Simplified both `/memory/` and `/briefs/` index pages so they show only dates as clickable links.",
+        "Connected to Ethan's Notion workspace and confirmed access to the Reading List page and the `Papers` database."
+      ]
+    },
+    {
       "date": "2026-03-22",
       "items": [
         "User prefers concise replies, does not want tool/action logs or exact commands surfaced unless explicitly requested.",
