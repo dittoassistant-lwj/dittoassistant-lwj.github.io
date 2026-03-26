@@ -1,6 +1,16 @@
 {
   "entries": [
     {
+      "date": "2026-03-26",
+      "items": [
+        "User clarified that a LaTeX engine/setup is already configured at `~/Projects/Research/Paper` and asked that it be used for future LaTeX PDF summary/report generation for papers.",
+        "For future paper PDF summaries using that LaTeX workflow, summaries can be more verbose, but all explanations/arguments must stay grounded in the paper itself.",
+        "Include mathematical reasoning from the paper when important.",
+        "Cap paper PDF summaries at 3 pages maximum.",
+        "Default future paper workflow when user sends a paper or paper link:"
+      ]
+    },
+    {
       "date": "2026-03-23",
       "items": [
         "Ran `openclaw doctor`; main issue flagged was missing Mistral API key / memory search provider setup.",
