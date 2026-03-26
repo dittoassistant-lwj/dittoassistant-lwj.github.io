@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-03-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-26.html",
+      "topPaper": {
+        "title": "NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL",
+        "arxiv": "https://arxiv.org/abs/2603.13606"
+      },
+      "papers": [
+        {
+          "title": "NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL",
+          "arxiv": "https://arxiv.org/abs/2603.13606"
+        },
+        {
+          "title": "When Scaling Fails: Network and Fabric Effects on Distributed GPU Training Performance",
+          "arxiv": "https://arxiv.org/abs/2603.04424"
+        },
+        {
+          "title": "The DMA Streaming Framework: Kernel-Level Buffer Orchestration for High-Performance AI Data Paths",
+          "arxiv": "https://arxiv.org/abs/2603.10030"
+        },
+        {
+          "title": "Efficient Remote Prefix Fetching with GPU-native Media ASICs",
+          "arxiv": "https://arxiv.org/abs/2602.09725"
+        }
+      ]
+    },
+    {
       "date": "2026-03-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-25.html",
