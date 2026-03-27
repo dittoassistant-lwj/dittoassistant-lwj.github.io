@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-03-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-27.html",
+      "topPaper": {
+        "title": "PCR: A Prefetch-Enhanced Cache Reuse System for Low-Latency RAG Serving",
+        "arxiv": "https://arxiv.org/abs/2603.23049"
+      },
+      "papers": [
+        {
+          "title": "PCR: A Prefetch-Enhanced Cache Reuse System for Low-Latency RAG Serving",
+          "arxiv": "https://arxiv.org/abs/2603.23049"
+        },
+        {
+          "title": "Characterizing CPU-Induced Slowdowns in Multi-GPU LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2603.22774"
+        },
+        {
+          "title": "PRISM: Dynamic Primitive-Based Forecasting for Large-Scale GPU Cluster Workloads",
+          "arxiv": "https://arxiv.org/abs/2603.25378"
+        }
+      ]
+    },
+    {
       "date": "2026-03-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-26.html",
