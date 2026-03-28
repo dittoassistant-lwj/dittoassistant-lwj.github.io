@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-03-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-28.html",
+      "topPaper": {
+        "title": "NEST: Network- and Memory-Aware Device Placement For Distributed Deep Learning",
+        "arxiv": "https://arxiv.org/abs/2603.06798"
+      },
+      "papers": [
+        {
+          "title": "NEST: Network- and Memory-Aware Device Placement For Distributed Deep Learning",
+          "arxiv": "https://arxiv.org/abs/2603.06798"
+        },
+        {
+          "title": "Network Design for Wafer-Scale Systems with Wafer-on-Wafer Hybrid Bonding",
+          "arxiv": "https://arxiv.org/abs/2603.05266"
+        },
+        {
+          "title": "Evaluation of TCP Congestion Control for Public High-Performance Wide-Area Networks",
+          "arxiv": "https://arxiv.org/abs/2603.12660"
+        },
+        {
+          "title": "Dynamic Hierarchical Birkhoff-von Neumann Decomposition for All-to-All GPU Communication",
+          "arxiv": "https://arxiv.org/abs/2602.22756"
+        }
+      ]
+    },
+    {
       "date": "2026-03-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-27.html",
