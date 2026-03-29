@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-03-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-29.html",
+      "topPaper": {
+        "title": "OrchestrRL: Dynamic Compute and Network Orchestration for Disaggregated RL",
+        "arxiv": "https://arxiv.org/abs/2601.01209"
+      },
+      "papers": [
+        {
+          "title": "OrchestrRL: Dynamic Compute and Network Orchestration for Disaggregated RL",
+          "arxiv": "https://arxiv.org/abs/2601.01209"
+        },
+        {
+          "title": "WWW.Serve: Interconnecting Global LLM Services through Decentralization",
+          "arxiv": "https://arxiv.org/abs/2603.20661"
+        },
+        {
+          "title": "Communication-Avoiding SpGEMM via Trident Partitioning on Hierarchical GPU Interconnects",
+          "arxiv": "https://arxiv.org/abs/2603.21444"
+        }
+      ]
+    },
+    {
       "date": "2026-03-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-28.html",
