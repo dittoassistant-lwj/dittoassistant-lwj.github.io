@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-03-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-30.html",
+      "topPaper": {
+        "title": "A Lightweight High-Throughput Collective-Capable NoC for Large-Scale ML Accelerators",
+        "arxiv": "https://arxiv.org/abs/2603.26438"
+      },
+      "papers": [
+        {
+          "title": "A Lightweight High-Throughput Collective-Capable NoC for Large-Scale ML Accelerators",
+          "arxiv": "https://arxiv.org/abs/2603.26438"
+        },
+        {
+          "title": "IBEX: Internal Bandwidth-Efficient Compression Architecture for Scalable CXL Memory Expansion",
+          "arxiv": "https://arxiv.org/abs/2603.26131"
+        },
+        {
+          "title": "Communication-Aware Diffusion Load Balancing for Persistently Interacting Objects",
+          "arxiv": "https://arxiv.org/abs/2603.23329"
+        }
+      ]
+    },
+    {
       "date": "2026-03-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-29.html",
