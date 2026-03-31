@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-03-31",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-03-31.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-03-31.html",
+      "topPaper": {
+        "title": "To Reconfigure or Not to Reconfigure: Optimizing All-to-All Collectives in Circuit-Switched Photonic Interconnects",
+        "arxiv": "https://arxiv.org/abs/2602.10468"
+      },
+      "papers": [
+        {
+          "title": "To Reconfigure or Not to Reconfigure: Optimizing All-to-All Collectives in Circuit-Switched Photonic Interconnects",
+          "arxiv": "https://arxiv.org/abs/2602.10468"
+        },
+        {
+          "title": "Harvest: Adaptive Photonic Switching Schedules for Collective Communication in Scale-up Domains",
+          "arxiv": "https://arxiv.org/abs/2602.09188"
+        },
+        {
+          "title": "Load Balancing for AI Training Workloads",
+          "arxiv": "https://arxiv.org/abs/2507.21372"
+        }
+      ]
+    },
+    {
       "date": "2026-03-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-30.html",
