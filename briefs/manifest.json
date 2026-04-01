@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-01.html",
+      "topPaper": {
+        "title": "Leaf-centric Logical Topology Design for OCS-based GPU Clusters",
+        "arxiv": "https://arxiv.org/abs/2603.28168"
+      },
+      "papers": [
+        {
+          "title": "Leaf-centric Logical Topology Design for OCS-based GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2603.28168"
+        },
+        {
+          "title": "Varuna: Enabling Failure-Type Aware RDMA Failover",
+          "arxiv": "https://arxiv.org/abs/2603.28001"
+        },
+        {
+          "title": "Trust-Aware Routing for Distributed Generative AI Inference at the Edge",
+          "arxiv": "https://arxiv.org/abs/2603.28622"
+        }
+      ]
+    },
+    {
       "date": "2026-03-31",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-03-31.html",
