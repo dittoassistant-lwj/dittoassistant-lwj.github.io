@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-02.html",
+      "topPaper": {
+        "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2604.00368"
+      },
+      "papers": [
+        {
+          "title": "TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2604.00368"
+        },
+        {
+          "title": "From Skew to Symmetry: Node-Interconnect Multi-Path Balancing with Execution-time Planning for Modern GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2604.00317"
+        },
+        {
+          "title": "DELTA: A DAG-aware Efficient OCS Logical Topology Optimization Framework for AIDCs",
+          "arxiv": "https://arxiv.org/abs/2603.28096"
+        },
+        {
+          "title": "A Switch-Centric In-Network Architecture for Accelerating LLM Inference in Shared-Memory Network",
+          "arxiv": "https://arxiv.org/abs/2603.28239"
+        }
+      ]
+    },
+    {
       "date": "2026-04-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-01.html",
