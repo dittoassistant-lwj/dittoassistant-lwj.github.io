@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-03.html",
+      "topPaper": {
+        "title": "FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators",
+        "arxiv": "https://arxiv.org/abs/2604.02110"
+      },
+      "papers": [
+        {
+          "title": "FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators",
+          "arxiv": "https://arxiv.org/abs/2604.02110"
+        },
+        {
+          "title": "DWDP: Distributed Weight Data Parallelism for High-Performance LLM Inference on NVL72",
+          "arxiv": "https://arxiv.org/abs/2604.01621"
+        },
+        {
+          "title": "Understand and Accelerate Memory Processing Pipeline for Disaggregated LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2603.29002"
+        },
+        {
+          "title": "OptINC: Optical In-Network-Computing for Scalable Distributed Learning",
+          "arxiv": "https://arxiv.org/abs/2603.28290"
+        }
+      ]
+    },
+    {
       "date": "2026-04-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-02.html",
