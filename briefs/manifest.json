@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-04.html",
+      "topPaper": {
+        "title": "Not All Prefills Are Equal: PPD Disaggregation for Multi-turn LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2603.13358"
+      },
+      "papers": [
+        {
+          "title": "Not All Prefills Are Equal: PPD Disaggregation for Multi-turn LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2603.13358"
+        },
+        {
+          "title": "SysOM-AI: Continuous Cross-Layer Performance Diagnosis for Production AI Training",
+          "arxiv": "https://arxiv.org/abs/2603.29235"
+        },
+        {
+          "title": "Thousand-GPU Large-Scale Training and Optimization Recipe for AI-Native Cloud Embodied Intelligence Infrastructure",
+          "arxiv": "https://arxiv.org/abs/2603.11101"
+        },
+        {
+          "title": "EROICA: Online Performance Troubleshooting for Large-Scale Model Training",
+          "arxiv": "https://arxiv.org/abs/2506.08528"
+        }
+      ]
+    },
+    {
       "date": "2026-04-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-03.html",
