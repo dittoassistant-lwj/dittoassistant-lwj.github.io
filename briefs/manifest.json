@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-05.html",
+      "topPaper": {
+        "title": "The Forward-In-Time-Only Assumption in SmartNIC Resource Management: A Critique of Wave and the Case for Bilateral Interaction",
+        "arxiv": "https://arxiv.org/abs/2603.13750"
+      },
+      "papers": [
+        {
+          "title": "The Forward-In-Time-Only Assumption in SmartNIC Resource Management: A Critique of Wave and the Case for Bilateral Interaction",
+          "arxiv": "https://arxiv.org/abs/2603.13750"
+        },
+        {
+          "title": "The Ghost in the Datacenter: Link Flapping, Topology Knowledge Failures, and the FITO Category Mistake",
+          "arxiv": "https://arxiv.org/abs/2603.03736"
+        },
+        {
+          "title": "immUNITY: Detecting and Mitigating Low Volume & Slow Attacks with Programmable Switches and SmartNICs",
+          "arxiv": "https://arxiv.org/abs/2603.20573"
+        }
+      ]
+    },
+    {
       "date": "2026-04-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-04.html",
