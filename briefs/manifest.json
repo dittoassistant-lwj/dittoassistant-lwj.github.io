@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-06.html",
+      "topPaper": {
+        "title": "TokenDance: Scaling Multi-Agent LLM Serving via Collective KV Cache Sharing",
+        "arxiv": "https://arxiv.org/abs/2604.03143"
+      },
+      "papers": [
+        {
+          "title": "TokenDance: Scaling Multi-Agent LLM Serving via Collective KV Cache Sharing",
+          "arxiv": "https://arxiv.org/abs/2604.03143"
+        },
+        {
+          "title": "SUN: Shared Use of Next-token Prediction for Efficient Multi-LLM Disaggregated Serving",
+          "arxiv": "https://arxiv.org/abs/2603.02599"
+        },
+        {
+          "title": "Lagom: Unleashing the Power of Communication and Computation Overlapping for Distributed LLM Training",
+          "arxiv": "https://arxiv.org/abs/2602.20656"
+        },
+        {
+          "title": "ReviveMoE: Fast Recovery for Hardware Failures in Large-Scale MoE LLM Inference Deployments",
+          "arxiv": "https://arxiv.org/abs/2602.21140"
+        }
+      ]
+    },
+    {
       "date": "2026-04-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-05.html",
