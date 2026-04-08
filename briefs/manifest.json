@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-08.html",
+      "topPaper": {
+        "title": "RailX: A Flexible, Scalable, and Low-Cost Network Architecture for Hyper-Scale LLM Training Systems",
+        "arxiv": "https://arxiv.org/abs/2507.18889"
+      },
+      "papers": [
+        {
+          "title": "RailX: A Flexible, Scalable, and Low-Cost Network Architecture for Hyper-Scale LLM Training Systems",
+          "arxiv": "https://arxiv.org/abs/2507.18889"
+        },
+        {
+          "title": "RoCE BALBOA: Service-enhanced Data Center RDMA for SmartNICs",
+          "arxiv": "https://arxiv.org/abs/2507.20412"
+        },
+        {
+          "title": "Congestion-Aware Path Selection for Load Balancing in AI Clusters",
+          "arxiv": "https://arxiv.org/abs/2506.08132"
+        },
+        {
+          "title": "SDR-RDMA: Software-Defined Reliability Architecture for Planetary Scale RDMA Communication",
+          "arxiv": "https://arxiv.org/abs/2505.05366"
+        }
+      ]
+    },
+    {
       "date": "2026-04-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-07.html",
