@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-09.html",
+      "topPaper": {
+        "title": "InfiniLoRA: Disaggregated Multi-LoRA Serving for Large Language Models",
+        "arxiv": "https://arxiv.org/abs/2604.07173"
+      },
+      "papers": [
+        {
+          "title": "InfiniLoRA: Disaggregated Multi-LoRA Serving for Large Language Models",
+          "arxiv": "https://arxiv.org/abs/2604.07173"
+        },
+        {
+          "title": "ForkKV: Scaling Multi-LoRA Agent Serving via Copy-on-Write Disaggregated KV Cache",
+          "arxiv": "https://arxiv.org/abs/2604.06370"
+        },
+        {
+          "title": "NestPipe: Large-Scale Recommendation Training on 1,500+ Accelerators via Nested Pipelining",
+          "arxiv": "https://arxiv.org/abs/2604.06956"
+        },
+        {
+          "title": "SwarmIO: Towards 100 Million IOPS SSD Emulation for Next-generation GPU-centric Storage Systems",
+          "arxiv": "https://arxiv.org/abs/2604.06668"
+        }
+      ]
+    },
+    {
       "date": "2026-04-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-08.html",
