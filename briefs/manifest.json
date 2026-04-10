@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-10",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-10.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-10.html",
+      "topPaper": {
+        "title": "Blink: CPU-Free LLM Inference by Delegating the Serving Stack to GPU and SmartNIC",
+        "arxiv": "https://arxiv.org/abs/2604.07609"
+      },
+      "papers": [
+        {
+          "title": "Blink: CPU-Free LLM Inference by Delegating the Serving Stack to GPU and SmartNIC",
+          "arxiv": "https://arxiv.org/abs/2604.07609"
+        },
+        {
+          "title": "LCMP: Distributed Long-Haul Cost-Aware Multi-Path Routing for Inter-Datacenter RDMA Networks",
+          "arxiv": "https://arxiv.org/abs/2604.07836"
+        },
+        {
+          "title": "Scheduling Coflows in Multi-Core OCS Networks with Performance Guarantee",
+          "arxiv": "https://arxiv.org/abs/2604.08242"
+        }
+      ]
+    },
+    {
       "date": "2026-04-09",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-09.html",
