@@ -1,6 +1,26 @@
 {
   "briefs": [
     {
+      "date": "2026-04-13",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-13.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-13.html",
+      "topPaper": {
+        "title": "TensorHub: Scalable and Elastic Weight Transfer for LLM RL Training",
+        "arxiv": "https://arxiv.org/abs/2604.09107"
+      },
+      "papers": [
+        {
+          "title": "TensorHub: Scalable and Elastic Weight Transfer for LLM RL Training",
+          "arxiv": "https://arxiv.org/abs/2604.09107"
+        },
+        {
+          "title": "DMA-Latte: Expanding the Reach of DMA Offloads to Latency-bound ML Communication",
+          "arxiv": "https://arxiv.org/abs/2511.06605"
+        }
+      ]
+    },
+    {
       "date": "2026-04-10",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-10.html",
