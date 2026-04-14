@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-14.html",
+      "topPaper": {
+        "title": "fabric-lib: RDMA Point-to-Point Communication for LLM Systems",
+        "arxiv": "https://arxiv.org/abs/2510.27656"
+      },
+      "papers": [
+        {
+          "title": "fabric-lib: RDMA Point-to-Point Communication for LLM Systems",
+          "arxiv": "https://arxiv.org/abs/2510.27656"
+        },
+        {
+          "title": "Characterizing the Impact of Congestion in Modern HPC Interconnects",
+          "arxiv": "https://arxiv.org/abs/2604.11432"
+        },
+        {
+          "title": "RouterWise: Joint Resource Allocation and Routing for Latency-Aware Multi-Model LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2604.10907"
+        }
+      ]
+    },
+    {
       "date": "2026-04-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-13.html",
