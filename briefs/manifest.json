@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-15",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-15.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-15.html",
+      "topPaper": {
+        "title": "PipeLive: Efficient Live In-place Pipeline Parallelism Reconfiguration for Dynamic LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2604.12171"
+      },
+      "papers": [
+        {
+          "title": "PipeLive: Efficient Live In-place Pipeline Parallelism Reconfiguration for Dynamic LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2604.12171"
+        },
+        {
+          "title": "Tessera: Unlocking Heterogeneous GPUs through Kernel-Granularity Disaggregation",
+          "arxiv": "https://arxiv.org/abs/2604.10180"
+        },
+        {
+          "title": "Verifying In-Network Computing Systems for Design Risks",
+          "arxiv": "https://arxiv.org/abs/2604.10186"
+        },
+        {
+          "title": "An Engineering Journey Training Large Language Models at Scale on Alps: The Apertus Experience",
+          "arxiv": "https://arxiv.org/abs/2604.12973"
+        }
+      ]
+    },
+    {
       "date": "2026-04-14",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-14.html",
