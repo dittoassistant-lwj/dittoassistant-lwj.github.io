@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-16",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-16.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-16.html",
+      "topPaper": {
+        "title": "SAKURAONE: An Open Ethernet-Based AI HPC System and Its Observed Workload Dynamics in a Single-Tenant LLM Development Environment",
+        "arxiv": "https://arxiv.org/abs/2604.13600"
+      },
+      "papers": [
+        {
+          "title": "SAKURAONE: An Open Ethernet-Based AI HPC System and Its Observed Workload Dynamics in a Single-Tenant LLM Development Environment",
+          "arxiv": "https://arxiv.org/abs/2604.13600"
+        },
+        {
+          "title": "Programmable Packet Scheduling with Dynamic Reordering at Line Rate",
+          "arxiv": "https://arxiv.org/abs/2604.11453"
+        },
+        {
+          "title": "Improving Network Clock Synchronization by Marking Congestion",
+          "arxiv": "https://arxiv.org/abs/2604.12961"
+        },
+        {
+          "title": "Towards Near-Real-Time Telemetry-Aware Routing with Neural Routing Algorithms",
+          "arxiv": "https://arxiv.org/abs/2604.02927"
+        }
+      ]
+    },
+    {
       "date": "2026-04-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-15.html",
