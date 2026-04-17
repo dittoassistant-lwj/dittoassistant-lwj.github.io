@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-04-17",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-17.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-17.html",
+      "topPaper": {
+        "title": "Switching Efficiency: A Novel Framework for Dissecting AI Data Center Network Efficiency",
+        "arxiv": "https://arxiv.org/abs/2604.14690"
+      },
+      "papers": [
+        {
+          "title": "Switching Efficiency: A Novel Framework for Dissecting AI Data Center Network Efficiency",
+          "arxiv": "https://arxiv.org/abs/2604.14690"
+        },
+        {
+          "title": "SCENIC: Stream Computation-Enhanced SmartNIC",
+          "arxiv": "https://arxiv.org/abs/2604.15128"
+        },
+        {
+          "title": "CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism",
+          "arxiv": "https://arxiv.org/abs/2604.14561"
+        },
+        {
+          "title": "Expanding into Reality: Random Graphs for Datacenter Networks",
+          "arxiv": "https://arxiv.org/abs/2604.15261"
+        },
+        {
+          "title": "Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter",
+          "arxiv": "https://arxiv.org/abs/2604.15039"
+        }
+      ]
+    },
+    {
       "date": "2026-04-16",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-16.html",
