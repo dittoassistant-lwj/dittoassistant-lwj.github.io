@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-18",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-18.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-18.html",
+      "topPaper": {
+        "title": "Sustaining Exascale Performance: Lessons from HPL and HPL-MxP on Aurora",
+        "arxiv": "https://arxiv.org/abs/2604.09517"
+      },
+      "papers": [
+        {
+          "title": "Sustaining Exascale Performance: Lessons from HPL and HPL-MxP on Aurora",
+          "arxiv": "https://arxiv.org/abs/2604.09517"
+        },
+        {
+          "title": "DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators",
+          "arxiv": "https://arxiv.org/abs/2604.04750"
+        },
+        {
+          "title": "Serving Chain-structured Jobs with Large Memory Footprints with Application to Large Foundation Model Serving",
+          "arxiv": "https://arxiv.org/abs/2604.14993"
+        }
+      ]
+    },
+    {
       "date": "2026-04-17",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-17.html",
