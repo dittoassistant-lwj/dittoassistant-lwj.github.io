@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-19",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-19.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-19.html",
+      "topPaper": {
+        "title": "SHIFT: Exploring the Boundary of RDMA Network Fault Tolerance",
+        "arxiv": "https://arxiv.org/abs/2512.11094"
+      },
+      "papers": [
+        {
+          "title": "SHIFT: Exploring the Boundary of RDMA Network Fault Tolerance",
+          "arxiv": "https://arxiv.org/abs/2512.11094"
+        },
+        {
+          "title": "Octopus: Enhancing CXL Memory Pods via Sparse Topology",
+          "arxiv": "https://arxiv.org/abs/2501.09020"
+        },
+        {
+          "title": "PICO: Performance Insights for Collective Operations",
+          "arxiv": "https://arxiv.org/abs/2508.16809"
+        }
+      ]
+    },
+    {
       "date": "2026-04-18",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-18.html",
