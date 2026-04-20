@@ -1,6 +1,26 @@
 {
   "briefs": [
     {
+      "date": "2026-04-20",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-20.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-20.html",
+      "topPaper": {
+        "title": "Characterization of Real Communication Patterns and Congestion Dynamics in HPC Interconnection Networks",
+        "arxiv": "https://arxiv.org/abs/2604.16088"
+      },
+      "papers": [
+        {
+          "title": "Characterization of Real Communication Patterns and Congestion Dynamics in HPC Interconnection Networks",
+          "arxiv": "https://arxiv.org/abs/2604.16088"
+        },
+        {
+          "title": "Analyzing Persistent Alltoallv RMA Implementations for High-Performance MPI Communication",
+          "arxiv": "https://arxiv.org/abs/2604.05099"
+        }
+      ]
+    },
+    {
       "date": "2026-04-19",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-19.html",
