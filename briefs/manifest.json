@@ -1,6 +1,26 @@
 {
   "briefs": [
     {
+      "date": "2026-04-21",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-21.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-21.html",
+      "topPaper": {
+        "title": "Symphony: Taming Step Misalignments in the Network for Ring-based Collective Operations",
+        "arxiv": "https://arxiv.org/abs/2604.16880"
+      },
+      "papers": [
+        {
+          "title": "Symphony: Taming Step Misalignments in the Network for Ring-based Collective Operations",
+          "arxiv": "https://arxiv.org/abs/2604.16880"
+        },
+        {
+          "title": "CCCL: In-GPU Compression-Coupled Collective Communication",
+          "arxiv": "https://arxiv.org/abs/2604.17172"
+        }
+      ]
+    },
+    {
       "date": "2026-04-20",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-20.html",
