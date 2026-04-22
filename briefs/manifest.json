@@ -1,6 +1,26 @@
 {
   "briefs": [
     {
+      "date": "2026-04-22",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-22.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-22.html",
+      "topPaper": {
+        "title": "ChipLight: Cross-Layer Optimization of Chiplet Design with Optical Interconnects for LLM Training",
+        "arxiv": "https://arxiv.org/abs/2604.18909"
+      },
+      "papers": [
+        {
+          "title": "ChipLight: Cross-Layer Optimization of Chiplet Design with Optical Interconnects for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2604.18909"
+        },
+        {
+          "title": "FEPLB: Exploiting Copy Engines for Nearly Free MoE Load Balancing in Distributed Training",
+          "arxiv": "https://arxiv.org/abs/2604.19654"
+        }
+      ]
+    },
+    {
       "date": "2026-04-21",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-21.html",
