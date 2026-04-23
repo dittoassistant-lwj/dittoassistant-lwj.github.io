@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-23",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-23.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-23.html",
+      "topPaper": {
+        "title": "UCCL-Zip: Lossless Compression Supercharged GPU Communication",
+        "arxiv": "https://arxiv.org/abs/2604.17172"
+      },
+      "papers": [
+        {
+          "title": "UCCL-Zip: Lossless Compression Supercharged GPU Communication",
+          "arxiv": "https://arxiv.org/abs/2604.17172"
+        },
+        {
+          "title": "UniEP: Unified Expert-Parallel MoE MegaKernel for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2604.19241"
+        },
+        {
+          "title": "DPC: A Distributed Page Cache over CXL",
+          "arxiv": "https://arxiv.org/abs/2604.19494"
+        }
+      ]
+    },
+    {
       "date": "2026-04-22",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-22.html",
