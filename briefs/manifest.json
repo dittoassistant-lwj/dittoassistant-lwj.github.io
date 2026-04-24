@@ -1,6 +1,26 @@
 {
   "briefs": [
     {
+      "date": "2026-04-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-24.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-24.html",
+      "topPaper": {
+        "title": "SPAC: Automating FPGA-based Network Switches with Protocol Adaptive Customization",
+        "arxiv": "https://arxiv.org/abs/2604.21881"
+      },
+      "papers": [
+        {
+          "title": "SPAC: Automating FPGA-based Network Switches with Protocol Adaptive Customization",
+          "arxiv": "https://arxiv.org/abs/2604.21881"
+        },
+        {
+          "title": "The Landscape of GPU-Centric Communication",
+          "arxiv": "https://arxiv.org/abs/2409.09874"
+        }
+      ]
+    },
+    {
       "date": "2026-04-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-23.html",
