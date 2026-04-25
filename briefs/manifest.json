@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-25",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-25.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-25.html",
+      "topPaper": {
+        "title": "Distributed Generative Inference of LLM at Internet Scales with Multi-Dimensional Communication Optimization",
+        "arxiv": "https://arxiv.org/abs/2604.21072"
+      },
+      "papers": [
+        {
+          "title": "Distributed Generative Inference of LLM at Internet Scales with Multi-Dimensional Communication Optimization",
+          "arxiv": "https://arxiv.org/abs/2604.21072"
+        },
+        {
+          "title": "Optimizing High-Throughput Distributed Data Pipelines for Reproducible Deep Learning at Scale",
+          "arxiv": "https://arxiv.org/abs/2604.21275"
+        },
+        {
+          "title": "Sema: Semantic Transport for Real-Time Multimodal Agents",
+          "arxiv": "https://arxiv.org/abs/2604.20940"
+        }
+      ]
+    },
+    {
       "date": "2026-04-24",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-24.html",
