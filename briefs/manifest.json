@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-04-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-26.html",
+      "topPaper": {
+        "title": "Accuracy Is Speed: Towards Long-Context-Aware Routing for Distributed LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2604.15732"
+      },
+      "papers": [
+        {
+          "title": "Accuracy Is Speed: Towards Long-Context-Aware Routing for Distributed LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2604.15732"
+        },
+        {
+          "title": "A Task Decomposition and Planning Framework for Efficient LLM Inference in AI-Enabled WiFi-Offload Networks",
+          "arxiv": "https://arxiv.org/abs/2604.21399"
+        },
+        {
+          "title": "SparKV: Overhead-Aware KV Cache Loading for Efficient On-Device LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2604.21231"
+        },
+        {
+          "title": "Active Inference-Based Adaptive Routing for Heterogeneous Edge AI Services",
+          "arxiv": "https://arxiv.org/abs/2604.17373"
+        }
+      ]
+    },
+    {
       "date": "2026-04-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-25.html",
