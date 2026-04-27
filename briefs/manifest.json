@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-27.html",
+      "topPaper": {
+        "title": "GICC: A High-Performance Runtime for GPU-Initiated Communication and Coordination in Modern HPC Systems",
+        "arxiv": "https://arxiv.org/abs/2604.22126"
+      },
+      "papers": [
+        {
+          "title": "GICC: A High-Performance Runtime for GPU-Initiated Communication and Coordination in Modern HPC Systems",
+          "arxiv": "https://arxiv.org/abs/2604.22126"
+        },
+        {
+          "title": "Accelerating Intra-Node GPU-to-GPU Communication Through Multi-Path Transfers with CUDA Graphs",
+          "arxiv": "https://arxiv.org/abs/2604.22228"
+        },
+        {
+          "title": "Chamelio: A Fast Shared Cloud Network Stack for Isolated Tenant-Defined Protocols",
+          "arxiv": "https://arxiv.org/abs/2604.22603"
+        }
+      ]
+    },
+    {
       "date": "2026-04-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-26.html",
