@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-28.html",
+      "topPaper": {
+        "title": "MatchRDMA: A Segmented and Rate-Matched Long-Haul RDMA Scheme for Geo-distributed LLM Training over OTN",
+        "arxiv": "https://arxiv.org/abs/2604.23932"
+      },
+      "papers": [
+        {
+          "title": "MatchRDMA: A Segmented and Rate-Matched Long-Haul RDMA Scheme for Geo-distributed LLM Training over OTN",
+          "arxiv": "https://arxiv.org/abs/2604.23932"
+        },
+        {
+          "title": "FreeScale: Distributed Training for Sequence Recommendation Models with Minimal Scaling Cost",
+          "arxiv": "https://arxiv.org/abs/2604.24073"
+        },
+        {
+          "title": "O(K)-Approximation Coflow Scheduling in K-Core Optical Circuit Switching Networks",
+          "arxiv": "https://arxiv.org/abs/2604.22146"
+        }
+      ]
+    },
+    {
       "date": "2026-04-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-27.html",
