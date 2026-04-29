@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-29.html",
+      "topPaper": {
+        "title": "TACO: Efficient Communication Compression of Intermediate Tensors for Scalable Tensor-Parallel LLM Training",
+        "arxiv": "https://arxiv.org/abs/2604.24088"
+      },
+      "papers": [
+        {
+          "title": "TACO: Efficient Communication Compression of Intermediate Tensors for Scalable Tensor-Parallel LLM Training",
+          "arxiv": "https://arxiv.org/abs/2604.24088"
+        },
+        {
+          "title": "FlashOverlap: Minimizing Tail Latency in Communication Overlap for Distributed LLM Training",
+          "arxiv": "https://arxiv.org/abs/2604.24013"
+        },
+        {
+          "title": "Scaling Data Center TCP to Terabits with Laminar",
+          "arxiv": "https://arxiv.org/abs/2504.19058"
+        }
+      ]
+    },
+    {
       "date": "2026-04-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-28.html",
