@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-04-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-04-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-04-30.html",
+      "topPaper": {
+        "title": "Multi-Plane HyperX: A Low-Latency and Cost-Effective Network for Large-Scale AI and HPC Systems",
+        "arxiv": "https://arxiv.org/abs/2604.23519"
+      },
+      "papers": [
+        {
+          "title": "Multi-Plane HyperX: A Low-Latency and Cost-Effective Network for Large-Scale AI and HPC Systems",
+          "arxiv": "https://arxiv.org/abs/2604.23519"
+        },
+        {
+          "title": "Scaling Multi-Node Mixture-of-Experts Inference Using Expert Activation Patterns",
+          "arxiv": "https://arxiv.org/abs/2604.23150"
+        },
+        {
+          "title": "Benchmarking LLM-Driven Network Configuration Repair",
+          "arxiv": "https://arxiv.org/abs/2604.22513"
+        }
+      ]
+    },
+    {
       "date": "2026-04-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-29.html",
