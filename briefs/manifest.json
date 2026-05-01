@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-01.html",
+      "topPaper": {
+        "title": "ZipCCL: Efficient Lossless Data Compression of Communication Collectives for Accelerating LLM Training",
+        "arxiv": "https://arxiv.org/abs/2604.27844"
+      },
+      "papers": [
+        {
+          "title": "ZipCCL: Efficient Lossless Data Compression of Communication Collectives for Accelerating LLM Training",
+          "arxiv": "https://arxiv.org/abs/2604.27844"
+        },
+        {
+          "title": "Enabling Reconfiguration-Communication Overlap for Collective Communication in Optical Networks",
+          "arxiv": "https://arxiv.org/abs/2510.19322"
+        },
+        {
+          "title": "NeuroRing: Scaling Spiking Neural Networks via Multi-FPGA Bidirectional Ring Topologies and Stream-Dataflow Architectures",
+          "arxiv": "https://arxiv.org/abs/2604.28059"
+        }
+      ]
+    },
+    {
       "date": "2026-04-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-04-30.html",
