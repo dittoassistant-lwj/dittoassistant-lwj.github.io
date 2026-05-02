@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-02.html",
+      "topPaper": {
+        "title": "CacheFlow: Efficient LLM Serving with 3D-Parallel KV Cache Restoration",
+        "arxiv": "https://arxiv.org/abs/2604.25080"
+      },
+      "papers": [
+        {
+          "title": "CacheFlow: Efficient LLM Serving with 3D-Parallel KV Cache Restoration",
+          "arxiv": "https://arxiv.org/abs/2604.25080"
+        },
+        {
+          "title": "DAK: Direct-Access-Enabled GPU Memory Offloading with Optimal Efficiency for LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2604.26074"
+        },
+        {
+          "title": "Folding Tensor and Sequence Parallelism for Memory-Efficient Transformer Training & Inference",
+          "arxiv": "https://arxiv.org/abs/2604.26294"
+        },
+        {
+          "title": "Towards Topology-Aware Very Large-Scale Photonic AI Accelerators",
+          "arxiv": "https://arxiv.org/abs/2604.26966"
+        }
+      ]
+    },
+    {
       "date": "2026-05-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-01.html",
