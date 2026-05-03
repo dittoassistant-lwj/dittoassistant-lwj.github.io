@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-03.html",
+      "topPaper": {
+        "title": "Efficient Training on Multiple Consumer GPUs with RoundPipe",
+        "arxiv": "https://arxiv.org/abs/2604.27085"
+      },
+      "papers": [
+        {
+          "title": "Efficient Training on Multiple Consumer GPUs with RoundPipe",
+          "arxiv": "https://arxiv.org/abs/2604.27085"
+        },
+        {
+          "title": "Libra: Accelerating Socket I/O via Programmable Selective Data Copying",
+          "arxiv": "https://arxiv.org/abs/2604.27686"
+        },
+        {
+          "title": "Optimization of Model Splitting, Placement, and Chaining for Multi-hop Split Learning and Inference",
+          "arxiv": "https://arxiv.org/abs/2604.25197"
+        }
+      ]
+    },
+    {
       "date": "2026-05-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-02.html",
