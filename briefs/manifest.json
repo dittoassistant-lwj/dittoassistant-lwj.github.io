@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-04.html",
+      "topPaper": {
+        "title": "Rethinking Network Topologies for Cost-Effective Mixture-of-Experts LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2605.00254"
+      },
+      "papers": [
+        {
+          "title": "Rethinking Network Topologies for Cost-Effective Mixture-of-Experts LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.00254"
+        },
+        {
+          "title": "Eliminating Hidden Serialization in Multi-Node Megakernel Communication",
+          "arxiv": "https://arxiv.org/abs/2605.00686"
+        },
+        {
+          "title": "TokenWeave: Efficient Compute-Communication Overlap for Distributed LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2505.11329"
+        }
+      ]
+    },
+    {
       "date": "2026-05-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-03.html",
