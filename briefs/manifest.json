@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-05.html",
+      "topPaper": {
+        "title": "DBLP: Phase-Aware Bounded-Loss Transport for Burst-Resilient Distributed ML Training",
+        "arxiv": "https://arxiv.org/abs/2605.01989"
+      },
+      "papers": [
+        {
+          "title": "DBLP: Phase-Aware Bounded-Loss Transport for Burst-Resilient Distributed ML Training",
+          "arxiv": "https://arxiv.org/abs/2605.01989"
+        },
+        {
+          "title": "SplitZip: Ultra Fast Lossless KV Compression for Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.01708"
+        },
+        {
+          "title": "Decoupled DiLoCo for Resilient Distributed Pre-training",
+          "arxiv": "https://arxiv.org/abs/2604.21428"
+        },
+        {
+          "title": "AMMA: A Multi-Chiplet Memory-Centric Architecture for Low-Latency 1M Context Attention Serving",
+          "arxiv": "https://arxiv.org/abs/2604.26103"
+        }
+      ]
+    },
+    {
       "date": "2026-05-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-04.html",
