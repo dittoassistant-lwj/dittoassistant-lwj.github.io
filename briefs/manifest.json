@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-06.html",
+      "topPaper": {
+        "title": "SprayCheck: Finding Gray Failures in Adaptive Routing Networks",
+        "arxiv": "https://arxiv.org/abs/2605.03702"
+      },
+      "papers": [
+        {
+          "title": "SprayCheck: Finding Gray Failures in Adaptive Routing Networks",
+          "arxiv": "https://arxiv.org/abs/2605.03702"
+        },
+        {
+          "title": "A Protocol-Independent Transport Architecture",
+          "arxiv": "https://arxiv.org/abs/2605.02210"
+        },
+        {
+          "title": "Tutti: Making SSD-Backed KV Cache Practical for Long-Context LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.03375"
+        }
+      ]
+    },
+    {
       "date": "2026-05-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-05.html",
