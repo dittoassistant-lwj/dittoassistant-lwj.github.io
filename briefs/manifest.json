@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-07",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-07.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-07.html",
+      "topPaper": {
+        "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+        "arxiv": "https://arxiv.org/abs/2605.04333"
+      },
+      "papers": [
+        {
+          "title": "Resilient AI Supercomputer Networking using MRC and SRv6",
+          "arxiv": "https://arxiv.org/abs/2605.04333"
+        },
+        {
+          "title": "Communication Offloading on SmartNIC DPUs: A Quantitative Approach",
+          "arxiv": "https://arxiv.org/abs/2605.04842"
+        },
+        {
+          "title": "GATE: GPU-Accelerated Traffic Engineering for the WAN",
+          "arxiv": "https://arxiv.org/abs/2605.01748"
+        },
+        {
+          "title": "Piper: Efficient Large-Scale MoE Training via Resource Modeling and Pipelined Hybrid Parallelism",
+          "arxiv": "https://arxiv.org/abs/2605.05049"
+        }
+      ]
+    },
+    {
       "date": "2026-05-06",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-06.html",
