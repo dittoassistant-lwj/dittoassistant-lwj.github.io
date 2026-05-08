@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-08.html",
+      "topPaper": {
+        "title": "Towards Compute-Aware In-Switch Computing for LLMs Tensor-Parallelism on Multi-GPU Systems",
+        "arxiv": "https://arxiv.org/abs/2605.05628"
+      },
+      "papers": [
+        {
+          "title": "Towards Compute-Aware In-Switch Computing for LLMs Tensor-Parallelism on Multi-GPU Systems",
+          "arxiv": "https://arxiv.org/abs/2605.05628"
+        },
+        {
+          "title": "Accelerating MoE with Dynamic In-Switch Computing on Multi-GPUs",
+          "arxiv": "https://arxiv.org/abs/2605.05607"
+        },
+        {
+          "title": "MoE-Hub: Taming Software Complexity for Seamless MoE Overlap with Hardware-Accelerated Communication on Multi-GPU Systems",
+          "arxiv": "https://arxiv.org/abs/2605.05888"
+        },
+        {
+          "title": "Relay Buffer Independent Communication over Pooled HBM for Efficient MoE Inference on Ascend",
+          "arxiv": "https://arxiv.org/abs/2605.06055"
+        }
+      ]
+    },
+    {
       "date": "2026-05-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-07.html",
