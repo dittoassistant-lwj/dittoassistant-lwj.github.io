@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-09.html",
+      "topPaper": {
+        "title": "Tackling the Data-Parallel Load Balancing Bottleneck in LLM Serving: Practical Online Routing at Scale",
+        "arxiv": "https://arxiv.org/abs/2605.06113"
+      },
+      "papers": [
+        {
+          "title": "Tackling the Data-Parallel Load Balancing Bottleneck in LLM Serving: Practical Online Routing at Scale",
+          "arxiv": "https://arxiv.org/abs/2605.06113"
+        },
+        {
+          "title": "CCL-Bench 1.0: A Trace-Based Benchmark for LLM Infrastructure",
+          "arxiv": "https://arxiv.org/abs/2605.06544"
+        },
+        {
+          "title": "Nitsum: Serving Tiered LLM Requests with Adaptive Tensor Parallelism",
+          "arxiv": "https://arxiv.org/abs/2605.05467"
+        }
+      ]
+    },
+    {
       "date": "2026-05-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-08.html",
