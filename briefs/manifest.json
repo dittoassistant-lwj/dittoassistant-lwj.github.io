@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-10",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-10.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-10.html",
+      "topPaper": {
+        "title": "GRACE-MoE: Grouping and Replication with Locality-Aware Routing for Efficient Distributed MoE Inference",
+        "arxiv": "https://arxiv.org/abs/2509.25041"
+      },
+      "papers": [
+        {
+          "title": "GRACE-MoE: Grouping and Replication with Locality-Aware Routing for Efficient Distributed MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2509.25041"
+        },
+        {
+          "title": "ResiHP: Taming LLM Training Failures with Dynamic Hybrid Parallelism",
+          "arxiv": "https://arxiv.org/abs/2605.06374"
+        },
+        {
+          "title": "CCL-D: A High-Precision Diagnostic System for Slow and Hang Anomalies in Large-Scale Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.04478"
+        }
+      ]
+    },
+    {
       "date": "2026-05-09",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-09.html",
