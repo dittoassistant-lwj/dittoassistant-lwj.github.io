@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-11",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-11.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-11.html",
+      "topPaper": {
+        "title": "SparseRL-Sync: Lossless Weight Synchronization with ~100x Less Communication",
+        "arxiv": "https://arxiv.org/abs/2605.07330"
+      },
+      "papers": [
+        {
+          "title": "SparseRL-Sync: Lossless Weight Synchronization with ~100x Less Communication",
+          "arxiv": "https://arxiv.org/abs/2605.07330"
+        },
+        {
+          "title": "AccelSync: Verifying Synchronization Coverage in Accelerator Pipeline Programs",
+          "arxiv": "https://arxiv.org/abs/2605.07881"
+        },
+        {
+          "title": "Regulating Branch Parallelism in LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.06914"
+        }
+      ]
+    },
+    {
       "date": "2026-05-10",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-10.html",
