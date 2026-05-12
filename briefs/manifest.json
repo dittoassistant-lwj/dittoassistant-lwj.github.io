@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-12",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-12.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-12.html",
+      "topPaper": {
+        "title": "Surviving Partial Rank Failures in Wide Expert-Parallel MoE Inference",
+        "arxiv": "https://arxiv.org/abs/2605.10670"
+      },
+      "papers": [
+        {
+          "title": "Surviving Partial Rank Failures in Wide Expert-Parallel MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2605.10670"
+        },
+        {
+          "title": "ReLibra: Routing-Replay-Guided Load Balancing for MoE Training in Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2605.08639"
+        },
+        {
+          "title": "KV-RM: Regularizing KV-Cache Movement for Static-Graph LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.09735"
+        },
+        {
+          "title": "MegaScale-Omni: A Hyper-Scale, Workload-Resilient System for MultiModal LLM Training in Production",
+          "arxiv": "https://arxiv.org/abs/2605.08962"
+        }
+      ]
+    },
+    {
       "date": "2026-05-11",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-11.html",
