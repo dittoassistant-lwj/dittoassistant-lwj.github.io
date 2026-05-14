@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-14.html",
+      "topPaper": {
+        "title": "KVServe: Service-Aware KV Cache Compression for Communication-Efficient Disaggregated LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2605.13734"
+      },
+      "papers": [
+        {
+          "title": "KVServe: Service-Aware KV Cache Compression for Communication-Efficient Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.13734"
+        },
+        {
+          "title": "Bridge: Optimizing Collective Communication Schedules in Reconfigurable Networks with Reusable Subrings",
+          "arxiv": "https://arxiv.org/abs/2605.12766"
+        },
+        {
+          "title": "MinT: Managed Infrastructure for Training and Serving Millions of LLMs",
+          "arxiv": "https://arxiv.org/abs/2605.13779"
+        }
+      ]
+    },
+    {
       "date": "2026-05-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-13.html",
