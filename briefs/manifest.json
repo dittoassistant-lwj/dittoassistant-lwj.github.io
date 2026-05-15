@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-15",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-15.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-15.html",
+      "topPaper": {
+        "title": "Lakestream: A Consistent and Brokerless Data Plane for Large Foundation Model Training",
+        "arxiv": "https://arxiv.org/abs/2605.09994"
+      },
+      "papers": [
+        {
+          "title": "Lakestream: A Consistent and Brokerless Data Plane for Large Foundation Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.09994"
+        },
+        {
+          "title": "HexiSeq: Accommodating Long Context Training of LLMs over Heterogeneous Hardware",
+          "arxiv": "https://arxiv.org/abs/2605.07569"
+        },
+        {
+          "title": "Intelligence Delivery Network: Toward an Internet Architecture for the AI Age",
+          "arxiv": "https://arxiv.org/abs/2605.13235"
+        }
+      ]
+    },
+    {
       "date": "2026-05-14",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-14.html",
