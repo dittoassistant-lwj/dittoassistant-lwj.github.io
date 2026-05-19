@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-19",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-19.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-19.html",
+      "topPaper": {
+        "title": "EPIC: Abstraction and Polymorphism of In-Network Collectives on Ethernet",
+        "arxiv": "https://arxiv.org/abs/2605.18683"
+      },
+      "papers": [
+        {
+          "title": "EPIC: Abstraction and Polymorphism of In-Network Collectives on Ethernet",
+          "arxiv": "https://arxiv.org/abs/2605.18683"
+        },
+        {
+          "title": "TierCheck: Tiered Checkpointing for Fault Tolerance in Large Language Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.17821"
+        },
+        {
+          "title": "A Readiness-Driven Runtime for Pipeline-Parallel Training under Runtime Variability",
+          "arxiv": "https://arxiv.org/abs/2605.18750"
+        },
+        {
+          "title": "VeriCache: Turning Lossy KV Cache into Lossless LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2605.17613"
+        }
+      ]
+    },
+    {
       "date": "2026-05-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-15.html",
