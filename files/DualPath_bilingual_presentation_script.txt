@@ -1,0 +1,280 @@
+# DualPath 双语演讲稿 / Bilingual Presentation Script
+
+**Paper:** *DualPath: Breaking the Storage Bandwidth Bottleneck in Agentic LLM Inference*  
+**arXiv:** 2602.21548v2, DeepSeek-AI / Peking University / Tsinghua University  
+**Target length:** 15–20 minutes if presenting both Chinese and English.  
+**Style:** Each slide has a Chinese script followed by an English version. You can present both, or use Chinese as the main track and English for key technical phrases.
+
+---
+
+## Opening / 开场（约 1 min）
+
+**中文：**
+大家好，今天我分享的是 DeepSeek 在 arXiv 上发布的论文 **DualPath: Breaking the Storage Bandwidth Bottleneck in Agentic LLM Inference**。这篇论文关注的问题非常系统：当 LLM 从传统聊天机器人走向 agentic workload，也就是多轮规划、工具调用、观察结果、再继续推理的模式时，推理系统的瓶颈正在从单纯的 GPU 计算，转向 **KV-cache 的存储读取和数据搬运**。
+
+DualPath 的核心思想其实很直接：在常见的 prefill-decode disaggregation 架构里，prefill 侧的 storage NIC 非常忙，但 decode 侧的 storage NIC 往往比较空闲。所以与其只让 prefill node 从持久化存储加载命中的 KV-cache，不如把 decode node 的 storage bandwidth 也用起来，再通过 compute network / RDMA 把 layer-wise KV-cache 传回 prefill node。这样可以把原本集中在 prefill 侧的 I/O 压力分散出去。
+
+今天我会按四个部分讲：第一，为什么 agentic workload 会改变瓶颈；第二，当前系统的 I/O bottleneck 在哪里；第三，DualPath 的设计和 bottleneck-free 条件；第四，实验结果和我认为值得讨论的地方。
+
+**English:**
+Hi everyone. Today I’ll present DeepSeek’s arXiv paper, **DualPath: Breaking the Storage Bandwidth Bottleneck in Agentic LLM Inference**. The paper studies a very systems-oriented problem: as LLM usage shifts from traditional chatbots to agentic workloads — where the model plans, calls tools, observes outputs, and repeats this process over many turns — the inference bottleneck is no longer purely GPU computation. Increasingly, it becomes **KV-cache storage I/O and data movement**.
+
+The key idea of DualPath is simple but powerful. In a typical prefill-decode disaggregated serving architecture, the storage NICs on prefill nodes are heavily loaded, while the storage NICs on decode nodes are often underutilized. DualPath uses the decode-side storage NICs to load hit KV-cache from persistent storage, and then transfers the layer-wise KV-cache back to prefill nodes through the compute network using RDMA. This distributes the storage I/O pressure instead of concentrating it on the prefill side.
+
+I’ll structure the talk in four parts: why agentic workloads change the bottleneck, where the current I/O bottleneck comes from, how DualPath works and when it is bottleneck-free, and finally the experimental results plus some open discussion points.
+
+---
+
+## Slide 3 — The Workload Shift: Chatbots to Agents（约 2 min）
+
+**中文：**
+这一页先解释 workload 的变化。传统的 interactive chat LLM 通常是用户写一个 prompt，模型回答，可能只有几轮对话，session 比较短。在这种模式下，输入 context 和生成 token 的比例相对没有那么极端。
+
+但 agentic LLM 很不一样。Agent 会先规划任务，然后调用工具，比如 Python、浏览器或者代码执行器，再读取工具输出，然后继续下一轮推理。这样一个 trajectory 可能有几十轮甚至上百轮。关键点是：每一轮新 append 的 token 其实很少，但历史 context 很长，而且大量 context 会被反复复用。
+
+这直接带来一个系统特征：**KV-cache hit rate 非常高**。这页举了 DeepSeek production trace 的统计：对于 32K、48K、64K 的最大上下文长度，平均 turns 分别大约是 60、106、157；append length 只有几百 tokens，而 context 已经是一万七、两万五、三万二 tokens 级别。论文里给出的结论是，这会转换成约 **98.7% 的 KV-cache hit rate**。
+
+所以这里的 takeaway 是：agentic inference 的 prefill 阶段不再是“重新计算一大段 prompt”。更准确地说，它是在加载大量已有 KV-cache，然后只对新 append 的一小段 token 做计算。于是瓶颈自然从 compute 转向了 KV-cache loading。
+
+**English:**
+This slide motivates the workload shift. In traditional interactive chat, users write a prompt, the model answers, and the session usually finishes in only a few turns. In that setting, the ratio between historical context and newly generated or appended tokens is not extremely skewed.
+
+Agentic LLMs are different. An agent plans, calls tools such as Python or a browser, observes tool outputs, and then repeats the loop. A single trajectory can contain dozens or even hundreds of turns. The important systems property is that each turn appends only a small number of new tokens, while the historical context becomes very long and is reused again and again.
+
+This creates a very high **KV-cache hit rate**. The slide shows DeepSeek production traces: for 32K, 48K, and 64K context lengths, the average number of turns is around 60, 106, and 157. The append length is only a few hundred tokens, while the context length is in the tens of thousands. The paper reports that this corresponds to roughly a **98.7% KV-cache hit rate**.
+
+The takeaway is that prefill in agentic inference is no longer mostly about recomputing the whole prompt. It is mostly about loading a large amount of already-existing KV-cache and computing only a small appended portion. So the bottleneck naturally shifts from compute to KV-cache loading.
+
+---
+
+## Slide 4 — Current I/O Bottleneck in Agentic Inferencing（约 2 min）
+
+**中文：**
+这一页讲为什么高 KV-cache hit rate 会变成 I/O bottleneck。左边是 high cache-to-compute ratio。因为命中的 KV-cache 很多、需要重新计算的 append 很少，所以每单位计算对应的数据读取量非常高。论文把这个量称为 cache-compute ratio，对于 DeepSeek-V3.2 这种已经优化过 MLA KV-cache 的模型，仍然可以达到大约 22 GB/PFLOP；如果是 KV-cache 更大的模型，这个比例会更糟。
+
+中间是 memory and communication wall。GPU FLOPS 的增长速度远高于 NIC bandwidth、PCIe bandwidth 和 HBM capacity 的增长速度。从 Ampere 到 Blackwell，论文估计 I/O-compute ratio 下降约 **14.4 倍**。意思是 GPU 越来越快，但数据搬运没有跟上，agentic workload 会先撞到 memory/network wall，而不是 compute limit。
+
+右边是 storage network utilization 的不平衡。在当前 PD-disaggregated 系统里，命中 KV-cache 主要由 prefill 侧 SNIC 从远端持久化存储加载。这样 prefill-side SNIC 可能 100% busy，而 GPU 只有约 40% utilization；decode 侧则相反，GPU utilization 更高，但 decode-side SNIC 大量空闲。
+
+这一页的核心结论是：瓶颈不是“整个系统 storage bandwidth 不够”，而是 **storage bandwidth 没有被均匀使用**。Prefill 侧过载，decode 侧空闲，这正是 DualPath 想要利用的机会。
+
+**English:**
+This slide explains why high KV-cache hit rate becomes an I/O bottleneck. The left part shows the high cache-to-compute ratio. Because there is a lot of hit KV-cache to load and only a small appended segment to compute, the amount of data movement per unit of computation becomes very high. The paper calls this the cache-compute ratio. Even for DeepSeek-V3.2, whose MLA KV-cache is already optimized, the ratio can still be around 22 GB per PFLOP. For models with larger KV-cache, the situation becomes even worse.
+
+The middle part shows the memory and communication wall. GPU FLOPS have grown much faster than NIC bandwidth, PCIe bandwidth, and HBM capacity. From Ampere to Blackwell, the paper estimates that the I/O-compute ratio drops by about **14.4×**. In other words, GPUs are getting faster, but data movement is not keeping up. Agentic workloads can hit the memory and network wall before reaching the compute limit.
+
+The right part highlights storage network utilization imbalance. In existing PD-disaggregated systems, hit KV-cache is usually loaded from persistent storage by the storage NICs on prefill nodes. As a result, prefill-side SNICs can be fully utilized while prefill GPUs are only around 40% utilized. Meanwhile, decode-side SNICs remain largely idle.
+
+The key conclusion is that the problem is not simply that total storage bandwidth is insufficient. The problem is that **storage bandwidth is unevenly utilized**. Prefill-side SNICs are overloaded, while decode-side SNICs are idle. This is exactly the opportunity DualPath exploits.
+
+---
+
+## Slide 5 — DualPath Overview: System Assumption and Key Idea（约 2 min）
+
+**中文：**
+这一页进入 DualPath 的整体设计。论文假设的基础架构是 **PD-disaggregation** 和 **layer-wise prefill**。也就是说，prefill engine 负责 prompt / prefill 相关计算，decode engine 负责 decode；同时 prefill 不是一次性把全部 KV-cache 放进 HBM，而是逐层加载、逐层执行，这样可以缓解 HBM capacity pressure。
+
+DualPath 的 key idea 是：利用 decode nodes 上空闲的 SNIC bandwidth，从 persistent storage 读取 KV-cache，然后通过更快的 compute network，把需要的 layer-wise KV-cache 传回 prefill nodes。注意这里不是把完整请求的所有 KV-cache 一股脑搬回去，而是配合 layer-wise prefill，在每个 attention layer 前传输对应 layer 的 KV-cache block。
+
+系统组件有三类。第一是 P/D inference engines，也就是 prefill engines 和 decode engines。第二是 traffic manager，它负责 host-device memory copies、PE 和 DE 之间的 KV-cache transfer、以及通过 SNIC 对存储的读写。第三是 request scheduler，它接收 client requests，并把请求分配到不同 engines 和不同 path。
+
+这一页可以用一句话概括：DualPath 不是简单“加一条网络路径”，而是把 storage read、RDMA transfer、layer-wise prefill 和 scheduling 合在一起，让原本 idle 的 decode-side storage bandwidth 变成有效带宽。
+
+**English:**
+This slide introduces the overall DualPath design. The paper assumes a serving architecture with **prefill-decode disaggregation** and **layer-wise prefill**. Prefill engines handle prompt or prefill computation, while decode engines handle decoding. Layer-wise prefill means that the system does not load the entire KV-cache into HBM at once. Instead, it loads and executes layer by layer, which helps reduce HBM capacity pressure.
+
+The key idea of DualPath is to use the idle storage NIC bandwidth on decode nodes to read KV-cache from persistent storage, and then transfer the required layer-wise KV-cache back to prefill nodes through the faster compute network. Importantly, DualPath does not blindly move the entire KV-cache all at once. It works together with layer-wise prefill and transfers the corresponding layer block before each attention layer.
+
+There are three main components. First, P/D inference engines: prefill engines and decode engines. Second, a traffic manager, which manages host-device memory copies, KV-cache transfers between PEs and DEs, and storage reads or writes through the SNIC. Third, a request scheduler, which receives client requests and distributes them across engines and paths.
+
+In one sentence, DualPath is not just “adding another network path.” It combines storage reads, RDMA transfers, layer-wise prefill, and scheduling so that otherwise-idle decode-side storage bandwidth becomes useful bandwidth.
+
+---
+
+## Slide 6 — Conventional Path vs Additional Path（约 2 min）
+
+**中文：**
+这一页对比两条路径。左边是 conventional path，也就是 PE read。流程是：第一，从 persistent storage 把 hit KV-cache 读到 PE buffer，也就是 host DRAM；第二，在每个 attention layer 前，把该层 KV-cache 搬到 PE HBM；第三，prefill GPU 计算 append 部分产生 miss-token KV-cache；第四，把完整 prompt KV-cache 传给 decode engine 的 buffer；第五，这个过程对每一层重复。
+
+右边是 additional path，也就是 DE read。第一步变成 decode engine 从 persistent storage 把 hit KV-cache 读到 DE buffer；第二，layer-specific hit KV-cache 通过 compute network / RDMA 传到 PE HBM；第三，PE 仍然计算 append 部分的 miss-token KV-cache；第四，只需要把新计算出来的 KV-cache 传给 DE buffer；同样逐层重复。
+
+这两个 path 的差别非常关键。PE read 把 storage I/O 压力放在 prefill node 上，而且最后还要把完整 prompt KV-cache 交给 decode。DE read 则让 decode node 帮忙承担 storage read，并且因为 hit KV-cache 已经在 DE 侧，PE 只需要把新计算的 miss KV 传回去。这样就减少了 prefill-side storage bottleneck，同时利用了 decode-side idle SNIC。
+
+这里要强调一个 subtle point：DE read 会引入 PE-DE 之间的 RDMA 流量，所以它并不是免费午餐。DualPath 后面的分析和调度，就是要保证这条额外路径不会把 compute NIC 或 DRAM 变成新的瓶颈。
+
+**English:**
+This slide compares the two paths. On the left is the conventional path, or PE read. First, the system reads hit KV-cache from persistent storage into the PE buffer, which is host DRAM. Second, before each attention layer, it moves that layer’s KV-cache into PE HBM. Third, the prefill GPU computes the miss-token KV-cache for the appended prompt. Fourth, the complete prompt KV-cache is transferred to the decode engine buffer. This is repeated layer by layer.
+
+On the right is the additional path, or DE read. First, the decode engine reads hit KV-cache from persistent storage into the DE buffer. Second, the layer-specific hit KV-cache is transferred to PE HBM through the compute network using RDMA. Third, the PE computes the miss-token KV-cache for the appended tokens. Fourth, only the newly computed KV-cache needs to be transferred to the DE buffer. Again, this repeats for each layer.
+
+The difference is important. PE read places storage I/O pressure on the prefill node, and then transfers the complete prompt KV-cache to decode. DE read allows the decode node to participate in storage reads. Since the hit KV-cache is already on the decode side, the PE only needs to send back the newly computed miss KV-cache. This reduces the prefill-side storage bottleneck and uses idle decode-side SNIC bandwidth.
+
+A subtle point is that DE read introduces RDMA traffic between PE and DE. So it is not free. The bottleneck analysis and scheduler are needed to ensure that the extra path does not simply move the bottleneck to the compute NIC or DRAM.
+
+---
+
+## Slide 7 — Bottleneck-Free Analysis（约 2 min）
+
+**中文：**
+这一页是论文里比较重要的 formal analysis。它定义了一些符号：P 和 D 是 prefill nodes 和 decode nodes 的数量；g 是每个 node 的 GPU 数量；B 是每个 GPU 对应的 compute NIC bandwidth；sB 是每台机器的 storage bandwidth；M 是每台机器的 memory bandwidth；Tp 和 Tc 分别表示每个 PE-DE pair 上 PE-read 和 DE-read 的 traffic。
+
+论文在一些理想化假设下推导什么时候 DualPath 可以 bottleneck-free。假设包括：task scheduling 是 balanced 的；compute network 没有 congestion；PCIe topology 足够好；storage read bandwidth 能充分利用；每个 GPU 都配有 compute NIC。
+
+综合 PE CNIC、DE CNIC 和 DRAM 的约束后，得到一个关于 P/D ratio 的范围：
+
+`s / (g - s) <= P / D <= min{(g - 2s) / s, (g - s) / 2s, (M / (B s) - 3) / 2}`
+
+在典型参数 g=8, s=1, M=500GBps, Bs=50GBps 下，论文得到：
+
+`1/7 <= P/D <= 7/2`
+
+这个结果的含义是：只要 prefill 和 decode 集群的规模比例落在这个区间内，就可以在理论上同时饱和 storage NIC，同时不让 compute NIC 或 DRAM 成为瓶颈。
+
+当然，这个分析依赖较强假设，比如无 compute network congestion、良好 PCIe 拓扑和均衡调度。在真实生产环境里，这些假设会受到 topology、QoS、traffic isolation、path imbalance 的影响。但它提供了一个很有用的设计原则：DualPath 是否有效，取决于 P/D ratio、storage bandwidth、compute bandwidth 和 memory bandwidth 的共同平衡。
+
+**English:**
+This slide presents one of the most important pieces of formal analysis in the paper. It defines several variables: P and D are the numbers of prefill and decode nodes; g is the number of GPUs per node; B is the compute NIC bandwidth per GPU; sB is the storage bandwidth per machine; M is the memory bandwidth per machine; and Tp and Tc represent PE-read and DE-read traffic per PE-DE pair.
+
+Under several idealized assumptions, the paper derives when DualPath can be bottleneck-free. These assumptions include balanced task scheduling, no congestion on the compute network, good PCIe topology, fully utilized storage read bandwidth, and one compute NIC per GPU.
+
+Combining constraints from PE CNIC, DE CNIC, and DRAM, the paper obtains a feasible range for the P/D ratio:
+
+`s / (g - s) <= P / D <= min{(g - 2s) / s, (g - s) / 2s, (M / (B s) - 3) / 2}`
+
+For typical values, g=8, s=1, M=500 GBps, and Bs=50 GBps, the range becomes:
+
+`1/7 <= P/D <= 7/2`
+
+The interpretation is that if the ratio between prefill and decode nodes stays within this range, the system can theoretically saturate storage NICs without making the compute NIC or DRAM the new bottleneck.
+
+Of course, the analysis relies on strong assumptions, such as no compute-network congestion, good PCIe topology, and balanced scheduling. In production, these assumptions are affected by topology, QoS, traffic isolation, and path imbalance. But the analysis gives a useful design principle: DualPath’s effectiveness depends on the joint balance among P/D ratio, storage bandwidth, compute bandwidth, and memory bandwidth.
+
+---
+
+## Slides 8–9 — Implementation and Scheduling Bridge（补充过渡，约 1 min）
+
+**中文：**
+虽然截图里没有完整展示中间实现页，但从论文和后续结果来看，DualPath 不只是一个数据路径设计，还包括 traffic manager 和 scheduler。Traffic manager 采用 CNIC-centric 的方式，把本地 H2D/D2H、跨 engine RDMA、storage read/write 统一管理，并且尽量和 attention computation overlap。
+
+Scheduler 的作用是决定一个请求的 KV-cache 该走 PE read 还是 DE read，同时要平衡 compute load 和 storage load。如果调度不好，可能会出现一种 path 过载、另一种 path 空闲，或者 attention layer execution time 不均衡，造成 GPU idle bubbles。因此，DualPath 的性能提升不是只来自“多一条路径”，也来自路径选择和负载均衡。
+
+**English:**
+Although the screenshots do not fully show the intermediate implementation slides, the paper makes it clear that DualPath is not only a data-path design. It also includes a traffic manager and a scheduler. The traffic manager uses a CNIC-centric approach to coordinate local H2D and D2H copies, inter-engine RDMA, and storage reads or writes, while overlapping these transfers with attention computation as much as possible.
+
+The scheduler decides whether a request should use PE read or DE read, while balancing compute load and storage load. Poor scheduling can overload one path while leaving the other idle, or create imbalance in attention-layer execution time and introduce GPU idle bubbles. Therefore, DualPath’s performance gain comes not only from adding a second path, but also from path selection and load balancing.
+
+---
+
+## Slide 10 — Results: Batch Size, Agent Length, Append/Generation Length（约 2 min）
+
+**中文：**
+这一页进入实验结果。这里比较了 Ours-oracle、Ours、Ours-basic 和 SGL(MC) 等设置，在不同 agent batch size、max agent length、append length 和 generation length 下的 JCT，也就是 job completion time。
+
+左边大图的趋势是：随着 agent count 增加、max context length 增加，basic 和 DualPath 的差距会变大。这符合前面的分析：agent 数越多、context 越长，cache-to-compute ratio 越高，storage I/O pressure 越强，所以能够利用额外 storage bandwidth 的 DualPath 收益更明显。
+
+右边展示 append length 和 generation length 的影响。DualPath-basic 的 gap 会随着 append 和 generation scale 增加而变小。原因是 append 变长时，新计算的 miss-token KV-cache 更多，GPU compute pressure 上升，关键瓶颈可能从 storage loading 回到 compute。Generation 变长时，decode 阶段占比变大，相对来说 prefill 阶段 KV-cache loading 的压力被摊薄。
+
+所以这一页的结论是：DualPath 最适合的 workload 是 **长 context、高 cache hit rate、小 append、小 generation** 的 agentic workload。也就是 storage I/O dominated 的场景。如果 workload 变成 compute dominated，DualPath 的边际收益就会下降。
+
+**English:**
+This slide shows the main evaluation results. It compares Ours-oracle, Ours, Ours-basic, and SGL(MC) under different agent batch sizes, maximum agent lengths, append lengths, and generation lengths. The metric is JCT, or job completion time.
+
+The large set of plots on the left shows that as the number of agents and the maximum context length increase, the gap between Basic and DualPath becomes larger. This matches the earlier analysis: more agents and longer contexts create a higher cache-to-compute ratio and stronger storage I/O pressure, so DualPath benefits more from using additional storage bandwidth.
+
+The plots on the right show the impact of append length and generation length. The gap between DualPath and Basic narrows as append and generation scale increase. When append length increases, the system computes more miss-token KV-cache, so GPU compute pressure increases and the bottleneck can shift back toward compute. When generation length increases, the decode phase becomes more important, and the relative pressure from prefill KV-cache loading is reduced.
+
+The conclusion is that DualPath is most suitable for **long-context, high-cache-hit-rate, small-append, small-generation** agentic workloads. In other words, it works best when the workload is storage-I/O dominated. If the workload becomes compute-dominated, the marginal benefit decreases.
+
+---
+
+## Slide 11 — Results: P/D Ratio, Online Serving, Ablation（约 2 min）
+
+**中文：**
+这一页继续看结果。左边是 varying P/D ratio。结论是：DualPath 在不同 P/D ratio 下都 consistently outperform basic。原因是 DualPath 可以使用所有 nodes 的 storage bandwidth，相当于扩大了可用的 storage network bandwidth。相反，只是给 Basic 增加更多 decode nodes 并不会带来明显收益，因为 Basic 仍然主要依赖 prefill-side SNIC 来加载 KV-cache；decode-side SNIC 还是没有被充分利用。
+
+右上是 online serving。SLO 是 TTFT 小于等于 4 秒、TPOT 小于等于 50ms。DualPath 可以提高 agents per second，也就是 APS，同时保持 decode-side TTST 和 TPOT 与 Basic 接近。这说明 DualPath 不只是 offline JCT 更好，在在线服务场景下也能提高吞吐，同时不明显伤害 token-level latency。
+
+右下是 ablation study。Layer-wise prefill 平均减少 JCT **17.21%**，主要是缓解 PE HBM pressure；dual-path loading 进一步带来 **38.19%** 的 reduction，因为它释放了分布式 storage bandwidth；再加上 scheduling，最终 reduction 达到 **45.62%**，因为调度避免了 path imbalance。
+
+这一页的核心信息是：DualPath 的收益来自三个层次：layer-wise execution 缓解 HBM，dual-path loading 解锁 storage bandwidth，scheduler 做负载均衡。少了任何一层，效果都会打折。
+
+**English:**
+This slide continues the evaluation. On the left, the paper varies the P/D ratio. DualPath consistently outperforms Basic under different ratios. The reason is that DualPath can use storage bandwidth from all nodes, effectively increasing the available storage network bandwidth. In contrast, simply adding more decode nodes to Basic does not provide significant improvement, because Basic still mainly relies on prefill-side SNICs for KV-cache loading. Decode-side SNICs remain underutilized.
+
+The top-right part shows online serving results. The SLO is TTFT ≤ 4 seconds and TPOT ≤ 50 ms. DualPath increases agents per second, or APS, while keeping decode-side TTST and TPOT comparable to Basic. This suggests that DualPath is not only useful for offline JCT, but can also improve online serving throughput without significantly hurting token-level latency.
+
+The bottom-right ablation study shows where the gains come from. Layer-wise prefill reduces JCT by **17.21%** on average, mainly by alleviating PE HBM pressure. Dual-path loading further reduces JCT by **38.19%**, because it unlocks distributed storage bandwidth. Adding scheduling brings the full reduction to **45.62%**, because scheduling avoids path imbalance.
+
+The key message is that DualPath’s benefit comes from three layers: layer-wise execution reduces HBM pressure, dual-path loading unlocks storage bandwidth, and scheduling balances load. Removing any one of these reduces the benefit.
+
+---
+
+## Slide 12 — Conclusion and Food for Thought（约 2.5 min）
+
+**中文：**
+最后这页总结论文贡献，也提出一些值得讨论的问题。DualPath 的主要贡献可以分成三点。第一，它提出了一个额外的 KV-cache loading path，利用原本大多空闲的 decode-side storage network bandwidth，从而缓解大规模多轮 agentic workload 在 prefill 阶段的 I/O bottleneck。第二，它推导了 formal P/D ratio range，说明在典型系统参数下，这条路径可以做到 bottleneck-free。第三，它实现了 CNIC-centric traffic management，把本地 H2D/D2H 和跨 engine transfer 放在统一 QoS 点下管理，并用 scheduler 同时处理 path choice 和 compute/load balance。
+
+我觉得这篇论文对 AI infrastructure 有几个启发。第一，agentic workload 会让“历史状态复用”成为核心系统问题。以前我们优化 inference，很多时候关注 batching、KV-cache eviction、decode throughput；但 agentic workload 下，**KV-cache storage placement 和 data movement** 会变得同样重要。
+
+第二，DualPath 本质上是在做 bandwidth pooling。它不是创造新的硬件带宽，而是把分散在 decode nodes 上的 idle SNIC bandwidth 调动起来。这个思路对 future AI pod design 很重要：如果不同资源池之间有明显利用率不均衡，就应该思考能不能通过 topology、RDMA path、QoS 和 scheduler 把它池化。
+
+第三，food for thought 里提到，当前 path assignment 是 per-request 的。也许更进一步，可以把一个 request 拆到两条 path 上同时加载，从而更充分利用 pooled storage bandwidth。但这会让 KV-cache reconstruction 和 scheduling 更复杂，也会增加 ordering、QoS、tail latency 管理的难度。
+
+第四，如果未来系统把外部 persistent storage 挂到 SU/SO fabric 或类似 scale-up/scale-out fabric 上，让 NPU/GPU 可以更直接访问 pooled storage，那么就可能绕过传统 storage network 和 PCIe copies。这样 compute fabric 的 QoS、traffic isolation、拥塞控制就会变得更关键，因为模型执行流量和 KV-cache data movement 会共享更深层的 fabric。
+
+所以我的最终 takeaway 是：DualPath 的价值不仅是一个 specific optimization，而是指出了 agentic inference 的一个新系统方向：未来 AI serving pod 需要把 compute、memory、storage、network 看成一个联合调度的数据移动系统，而不是只把 GPU utilization 当作单一目标。
+
+**English:**
+The final slide summarizes the contribution and raises several discussion points. DualPath’s contribution can be summarized in three parts. First, it introduces an additional KV-cache loading path that uses largely idle decode-side storage network bandwidth, alleviating the prefill-stage I/O bottleneck for large multi-turn agentic workloads. Second, it derives a formal P/D ratio range showing that under typical system parameters, this path can be bottleneck-free. Third, it implements CNIC-centric traffic management, combining local H2D and D2H copies with inter-engine transfers under one QoS point, and uses a scheduler to jointly handle path choice and compute/load balance.
+
+I think the paper has several implications for AI infrastructure. First, agentic workloads make historical state reuse a first-class systems problem. In previous inference optimization, we often focused on batching, KV-cache eviction, and decode throughput. But under agentic workloads, **KV-cache storage placement and data movement** become equally important.
+
+Second, DualPath is essentially a bandwidth-pooling design. It does not create new hardware bandwidth. Instead, it mobilizes idle SNIC bandwidth distributed across decode nodes. This is important for future AI pod design: when different resource pools have imbalanced utilization, we should ask whether topology, RDMA paths, QoS, and scheduling can pool that capacity.
+
+Third, the food-for-thought section notes that current path assignment is per request. A more aggressive design might split a single request across both paths to fully utilize pooled storage bandwidth. But that would complicate KV-cache reconstruction, scheduling, ordering, QoS, and tail-latency control.
+
+Fourth, if future systems attach external persistent storage to an SU/SO fabric or similar scale-up/scale-out fabric, GPUs or NPUs may directly access pooled storage and bypass traditional storage-network and PCIe copies. In that case, compute-fabric QoS, traffic isolation, and congestion control become even more important, because model execution traffic and KV-cache data movement would share deeper layers of the fabric.
+
+My final takeaway is that DualPath is not just a specific optimization. It points to a broader systems direction for agentic inference: future AI serving pods need to treat compute, memory, storage, and network as a jointly scheduled data-movement system, rather than optimizing GPU utilization alone.
+
+---
+
+## Closing / 收尾（约 30 sec）
+
+**中文：**
+总结一下：DualPath 发现 agentic inference 的主要瓶颈来自高 KV-cache hit rate 下的 storage I/O imbalance；它通过新增 DE read path，把 decode-side idle storage bandwidth 利用起来；再结合 layer-wise prefill 和 scheduler，显著降低 JCT 并提升 online serving capacity。对我们做 AI cluster networking 的人来说，这篇论文最值得关注的不是某个单点实现，而是它把 KV-cache movement 变成了网络、存储、内存和调度共同优化的问题。
+
+谢谢大家，接下来欢迎讨论。
+
+**English:**
+To summarize: DualPath identifies storage I/O imbalance as a key bottleneck in high-KV-cache-hit-rate agentic inference. It adds a DE-read path to utilize idle decode-side storage bandwidth, and combines that with layer-wise prefill and scheduling to reduce JCT and improve online serving capacity. For AI cluster networking, the most interesting part is not just the specific implementation, but the way it turns KV-cache movement into a joint optimization problem across network, storage, memory, and scheduling.
+
+Thank you. I’m happy to discuss questions.
+
+---
+
+## Optional Q&A Notes / 可能被问到的问题
+
+### Q1: DualPath 会不会影响模型执行通信，比如 AllGather 或 tensor parallel traffic？
+
+**中文：**
+会有这个风险，所以论文强调 traffic isolation 和 CNIC-centric management。DE read 引入 PE-DE 之间的 KV-cache transfer，如果和 latency-critical model execution traffic 共享 compute fabric，就需要 QoS、优先级和限速机制。论文认为在他们的假设下不会拥塞 compute network，但生产环境需要额外验证。
+
+**English:**
+Yes, that is a real risk. That is why the paper emphasizes traffic isolation and CNIC-centric management. DE read introduces KV-cache transfer traffic between PEs and DEs. If this shares the compute fabric with latency-critical model execution traffic, QoS, priority, and rate control become necessary. The paper assumes no compute-network congestion, but production systems would need to validate this carefully.
+
+### Q2: 为什么不直接给 prefill nodes 增加更多 storage NIC？
+
+**中文：**
+可以，但那是硬件扩容。DualPath 的价值是利用系统里已经存在但空闲的 decode-side SNIC bandwidth。它更像是提高资源利用率，而不是单纯加硬件。当然，如果 prefill-side storage bandwidth 是长期瓶颈，硬件扩容和 DualPath 可以是互补关系。
+
+**English:**
+That is possible, but it is a hardware scaling solution. DualPath’s value is that it uses decode-side SNIC bandwidth that already exists but is idle. It improves resource utilization rather than simply adding hardware. In practice, adding prefill-side storage bandwidth and using DualPath could be complementary.
+
+### Q3: DualPath 最适合什么 workload？
+
+**中文：**
+最适合长 context、高 KV-cache hit rate、append 较短、generation 较短、并且 prefill 阶段 storage loading 占主导的 agentic workload。如果 append 或 generation 很长，瓶颈可能回到 compute 或 decode，DualPath 收益会下降。
+
+**English:**
+It is most suitable for long-context, high-KV-cache-hit-rate agentic workloads with short append and generation lengths, where prefill-stage storage loading dominates. If append or generation becomes long, the bottleneck may shift back to compute or decode, and DualPath’s benefit becomes smaller.
