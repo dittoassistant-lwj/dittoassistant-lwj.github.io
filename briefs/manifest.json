@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-25",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-25.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-25.html",
+      "topPaper": {
+        "title": "Exploiting Multicast for Accelerating Collective Communication",
+        "arxiv": "https://arxiv.org/abs/2605.22428"
+      },
+      "papers": [
+        {
+          "title": "Exploiting Multicast for Accelerating Collective Communication",
+          "arxiv": "https://arxiv.org/abs/2605.22428"
+        },
+        {
+          "title": "ObjectCache: Layerwise Object-Storage Retrieval for KV Cache Reuse",
+          "arxiv": "https://arxiv.org/abs/2605.22850"
+        },
+        {
+          "title": "HyperParallel-MoE: Multi-Core Interleaved Scheduling for Fast MoE Training on Ascend NPUs",
+          "arxiv": "https://arxiv.org/abs/2605.23764"
+        },
+        {
+          "title": "Orbax: Distributed Checkpointing with JAX",
+          "arxiv": "https://arxiv.org/abs/2605.23066"
+        }
+      ]
+    },
+    {
       "date": "2026-05-19",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-19.html",
