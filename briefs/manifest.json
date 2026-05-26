@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-26.html",
+      "topPaper": {
+        "title": "High-speed Networking for Giga-Scale AI Factories",
+        "arxiv": "https://arxiv.org/abs/2605.21187"
+      },
+      "papers": [
+        {
+          "title": "High-speed Networking for Giga-Scale AI Factories",
+          "arxiv": "https://arxiv.org/abs/2605.21187"
+        },
+        {
+          "title": "Understanding and Improving Communication Performance in Multi-node LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2511.09557"
+        },
+        {
+          "title": "Guard: Scalable Straggler Detection and Node Health Management for Large-Scale Training",
+          "arxiv": "https://arxiv.org/abs/2605.17879"
+        },
+        {
+          "title": "Modeling the Impact of Fiber Latency on Compute-Communication Overlap in Geo-Distributed Multi-Datacenter AI Training",
+          "arxiv": "https://arxiv.org/abs/2605.19169"
+        }
+      ]
+    },
+    {
       "date": "2026-05-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-25.html",
