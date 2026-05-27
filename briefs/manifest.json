@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-27.html",
+      "topPaper": {
+        "title": "Revisiting Bruck: Phase-Efficient All-to-All Communication in Reconfigurable Networks",
+        "arxiv": "https://arxiv.org/abs/2605.26930"
+      },
+      "papers": [
+        {
+          "title": "Revisiting Bruck: Phase-Efficient All-to-All Communication in Reconfigurable Networks",
+          "arxiv": "https://arxiv.org/abs/2605.26930"
+        },
+        {
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
+          "arxiv": "https://arxiv.org/abs/2605.26845"
+        },
+        {
+          "title": "Extreme-Scale Interconnection Networks",
+          "arxiv": "https://arxiv.org/abs/2605.26960"
+        }
+      ]
+    },
+    {
       "date": "2026-05-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-26.html",
