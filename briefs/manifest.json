@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-05-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-28.html",
+      "topPaper": {
+        "title": "OpenURMA: A Clean-Room Open Implementation of the Unified Bus Protocol",
+        "arxiv": "https://arxiv.org/abs/2605.28717"
+      },
+      "papers": [
+        {
+          "title": "OpenURMA: A Clean-Room Open Implementation of the Unified Bus Protocol",
+          "arxiv": "https://arxiv.org/abs/2605.28717"
+        },
+        {
+          "title": "How Far Can Disaggregation Go? A Design-Space Exploration of Attention-FFN Disaggregation for Efficient MoE LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.28302"
+        },
+        {
+          "title": "From Detection to Recovery: Operational Analysis on LLM Pre-training with 504 GPUs",
+          "arxiv": "https://arxiv.org/abs/2605.09370"
+        },
+        {
+          "title": "Diagnosing Overhead in Dispatch Operations: Cross-architecture Observatory",
+          "arxiv": "https://arxiv.org/abs/2605.20982"
+        },
+        {
+          "title": "NanoCP: Request-Level Dynamic Context Parallelism for Data-Expert Parallel Decoding",
+          "arxiv": "https://arxiv.org/abs/2605.21100"
+        }
+      ]
+    },
+    {
       "date": "2026-05-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-27.html",
