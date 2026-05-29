@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-29.html",
+      "topPaper": {
+        "title": "CXL-ClusterSim: Modeling CXL-based Disaggregated Memory Cluster for Pooling and Sharing using gem5 and SST",
+        "arxiv": "https://arxiv.org/abs/2605.27745"
+      },
+      "papers": [
+        {
+          "title": "CXL-ClusterSim: Modeling CXL-based Disaggregated Memory Cluster for Pooling and Sharing using gem5 and SST",
+          "arxiv": "https://arxiv.org/abs/2605.27745"
+        },
+        {
+          "title": "BShare: Packet Queueing Delay-Driven Buffer Sharing for Datacenter Switches",
+          "arxiv": "https://arxiv.org/abs/2605.24178"
+        },
+        {
+          "title": "Securing High-Performance Data Transfers: Implementing AES Encryption in RDMA Systems",
+          "arxiv": "https://arxiv.org/abs/2605.25026"
+        },
+        {
+          "title": "Adaptive KV Cache Reuse for Fast Long-Context LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2605.24022"
+        }
+      ]
+    },
+    {
       "date": "2026-05-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-28.html",
