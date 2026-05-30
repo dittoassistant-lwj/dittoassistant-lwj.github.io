@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-05-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-30.html",
+      "topPaper": {
+        "title": "Throughput-Optimized Networks at Scale",
+        "arxiv": "https://arxiv.org/abs/2605.27963"
+      },
+      "papers": [
+        {
+          "title": "Throughput-Optimized Networks at Scale",
+          "arxiv": "https://arxiv.org/abs/2605.27963"
+        },
+        {
+          "title": "FarSkip-Collective: Unhobbling Blocking Communication in Mixture of Experts Models",
+          "arxiv": "https://arxiv.org/abs/2511.11505"
+        },
+        {
+          "title": "Sieve: Dynamic Expert-Aware PIM Acceleration for Evolving Mixture-of-Experts Models",
+          "arxiv": "https://arxiv.org/abs/2605.11277"
+        },
+        {
+          "title": "PystachIO: Efficient Distributed GPU Query Processing with PyTorch over Fast Networks & Fast Storage",
+          "arxiv": "https://arxiv.org/abs/2512.02862"
+        }
+      ]
+    },
+    {
       "date": "2026-05-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-29.html",
