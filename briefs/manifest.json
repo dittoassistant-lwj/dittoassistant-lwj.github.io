@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-05-31",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-05-31.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-05-31.html",
+      "topPaper": {
+        "title": "Effective MPI: User-defined Datatypes and Cartesian Communicators for Zero-copy All-to-all Communication in Multidimensional Tori",
+        "arxiv": "https://arxiv.org/abs/2605.29970"
+      },
+      "papers": [
+        {
+          "title": "Effective MPI: User-defined Datatypes and Cartesian Communicators for Zero-copy All-to-all Communication in Multidimensional Tori",
+          "arxiv": "https://arxiv.org/abs/2605.29970"
+        },
+        {
+          "title": "RAFI -- A Ray/Work Forwarding Infrastructure for Data Parallel Multi-Node/Multi-GPU Computing",
+          "arxiv": "https://arxiv.org/abs/2605.30294"
+        },
+        {
+          "title": "Co-Designing Graph-based Approximate Nearest Neighbor Search at Billion Scale for Processing-in-Memory",
+          "arxiv": "https://arxiv.org/abs/2605.25522"
+        }
+      ]
+    },
+    {
       "date": "2026-05-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-30.html",
