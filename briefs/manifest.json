@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-01.html",
+      "topPaper": {
+        "title": "HetCCL: Enabling Collective Communication For Mixed-Vendor Heterogeneous Clusters",
+        "arxiv": "https://arxiv.org/abs/2605.31000"
+      },
+      "papers": [
+        {
+          "title": "HetCCL: Enabling Collective Communication For Mixed-Vendor Heterogeneous Clusters",
+          "arxiv": "https://arxiv.org/abs/2605.31000"
+        },
+        {
+          "title": "ScaleAcross Explorer: Exploring Communication Optimization for Scale-Across AI Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.24326"
+        },
+        {
+          "title": "PithTrain: A Compact and Agent-Native MoE Training System",
+          "arxiv": "https://arxiv.org/abs/2605.31463"
+        },
+        {
+          "title": "ReclaimNet: Reclaim-Aware Network Protocols for Voluntary GPU Sharing on Campus",
+          "arxiv": "https://arxiv.org/abs/2605.28872"
+        }
+      ]
+    },
+    {
       "date": "2026-05-31",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-05-31.html",
