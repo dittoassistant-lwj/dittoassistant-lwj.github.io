@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-02.html",
+      "topPaper": {
+        "title": "Don't Let a Few Network Failures Slow the Entire AllReduce",
+        "arxiv": "https://arxiv.org/abs/2606.01680"
+      },
+      "papers": [
+        {
+          "title": "Don't Let a Few Network Failures Slow the Entire AllReduce",
+          "arxiv": "https://arxiv.org/abs/2606.01680"
+        },
+        {
+          "title": "Move the Query, Not the Cache: Characterizing Cross-Instance Latent Attention Redistribution Across GPU Fabrics",
+          "arxiv": "https://arxiv.org/abs/2606.01502"
+        },
+        {
+          "title": "SparseX: Efficient Segment-Level KV Cache Sharing for Interleaved LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.01751"
+        },
+        {
+          "title": "Leyline: KV Cache Directives for Agentic Inference",
+          "arxiv": "https://arxiv.org/abs/2606.01065"
+        },
+        {
+          "title": "Idleness is Relative: Exploiting Tool-Call Idle Windows for Offloading in Agentic Systems with MORI",
+          "arxiv": "https://arxiv.org/abs/2606.00866"
+        }
+      ]
+    },
+    {
       "date": "2026-06-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-01.html",
