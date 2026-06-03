@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-03.html",
+      "topPaper": {
+        "title": "NetKV: Network-Aware Decode Instance Selection for Disaggregated LLM Inference",
+        "arxiv": "https://arxiv.org/abs/2606.03910"
+      },
+      "papers": [
+        {
+          "title": "NetKV: Network-Aware Decode Instance Selection for Disaggregated LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2606.03910"
+        },
+        {
+          "title": "Rain: RDMA-assisted In-Network Scheduling for Microsecond-scale Workloads",
+          "arxiv": "https://arxiv.org/abs/2606.03352"
+        },
+        {
+          "title": "Scaling LLM Inference Beyond Amdahl`s Limits via Eliminating Non-Scalable Overheads",
+          "arxiv": "https://arxiv.org/abs/2606.01927"
+        },
+        {
+          "title": "E2LLM: Towards Efficient LLM Serving in Heterogeneous Edge/Fog Environments",
+          "arxiv": "https://arxiv.org/abs/2606.03770"
+        },
+        {
+          "title": "Multi-Segment Attention: Enabling Efficient KV-Cache Management for Faster Large Language Model Serving",
+          "arxiv": "https://arxiv.org/abs/2606.02964"
+        }
+      ]
+    },
+    {
       "date": "2026-06-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-02.html",
@@ -187,7 +219,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
