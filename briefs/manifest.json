@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-04.html",
+      "topPaper": {
+        "title": "UltraEP: Unleash MoE Training and Inference on Rack-Scale Nodes with Near-Optimal Load Balancing",
+        "arxiv": "https://arxiv.org/abs/2606.04101"
+      },
+      "papers": [
+        {
+          "title": "UltraEP: Unleash MoE Training and Inference on Rack-Scale Nodes with Near-Optimal Load Balancing",
+          "arxiv": "https://arxiv.org/abs/2606.04101"
+        },
+        {
+          "title": "GNStor: Design of GPU-Native High-Performance Remote All-Flash Array",
+          "arxiv": "https://arxiv.org/abs/2606.04908"
+        },
+        {
+          "title": "RAMC: Remote Access Memory Channels over HPE Slingshot",
+          "arxiv": "https://arxiv.org/abs/2606.05094"
+        },
+        {
+          "title": "Multi-SPIN: Multi-Access Speculative Inference for Cooperative Token Generation at the Edge",
+          "arxiv": "https://arxiv.org/abs/2606.04581"
+        }
+      ]
+    },
+    {
       "date": "2026-06-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-03.html",
@@ -219,7 +247,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
