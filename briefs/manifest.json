@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-06-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-05.html",
+      "topPaper": {
+        "title": "Demystifying NVSHMEM: A System-Level Analysis on Symmetric Memory and Device-Initiated Operations in GPU Communication",
+        "arxiv": "https://arxiv.org/abs/2606.05951"
+      },
+      "papers": [
+        {
+          "title": "Demystifying NVSHMEM: A System-Level Analysis on Symmetric Memory and Device-Initiated Operations in GPU Communication",
+          "arxiv": "https://arxiv.org/abs/2606.05951"
+        },
+        {
+          "title": "FlexNPU: Transparent NPU Virtualization for Dynamic LLM Prefill-Decode Co-location",
+          "arxiv": "https://arxiv.org/abs/2606.04415"
+        },
+        {
+          "title": "Characterizing Metastable Faults and Failures",
+          "arxiv": "https://arxiv.org/abs/2606.00942"
+        }
+      ]
+    },
+    {
       "date": "2026-06-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-04.html",
