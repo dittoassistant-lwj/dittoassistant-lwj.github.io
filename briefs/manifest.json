@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-06.html",
+      "topPaper": {
+        "title": "An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters",
+        "arxiv": "https://arxiv.org/abs/2510.00991"
+      },
+      "papers": [
+        {
+          "title": "An Efficient, Reliable and Observable Collective Communication Library in Large-scale GPU Training Clusters",
+          "arxiv": "https://arxiv.org/abs/2510.00991"
+        },
+        {
+          "title": "GPU-Initiated Networking for NCCL",
+          "arxiv": "https://arxiv.org/abs/2511.15076"
+        },
+        {
+          "title": "PCCL: Photonic circuit-switched collective communication for distributed ML",
+          "arxiv": "https://arxiv.org/abs/2509.15450"
+        },
+        {
+          "title": "An RDMA-First Object Storage System with SmartNIC Offload",
+          "arxiv": "https://arxiv.org/abs/2509.13997"
+        }
+      ]
+    },
+    {
       "date": "2026-06-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-05.html",
