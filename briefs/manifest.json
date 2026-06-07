@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-06-07",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-07.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-07.html",
+      "topPaper": {
+        "title": "Learned Subspace Compression for Communication-Efficient Pipeline Parallelism",
+        "arxiv": "https://arxiv.org/abs/2606.05484"
+      },
+      "papers": [
+        {
+          "title": "Learned Subspace Compression for Communication-Efficient Pipeline Parallelism",
+          "arxiv": "https://arxiv.org/abs/2606.05484"
+        },
+        {
+          "title": "Tangram: Unlocking Non-Uniform KV Cache for Efficient Multi-turn LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.06302"
+        },
+        {
+          "title": "RedKnot: Efficient Long-Context LLM Serving with Head-Aware KV Reuse and SegPagedAttention",
+          "arxiv": "https://arxiv.org/abs/2606.06256"
+        }
+      ]
+    },
+    {
       "date": "2026-06-06",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-06.html",
