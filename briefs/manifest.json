@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-06-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-08.html",
+      "topPaper": {
+        "title": "PCCL: Process Group-Aware Scalable and Generic Collective Algorithm Synthesizer",
+        "arxiv": "https://arxiv.org/abs/2606.07019"
+      },
+      "papers": [
+        {
+          "title": "PCCL: Process Group-Aware Scalable and Generic Collective Algorithm Synthesizer",
+          "arxiv": "https://arxiv.org/abs/2606.07019"
+        },
+        {
+          "title": "StageFrontier: Synchronization-Aware Stage Accounting for Distributed ML Training",
+          "arxiv": "https://arxiv.org/abs/2606.06751"
+        },
+        {
+          "title": "Communication Strategy Selection for Multi-GPU 3D FDTD with Convolutional Perfectly Matched Boundary Layers",
+          "arxiv": "https://arxiv.org/abs/2606.06910"
+        }
+      ]
+    },
+    {
       "date": "2026-06-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-07.html",
