@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-09.html",
+      "topPaper": {
+        "title": "SpectrumKV: Per-Token Mixed-Precision KV Cache Transfer for Prefill-Decode Disaggregated LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2606.08635"
+      },
+      "papers": [
+        {
+          "title": "SpectrumKV: Per-Token Mixed-Precision KV Cache Transfer for Prefill-Decode Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.08635"
+        },
+        {
+          "title": "FlashCP: Load-Balanced Communication-Efficient Context Parallelism for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2606.08476"
+        },
+        {
+          "title": "Resource-aware Computation-Communication Overlap for multi-GPU ML Workloads",
+          "arxiv": "https://arxiv.org/abs/2606.09200"
+        },
+        {
+          "title": "Distributed Persistence Domain for Persistent Memory Pooling",
+          "arxiv": "https://arxiv.org/abs/2606.07159"
+        }
+      ]
+    },
+    {
       "date": "2026-06-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-08.html",
