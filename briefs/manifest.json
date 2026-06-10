@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-10",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-10.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-10.html",
+      "topPaper": {
+        "title": "ASTRA-sim 3.0: Next-Level Distributed Machine Learning Simulations via High-Fidelity GPU and Infrastructure Modeling",
+        "arxiv": "https://arxiv.org/abs/2606.10440"
+      },
+      "papers": [
+        {
+          "title": "ASTRA-sim 3.0: Next-Level Distributed Machine Learning Simulations via High-Fidelity GPU and Infrastructure Modeling",
+          "arxiv": "https://arxiv.org/abs/2606.10440"
+        },
+        {
+          "title": "RATrain: A Resource-Aware Training Runtime for Large Language Models on Bandwidth-Constrained Heterogeneous Supercomputing Platforms",
+          "arxiv": "https://arxiv.org/abs/2606.10415"
+        },
+        {
+          "title": "Unifying Local Communications and Local Updates for LLM Pretraining",
+          "arxiv": "https://arxiv.org/abs/2606.11081"
+        },
+        {
+          "title": "AGENTSERVESIM: A Hardware-aware Simulator for Multi-Turn LLM Agent Serving",
+          "arxiv": "https://arxiv.org/abs/2606.09613"
+        }
+      ]
+    },
+    {
       "date": "2026-06-09",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-09.html",
