@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-12",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-12.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-12.html",
+      "topPaper": {
+        "title": "ScaleAcross: Designing Multi-Data-Center Infrastructure for Geo-Distributed AI Training",
+        "arxiv": "https://arxiv.org/abs/2606.12963"
+      },
+      "papers": [
+        {
+          "title": "ScaleAcross: Designing Multi-Data-Center Infrastructure for Geo-Distributed AI Training",
+          "arxiv": "https://arxiv.org/abs/2606.12963"
+        },
+        {
+          "title": "ITME: Inference Tiered Memory Expansion with Disaggregated CXL-Hybrid Memories",
+          "arxiv": "https://arxiv.org/abs/2606.12556"
+        },
+        {
+          "title": "NetCause: Counterfactual Learning for Root Cause Analysis in Large-Scale Networks",
+          "arxiv": "https://arxiv.org/abs/2606.13543"
+        },
+        {
+          "title": "See What I See, Know What I Think: Dense Latent Communication Across Heterogeneous Agents",
+          "arxiv": "https://arxiv.org/abs/2606.13594"
+        }
+      ]
+    },
+    {
       "date": "2026-06-11",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-11.html",
@@ -431,7 +459,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
