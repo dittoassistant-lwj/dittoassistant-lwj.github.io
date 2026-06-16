@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-16",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-16.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-16.html",
+      "topPaper": {
+        "title": "Eidola: Modeling Multi-GPU Network Communication Traffic in Distributed AI Workloads",
+        "arxiv": "https://arxiv.org/abs/2606.12638"
+      },
+      "papers": [
+        {
+          "title": "Eidola: Modeling Multi-GPU Network Communication Traffic in Distributed AI Workloads",
+          "arxiv": "https://arxiv.org/abs/2606.12638"
+        },
+        {
+          "title": "Solyx AI Grid: Hardware-Telemetry-Aware Routing Across Geographically Distributed GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2606.15050"
+        },
+        {
+          "title": "Unified KV Pooling to Accelerate Long-Context LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.14779"
+        },
+        {
+          "title": "CacheWise: Understanding Workloads and Optimizing KVCache Management for Efficiently Serving LLM Coding Agents",
+          "arxiv": "https://arxiv.org/abs/2606.16824"
+        },
+        {
+          "title": "Single-Connection Mixed-Criticality Transport with CATS: Bounded Guarantees, Three Structural Limits, and a QUIC Escape",
+          "arxiv": "https://arxiv.org/abs/2606.16924"
+        }
+      ]
+    },
+    {
       "date": "2026-06-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-15.html",
