@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-17",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-17.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-17.html",
+      "topPaper": {
+        "title": "The Multipath Reliable Connection (MRC) Transport",
+        "arxiv": "https://arxiv.org/abs/2606.18170"
+      },
+      "papers": [
+        {
+          "title": "The Multipath Reliable Connection (MRC) Transport",
+          "arxiv": "https://arxiv.org/abs/2606.18170"
+        },
+        {
+          "title": "LUMEN: Coordinated Failure Recovery for Distributed LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.17787"
+        },
+        {
+          "title": "AoiZora: Topology-Aware Auto-Parallel Optimization for Inference of Diffusion Transformers",
+          "arxiv": "https://arxiv.org/abs/2606.17566"
+        },
+        {
+          "title": "The Price of Anarchy in Disaggregated Inference",
+          "arxiv": "https://arxiv.org/abs/2606.17081"
+        }
+      ]
+    },
+    {
       "date": "2026-06-16",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-16.html",

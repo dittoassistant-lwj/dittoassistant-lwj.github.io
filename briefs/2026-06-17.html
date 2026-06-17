@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-06-17, focused on production AI transports, LLM serving recovery, topology-aware accelerator placement, and disaggregated inference routing." />
+    <title>Daily AI Cluster Networking Brief — 2026-06-17 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-06-17</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s strongest signal is unusually concrete: a production-grade Ethernet transport for AI/ML training, plus two serving papers that treat KV state and failure recovery as cluster-level data movement problems. The theme is less “faster model” and more “the fabric, scheduler, and cache manager are now the model runtime.”</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2606.18170">The Multipath Reliable Connection (MRC) Transport</a></h3>
+          <p class="muted">Authors &amp; affiliations: Rip Sohan, Eric Spada, Eric Davis, Mark Handley, Idan Burstein, Tony Hurson, Jithin Jose, Vivek Kashyap, Rong Pan, Sayantan Sur, Sreevatsa Anantharamu, Aviv Barnea, Adrian Caulfield, Elazar Cohen, Elliot Edmunds, Yamin Friedman, Mahdieh Ghazi, Murali Guramali, Torsten Hoefler, Vipin Jain, Abdul Kabbani, Noam Katz, Yanfang Le, Charlie Mbariky, Guglielmo Morandin, Masoud Moshref, Shane O’Neil, Michael Papamichael, Jonas Pfefferle, Siva Santosh Pyla, Costin Raiciu, David Riddoch, Karen Schramm, Yuval Shpigelman, Shahaf Shuler, Shy Shyman, Raghava Sivaramu, Amin Tootoonchian, and Yang Wang. Affiliations: Advanced Micro Devices Inc.; Broadcom Inc.; Microsoft Corp; NVIDIA Corp; OpenAI OpCo LLC; Intel Corp.</p>
+          <p><strong>Tags:</strong> Transport Protocols, RoCE/Ethernet, AI Training Fabrics</p>
+          <p><strong>Why this is the top pick:</strong> MRC is directly in Ethan territory: it attacks the three painful properties of RoCEv2 RC for large AI training clusters — single-path transport, fragile loss/retransmission behavior, and slow response to path or port failures — while preserving the RC software model enough to be deployable.</p>
+          <p><strong>Deeper explanation:</strong> The paper frames MRC as an incremental extension of RoCEv2 Reliable Connection rather than a clean-slate fabric. The key move is to make multipath, reliability feedback, congestion signaling, and datapath-visible reachability explicit transport primitives. That matters because AI training traffic wants high goodput, ordered completion semantics, and fast failure recovery, but conventional RC binds a connection too tightly to one path and relies on control-plane convergence or PFC/DCQCN-era assumptions. MRC instead composes entropy-value packet spraying, bounded outstanding packet sequence ranges, SACK/NACK/trimmed-packet feedback, ECN/backpressure, and port-status updates into a transport loop that can keep training traffic moving over best-effort Ethernet.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> Production AI/ML clusters need an open transport that can survive best-effort Ethernet loss, multipath reordering, congestion, and fabric failures without abandoning the RDMA RC programming model.</li>
+            <li><strong>Key contributions:</strong> Defines per-connection multipath/multi-plane packet spraying, selective reliability and congestion-control primitives, and endpoint-scoped liveness/reachability operations for fast failover.</li>
+            <li><strong>Why it matters architecturally:</strong> This is the kind of transport layer that changes what the network can promise to collectives: less dependence on lossless Ethernet, more explicit failure feedback, and finer-grained path selection from the endpoint.</li>
+            <li><strong>Useful diagram/table:</strong> Table I is the most useful compact artifact: it maps MRC primitives into mandatory versus optional transport features, including EV profiles, SACK/NACK, traffic classes, probes, and port-status signaling.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">Fresh arXiv CS paper · RoCEv2 extension / per-packet multipath / AI training transport</div>
+            <h2><a href="https://arxiv.org/abs/2606.18170">The Multipath Reliable Connection (MRC) Transport</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Rip Sohan, Eric Spada, Eric Davis, Mark Handley, Idan Burstein, Tony Hurson, Jithin Jose, Vivek Kashyap, Rong Pan, Sayantan Sur, Sreevatsa Anantharamu, Aviv Barnea, Adrian Caulfield, Elazar Cohen, Elliot Edmunds, Yamin Friedman, Mahdieh Ghazi, Murali Guramali, Torsten Hoefler, Vipin Jain, Abdul Kabbani, Noam Katz, Yanfang Le, Charlie Mbariky, Guglielmo Morandin, Masoud Moshref, Shane O’Neil, Michael Papamichael, Jonas Pfefferle, Siva Santosh Pyla, Costin Raiciu, David Riddoch, Karen Schramm, Yuval Shpigelman, Shahaf Shuler, Shy Shyman, Raghava Sivaramu, Amin Tootoonchian, and Yang Wang. Affiliations: Advanced Micro Devices Inc.; Broadcom Inc.; Microsoft Corp; NVIDIA Corp; OpenAI OpCo LLC; Intel Corp.</p>
+            <p><strong>Tags:</strong> Transport Protocols, RoCE/Ethernet, AI Training Fabrics</p>
+            <p><strong>Problem:</strong> RoCEv2 Reliable Connection is the dominant open production transport for AI/ML clusters, but its single-path behavior, go-back-N recovery, PFC/DCQCN assumptions, and slow failure handling do not scale cleanly to large accelerator fabrics.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Extends RC with explicit per-connection multipath and multi-plane operation, including entropy values for controlled packet spraying and path selection.</li><li>Specifies reliability and congestion primitives for best-effort Ethernet: selective acknowledgments, reasoned negative acknowledgments, trimmed-packet feedback, ECN, host backpressure, and bounded flight through maximum PSN range.</li><li>Adds endpoint-scoped, datapath-usable reachability and liveness signals so ports and paths can be avoided quickly without waiting for slow control-plane convergence.</li></ul>
+            <p><strong>Why it matters:</strong> MRC is an unusually relevant transport paper because it is aimed at production AI training over Ethernet, not a toy topology or a purely analytical model. It preserves enough RC semantics to fit existing RDMA-style software expectations while exposing the knobs needed for packet spraying, loss recovery, and failover.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Multipath is not just a routing problem. Once packets are sprayed, the transport must explicitly bound reordering, retransmit state, and receiver buffering.</li><li>Failure recovery belongs partly in the datapath. EV probes and port-status updates let endpoints react to path health at line speed instead of treating failures as only a controller problem.</li><li>The design deliberately narrows AI-training data-plane operations to Write and Write-with-Immediate, trading generality for a simpler transport loop that can be implemented in NIC hardware.</li><li>Best-effort Ethernet needs richer feedback than classic RC. SACK/NACK/trimmed-packet signals are what make loss recovery tractable when packet drops are allowed.</li></ul>
+            <p><strong>Actionable lessons:</strong> For AI Ethernet transport design, do not evaluate load balancing, reliability, and failover independently. Packet spraying only works if the endpoint simultaneously controls outstanding sequence range, congestion feedback, retransmit priority, and path health. Treat these as one coupled transport loop.</p>
+            <p><strong>Useful diagram/table:</strong> Table I is the useful design artifact: it enumerates MRC primitives and separates mandatory correctness mechanisms from optional efficiency/resilience features.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">Fresh arXiv CS paper · LLM serving reliability / KV checkpoint placement / recovery scheduling</div>
+            <h2><a href="https://arxiv.org/abs/2606.17787">LUMEN: Coordinated Failure Recovery for Distributed LLM Serving</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Zhang Cao, Shujie Han, Juncheng Zhang, Yuanming Ren, Yongkun Li, and Patrick P. C. Lee. Affiliations: The Chinese University of Hong Kong; Northwestern Polytechnical University; University of Science and Technology of China.</p>
+            <p><strong>Tags:</strong> LLM Serving, Fault Recovery, KV Cache Movement</p>
+            <p><strong>Problem:</strong> When a serving worker fails, the system loses both GPU capacity and the worker’s in-flight KV cache. Restarting requests from scratch inflates TTFT/TPOT, while fixed-neighbor checkpointing can overload the wrong survivor and leaves the recovering worker idle during model reload.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Frames serving failure recovery as a load-aware coordination problem across checkpoint placement, interrupted-request routing, and recovering-worker capacity restoration.</li><li>Introduces load-aware KV checkpointing and locality-aware recovery scheduling, spreading checkpoint holders instead of pinning all recovery state to fixed neighbors.</li><li>Uses speculation-assisted progressive recovery: a lightweight draft model runs on the recovering worker while the full model reloads in the background.</li></ul>
+            <p><strong>Why it matters:</strong> This is a useful reliability paper because it treats KV cache as failure-critical distributed state, not merely an optimization. In large inference clusters, a worker failure is also a data-placement event and a load-balancing event.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Recovery traffic can create a second outage if it is concentrated on already-loaded workers; checkpoint placement needs to anticipate future recovery load.</li><li>For long-context requests, preserving KV prefixes is often cheaper than replaying prefill, but only if restore destinations are chosen with current queues in mind.</li><li>The recovering worker is not useless while the full model reloads; draft-model speculative decoding can give temporary capacity back to the cluster.</li><li>The paper’s prototype results report sizable reductions in TTFT, TPOT, and recovery time over Stop-and-Restart and Fixed-Checkpointing baselines, with simulations up to 64 workers.</li></ul>
+            <p><strong>Actionable lessons:</strong> Treat inference failure recovery as a three-part placement problem: where KV state is replicated before failure, where interrupted requests move after failure, and what partial service the failed node can provide during reload. Also measure recovery-induced queueing, not just time to restart a process.</p>
+            <p><strong>Useful diagram:</strong> Figures 1 and 2 are failure-impact plots rather than an architecture diagram; they illustrate how TTFT and TPOT degrade after worker failures and how the effect scales with cluster size.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">Fresh arXiv CS paper · TPU topology / auto-parallel compiler planning / collective placement</div>
+            <h2><a href="https://arxiv.org/abs/2606.17566">AoiZora: Topology-Aware Auto-Parallel Optimization for Inference of Diffusion Transformers</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Kaijian Wang, Yuanyuan Xu, Fanjiang Ye, Ye Cao, Jingwei Zuo, T.S. Eugene Ng, Yarong Mu, and Yuke Wang. Affiliations: Rice University; Independent Researcher; Google.</p>
+            <p><strong>Tags:</strong> Accelerator Topology, Collective Communication, Compiler/Runtime Co-design</p>
+            <p><strong>Problem:</strong> Video diffusion inference uses large spatio-temporal activations and repeated transformer denoising steps, so multi-accelerator sharding creates heavy collective traffic. Existing auto-parallel systems often optimize logical meshes while ignoring how those meshes map onto physical TPU links.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Builds a compiler-mediated topology planner that filters weak sharding candidates using inexpensive pre-compilation IRs, then compiles only promising plans.</li><li>Uses compiled HLO plus a topology-aware communication model to order physical placements for TPU sub-slices.</li><li>Reports up to 1.42× lower Wan 2.1 one-step denoising latency on TPU v5e sub-slices versus existing solutions.</li></ul>
+            <p><strong>Why it matters:</strong> The paper is not about LLM training, but the systems lesson maps cleanly to AI fabrics: logical collective volume is not enough. The same sharding can produce different latency depending on which physical links carry the compiled collective graph.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>On nearest-neighbor TPU mesh slices, placement can change latency by concentrating or spreading collective traffic over shared physical links.</li><li>The right layer for topology awareness may be the compiler-planning boundary: high enough to see tensor semantics, low enough to see backend collective groups.</li><li>Video diffusion is a good stress case because denoising repeats a mostly static communication pattern many times, amplifying small placement mistakes.</li><li>Hop count alone is insufficient; shared-link contention is the more useful design signal for placement.</li></ul>
+            <p><strong>Actionable lessons:</strong> When designing topology-aware placement for accelerator jobs, capture the concrete collective graph after lowering, not only the abstract sharding plan. Cost models should penalize shared-link contention and repeated collective hot spots, especially for iterative inference workloads.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is useful: it shows the video diffusion inference structure and a latency breakdown, making the repeated DiT denoising loop and collective-heavy execution path easy to reason about.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">Fresh arXiv CS paper · disaggregated inference / Dynamo / congestion games</div>
+            <h2><a href="https://arxiv.org/abs/2606.17081">The Price of Anarchy in Disaggregated Inference</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Athos Georgiou. Affiliations: NCA.</p>
+            <p><strong>Tags:</strong> Disaggregated LLM Serving, KV Cache Routing, Congestion Analysis</p>
+            <p><strong>Problem:</strong> Disaggregated inference separates prefill and decode onto different GPU pools, but request routing, KV-cache placement, and P/D resource allocation create coupled externalities. Greedy cache-affinity routing can help one request while congesting a decode worker for everyone else.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Models disaggregated serving as three coupled games: prefill/decode resource allocation, hierarchical KV-cache placement, and request routing under congestion.</li><li>Uses NVIDIA Dynamo on a 3-node B200 cluster as a concrete case study, including Nemotron-4-340B and Llama-3.1-70B configurations.</li><li>Proposes an adaptive controller that detects saturation transitions and shifts routing from cache-affinity exploitation toward load-balanced congestion avoidance.</li></ul>
+            <p><strong>Why it matters:</strong> This paper gives a vocabulary for a real serving failure mode: cache locality and load balancing are not independent objectives. At saturation, the system can cross a regime boundary where locally “good” routing decisions amplify global tail latency.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The same serving policy can be benign below saturation and pathological above it, because GPU queueing and cache externalities become superlinear.</li><li>KV cache is a shared resource across GPU HBM, CPU DRAM, local SSD, and networked storage tiers; eviction decisions impose recomputation costs on future tokens.</li><li>Price-of-Anarchy framing is mainly analytical, not a runtime equilibrium solver. The runtime must stay cheap and use tractable heuristics.</li><li>The reported adaptive routing results trade some throughput for large TTFT tail reductions in saturated phases, which is often the right production trade-off.</li></ul>
+            <p><strong>Actionable lessons:</strong> For disaggregated serving, instrument the knee: identify the load point where cache-affinity routing stops helping and starts creating decode congestion. Routing policies should switch modes based on saturation signals, not use one static locality weight across all regimes.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is a useful mechanism-design table: it maps Dynamo’s Planner, KV Block Manager, and Smart Router onto the three games and contested resources.</p>
+          </article>
+        </section>
+
+        <section class="grid-2">
+          <article class="card section-card">
+            <h2>Fast take</h2>
+            <p class="muted">Read MRC first if you care about AI Ethernet transport primitives. LUMEN is the reliability/state-movement paper for serving clusters. AoiZora is a clean topology-aware compiler/placement example, and Price of Anarchy is a useful mental model for when KV locality turns into congestion.</p>
+          </article>
+          <article class="card section-card">
+            <h2>What I’d read first</h2>
+            <ol class="muted">
+              <li>The Multipath Reliable Connection (MRC) Transport</li><li>LUMEN: Coordinated Failure Recovery for Distributed LLM Serving</li><li>AoiZora: Topology-Aware Auto-Parallel Optimization for Inference of Diffusion Transformers</li><li>The Price of Anarchy in Disaggregated Inference</li>
+            </ol>
+          </article>
+        </section>
+      </main>
+      <footer class="site-footer"><p>© <span id="year"></span> Ditto.</p></footer>
+    </div>
+  </body>
+</html>
