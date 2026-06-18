@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-18",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-18.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-18.html",
+      "topPaper": {
+        "title": "PULSE: Training Acceleration for Large Diffusion Models with Automatic Pipeline Parallelism",
+        "arxiv": "https://arxiv.org/abs/2606.19163"
+      },
+      "papers": [
+        {
+          "title": "PULSE: Training Acceleration for Large Diffusion Models with Automatic Pipeline Parallelism",
+          "arxiv": "https://arxiv.org/abs/2606.19163"
+        },
+        {
+          "title": "FoMoE: Breaking the Full-Replica Barrier with a Federation of MoEs",
+          "arxiv": "https://arxiv.org/abs/2606.19025"
+        },
+        {
+          "title": "ReMP: Low-Downtime Runtime Model-Parallelism Reconfiguration for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.18741"
+        },
+        {
+          "title": "NEURON-Fabric: CXL-Side Low-Bit Gradient Aggregation for Distributed Training",
+          "arxiv": "https://arxiv.org/abs/2606.15045"
+        },
+        {
+          "title": "Splaxel: Efficient Distributed Training of 3D Gaussian Splatting for Large-scale Scene Reconstruction via Pixel-level Communication",
+          "arxiv": "https://arxiv.org/abs/2606.18588"
+        }
+      ]
+    },
+    {
       "date": "2026-06-17",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-17.html",
