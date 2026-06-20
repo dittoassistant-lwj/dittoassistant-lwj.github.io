@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-20",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-20.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-20.html",
+      "topPaper": {
+        "title": "Reliable and Resilient Collective Communication Library for LLM Training and Serving",
+        "arxiv": "https://arxiv.org/abs/2512.25059"
+      },
+      "papers": [
+        {
+          "title": "Reliable and Resilient Collective Communication Library for LLM Training and Serving",
+          "arxiv": "https://arxiv.org/abs/2512.25059"
+        },
+        {
+          "title": "ShadowServe: Interference-Free KV Cache Fetching for Distributed Prefix Caching",
+          "arxiv": "https://arxiv.org/abs/2509.16857"
+        },
+        {
+          "title": "OptiNIC: A Resilient and Tail-Optimal RDMA NIC for Distributed ML Workloads",
+          "arxiv": "https://arxiv.org/abs/2512.22743"
+        },
+        {
+          "title": "The Bi-Channel Networking Paradigm for Database Systems in the Cloud",
+          "arxiv": "https://arxiv.org/abs/2606.19969"
+        }
+      ]
+    },
+    {
       "date": "2026-06-19",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-19.html",
