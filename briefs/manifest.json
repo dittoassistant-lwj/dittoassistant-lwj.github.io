@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-21",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-21.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-21.html",
+      "topPaper": {
+        "title": "Quantum ring all-reduce: communication and privacy advantages for distributed learning",
+        "arxiv": "https://arxiv.org/abs/2606.20344"
+      },
+      "papers": [
+        {
+          "title": "Quantum ring all-reduce: communication and privacy advantages for distributed learning",
+          "arxiv": "https://arxiv.org/abs/2606.20344"
+        },
+        {
+          "title": "Fault-Tolerant Shared-Relay Communication in Circulant Interconnection Networks",
+          "arxiv": "https://arxiv.org/abs/2606.19833"
+        },
+        {
+          "title": "Towards Distributed Inference of LLMs on a P2P Network",
+          "arxiv": "https://arxiv.org/abs/2606.17059"
+        },
+        {
+          "title": "ShuntServe: Cost-Efficient LLM Serving on Heterogeneous Spot GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2606.18600"
+        }
+      ]
+    },
+    {
       "date": "2026-06-20",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-20.html",
