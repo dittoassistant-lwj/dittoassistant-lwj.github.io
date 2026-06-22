@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-22",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-22.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-22.html",
+      "topPaper": {
+        "title": "Online Dynamic Batching with Formal Guarantees for LLM Training",
+        "arxiv": "https://arxiv.org/abs/2606.19989"
+      },
+      "papers": [
+        {
+          "title": "Online Dynamic Batching with Formal Guarantees for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2606.19989"
+        },
+        {
+          "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
+          "arxiv": "https://arxiv.org/abs/2606.20537"
+        },
+        {
+          "title": "Multi-Orientation Edge-Minimum Repair for Non-Redundant Fault-Tolerant Broadcasting in Dense Eisenstein--Jacobi Networks",
+          "arxiv": "https://arxiv.org/abs/2606.19834"
+        },
+        {
+          "title": "Design Considerations for Phase Modulation in Testable Photonic Systems and Co-packaged Optics",
+          "arxiv": "https://arxiv.org/abs/2606.19674"
+        }
+      ]
+    },
+    {
       "date": "2026-06-21",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-21.html",
