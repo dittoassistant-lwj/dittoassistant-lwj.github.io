@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-23",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-23.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-23.html",
+      "topPaper": {
+        "title": "ASAP: A Disaggregated and Asynchronous Inference System for MoE Prefill",
+        "arxiv": "https://arxiv.org/abs/2606.22541"
+      },
+      "papers": [
+        {
+          "title": "ASAP: A Disaggregated and Asynchronous Inference System for MoE Prefill",
+          "arxiv": "https://arxiv.org/abs/2606.22541"
+        },
+        {
+          "title": "LiveStack: OS Support for Cluster-Scale Full-Stack Live Simulation",
+          "arxiv": "https://arxiv.org/abs/2606.18958"
+        },
+        {
+          "title": "From the NYU Ultracomputer to Modern Exascale: A Historical and Architectural Survey of In-Network Computing and Scalable Synchronization",
+          "arxiv": "https://arxiv.org/abs/2606.16819"
+        },
+        {
+          "title": "Mixed-Precision Communication-Avoiding SGD for Generalized Linear Models on GPUs",
+          "arxiv": "https://arxiv.org/abs/2606.18463"
+        }
+      ]
+    },
+    {
       "date": "2026-06-22",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-22.html",
