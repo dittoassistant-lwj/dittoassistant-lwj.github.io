@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-24.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-24.html",
+      "topPaper": {
+        "title": "Aquifer: Hierarchical Memory Pooling with CXL and RDMA for MicroVM Snapshots",
+        "arxiv": "https://arxiv.org/abs/2606.24079"
+      },
+      "papers": [
+        {
+          "title": "Aquifer: Hierarchical Memory Pooling with CXL and RDMA for MicroVM Snapshots",
+          "arxiv": "https://arxiv.org/abs/2606.24079"
+        },
+        {
+          "title": "CrossPool: Efficient Multi-LLM Serving for Cold MoE Models through KV-Cache and Weight Disaggregation",
+          "arxiv": "https://arxiv.org/abs/2606.24506"
+        },
+        {
+          "title": "Accelerating Disaggregated RL for Visual Generative LLMs with Diffusion-Based Parallelism and Trainer-Assisted Generation",
+          "arxiv": "https://arxiv.org/abs/2606.24369"
+        },
+        {
+          "title": "Accelerating Presto with GPUs",
+          "arxiv": "https://arxiv.org/abs/2606.24647"
+        }
+      ]
+    },
+    {
       "date": "2026-06-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-23.html",
