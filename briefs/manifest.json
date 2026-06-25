@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-25",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-25.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-25.html",
+      "topPaper": {
+        "title": "The Serialized Bridge: Understanding and Recovering LLM Serving Performance under Blackwell GPU Confidential Computing",
+        "arxiv": "https://arxiv.org/abs/2606.23969"
+      },
+      "papers": [
+        {
+          "title": "The Serialized Bridge: Understanding and Recovering LLM Serving Performance under Blackwell GPU Confidential Computing",
+          "arxiv": "https://arxiv.org/abs/2606.23969"
+        },
+        {
+          "title": "BatchGen: An Architecture for Scalable and Efficient Batch Inference",
+          "arxiv": "https://arxiv.org/abs/2606.21712"
+        },
+        {
+          "title": "SwarmX: Agentic Scheduling for Low-Latency Agentic Systems",
+          "arxiv": "https://arxiv.org/abs/2606.21401"
+        },
+        {
+          "title": "Decentralised AI Training and Inference with BlockTrain",
+          "arxiv": "https://arxiv.org/abs/2606.24722"
+        },
+        {
+          "title": "AI-Assisted Computational Reproducibility on the FABRIC Testbed",
+          "arxiv": "https://arxiv.org/abs/2606.25879"
+        }
+      ]
+    },
+    {
       "date": "2026-06-24",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-24.html",
