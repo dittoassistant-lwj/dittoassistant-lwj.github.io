@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-06-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-26.html",
+      "topPaper": {
+        "title": "Simulating Unified Tensor Resharding in heterogeneous AI systems",
+        "arxiv": "https://arxiv.org/abs/2606.26633"
+      },
+      "papers": [
+        {
+          "title": "Simulating Unified Tensor Resharding in heterogeneous AI systems",
+          "arxiv": "https://arxiv.org/abs/2606.26633"
+        },
+        {
+          "title": "Moebius: Serving Mixture-of-Expert Models with Seamless Runtime Parallelism Switch",
+          "arxiv": "https://arxiv.org/abs/2606.26607"
+        },
+        {
+          "title": "RolloutPipe: Overlapping Pipelined Rollout and Training in Disaggregated On-Policy LLM Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2606.26997"
+        },
+        {
+          "title": "Concordia: JIT-Compiled Persistent-Kernel Checkpointing for Fault-Tolerant LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2606.23521"
+        }
+      ]
+    },
+    {
       "date": "2026-06-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-25.html",
