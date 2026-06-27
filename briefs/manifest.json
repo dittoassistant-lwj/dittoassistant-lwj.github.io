@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-27.html",
+      "topPaper": {
+        "title": "NEURON-Fabric: Architecture-Runtime Co-Design for Controlled Low-Bit Gradient Communication",
+        "arxiv": "https://arxiv.org/abs/2606.25759"
+      },
+      "papers": [
+        {
+          "title": "NEURON-Fabric: Architecture-Runtime Co-Design for Controlled Low-Bit Gradient Communication",
+          "arxiv": "https://arxiv.org/abs/2606.25759"
+        },
+        {
+          "title": "DMuon: Efficient Distributed Muon Training with Near-Adam Overhead",
+          "arxiv": "https://arxiv.org/abs/2606.27153"
+        },
+        {
+          "title": "MOCAP: Wafer-Scale-Chip-Oriented Memory-Orchestrated Chunked Pipelining Framework for Prefill-Only LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2606.22968"
+        },
+        {
+          "title": "Speculation at a Distance: Where Edge-Cloud Speculative Decoding Actually Pays Off",
+          "arxiv": "https://arxiv.org/abs/2606.25091"
+        },
+        {
+          "title": "Unprivileged Topology Certificates for Cloud GPU Attestation",
+          "arxiv": "https://arxiv.org/abs/2606.24934"
+        }
+      ]
+    },
+    {
       "date": "2026-06-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-26.html",
