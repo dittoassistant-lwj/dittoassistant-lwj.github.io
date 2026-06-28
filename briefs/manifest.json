@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-28.html",
+      "topPaper": {
+        "title": "Communication-Semantic-Aware RDMA Loss Recovery for QP-scalable Hyperscale AI Training",
+        "arxiv": "https://arxiv.org/abs/2606.20582"
+      },
+      "papers": [
+        {
+          "title": "Communication-Semantic-Aware RDMA Loss Recovery for QP-scalable Hyperscale AI Training",
+          "arxiv": "https://arxiv.org/abs/2606.20582"
+        },
+        {
+          "title": "RDMACell: Token-Based Flowcell-Level RDMA Load Balancing for Large-Scale AI Training",
+          "arxiv": "https://arxiv.org/abs/2606.20581"
+        },
+        {
+          "title": "Cache-Resident LLM Inference in GB-Scale Last-Level Caches",
+          "arxiv": "https://arxiv.org/abs/2606.25353"
+        },
+        {
+          "title": "Hash Table Design for RDMA: Challenges and Opportunities",
+          "arxiv": "https://arxiv.org/abs/2606.24073"
+        },
+        {
+          "title": "PersistentKV: Page-Aware Decode Scheduling for Long-Context LLM Serving on Commodity GPUs",
+          "arxiv": "https://arxiv.org/abs/2606.26666"
+        }
+      ]
+    },
+    {
       "date": "2026-06-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-27.html",
