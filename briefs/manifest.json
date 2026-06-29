@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-06-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-29.html",
+      "topPaper": {
+        "title": "Serving Large Language Models on Huawei CloudMatrix384",
+        "arxiv": "https://arxiv.org/abs/2506.12708"
+      },
+      "papers": [
+        {
+          "title": "Serving Large Language Models on Huawei CloudMatrix384",
+          "arxiv": "https://arxiv.org/abs/2506.12708"
+        },
+        {
+          "title": "BandPilot: Towards Performance- and Contention-Aware GPU Dispatching in AI Clusters",
+          "arxiv": "https://arxiv.org/abs/2506.15595"
+        },
+        {
+          "title": "MLCommons Chakra: Advancing Performance Benchmarking and Co-design using Standardized Execution Traces",
+          "arxiv": "https://arxiv.org/abs/2605.11333"
+        }
+      ]
+    },
+    {
       "date": "2026-06-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-28.html",
