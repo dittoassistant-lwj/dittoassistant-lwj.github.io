@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-06-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-06-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-06-30.html",
+      "topPaper": {
+        "title": "HBM Is Not All You Need: Efficient Disaggregated LLM Serving across Memory-heterogeneous Accelerators",
+        "arxiv": "https://arxiv.org/abs/2606.29986"
+      },
+      "papers": [
+        {
+          "title": "HBM Is Not All You Need: Efficient Disaggregated LLM Serving across Memory-heterogeneous Accelerators",
+          "arxiv": "https://arxiv.org/abs/2606.29986"
+        },
+        {
+          "title": "Demystifying the Design Space and Best Practices for Heterogeneous LLM Inference and Serving",
+          "arxiv": "https://arxiv.org/abs/2606.29708"
+        },
+        {
+          "title": "TraceLab: Characterizing Coding Agent Workloads for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2606.30560"
+        },
+        {
+          "title": "HSAP: A Hierachical Sequence-aware Parallelism for Hybrid-Context Generative Models",
+          "arxiv": "https://arxiv.org/abs/2606.30460"
+        },
+        {
+          "title": "LLMs and Optical Networks: A Symbiotic Relationship",
+          "arxiv": "https://arxiv.org/abs/2606.30278"
+        }
+      ]
+    },
+    {
       "date": "2026-06-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-29.html",
