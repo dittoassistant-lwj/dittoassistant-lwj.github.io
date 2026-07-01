@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-01.html",
+      "topPaper": {
+        "title": "Multi-stage Flow Scheduling for LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2603.17456"
+      },
+      "papers": [
+        {
+          "title": "Multi-stage Flow Scheduling for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2603.17456"
+        },
+        {
+          "title": "NCCL EP: Towards a Unified Expert Parallel Communication API for NCCL",
+          "arxiv": "https://arxiv.org/abs/2603.13606"
+        },
+        {
+          "title": "Leaf-centric Logical Topology Design for OCS-based GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2603.28168"
+        },
+        {
+          "title": "Beyond Traffic Matrix: DELTA -- A DAG-Aware OCS Logical Topology Optimization for AIDCs",
+          "arxiv": "https://arxiv.org/abs/2603.28096"
+        },
+        {
+          "title": "From Skew to Symmetry: Node-Interconnect Multi-Path Balancing with Execution-time Planning for Modern GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2604.00317"
+        }
+      ]
+    },
+    {
       "date": "2026-06-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-06-30.html",
