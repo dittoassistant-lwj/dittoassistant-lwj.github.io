@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-03.html",
+      "topPaper": {
+        "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
+        "arxiv": "https://arxiv.org/abs/2607.01831"
+      },
+      "papers": [
+        {
+          "title": "Lynx: Progressive Speculative Quantization for accelerating KV Transfer in Long-Context Inference",
+          "arxiv": "https://arxiv.org/abs/2607.01831"
+        },
+        {
+          "title": "Towards Load-Aware Prefill Deflection for Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2607.02043"
+        },
+        {
+          "title": "HCMS: Head-Chunked Multi-Stream Pipeline for Communication-Computation Overlap in Long-Sequence Parallel Attention",
+          "arxiv": "https://arxiv.org/abs/2607.01817"
+        },
+        {
+          "title": "SCAPE: Accurate and Efficient LLM Training with Extreme Sparse Communication",
+          "arxiv": "https://arxiv.org/abs/2607.01678"
+        },
+        {
+          "title": "Omni-Flow: A Unified Workflow Orchestration and Distributed KV Cache Sharing Framework for Multimodal Inference",
+          "arxiv": "https://arxiv.org/abs/2606.31093"
+        }
+      ]
+    },
+    {
       "date": "2026-07-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-02.html",
