@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-05.html",
+      "topPaper": {
+        "title": "DeadPool: Resilient LLM Training with Hot-Swapping via Zero-Overhead Checkpoint",
+        "arxiv": "https://arxiv.org/abs/2607.01646"
+      },
+      "papers": [
+        {
+          "title": "DeadPool: Resilient LLM Training with Hot-Swapping via Zero-Overhead Checkpoint",
+          "arxiv": "https://arxiv.org/abs/2607.01646"
+        },
+        {
+          "title": "HYPIC: Accelerating Hybrid-Attention LLM Serving with Position-Independent Caching",
+          "arxiv": "https://arxiv.org/abs/2607.01299"
+        },
+        {
+          "title": "AC^2P^2SL: Adaptive Communication-Computation Pipeline Parallel Split Learning over Edge Networks",
+          "arxiv": "https://arxiv.org/abs/2606.31276"
+        },
+        {
+          "title": "The Rollout Infrastructure Tax in Coding-Agent Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2607.01415"
+        }
+      ]
+    },
+    {
       "date": "2026-07-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-04.html",
