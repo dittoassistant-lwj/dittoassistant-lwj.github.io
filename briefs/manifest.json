@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-06.html",
+      "topPaper": {
+        "title": "Factored Gossip DiLoCo: Reducing Blocking Communication in DiLoCo",
+        "arxiv": "https://arxiv.org/abs/2606.22768"
+      },
+      "papers": [
+        {
+          "title": "Factored Gossip DiLoCo: Reducing Blocking Communication in DiLoCo",
+          "arxiv": "https://arxiv.org/abs/2606.22768"
+        },
+        {
+          "title": "KernelFlume: Elastic Core-Attention Scaling for Agentic Long-Context Decoding",
+          "arxiv": "https://arxiv.org/abs/2606.29207"
+        },
+        {
+          "title": "FlowTrain: Flow-Based Decoupled Training for Industrial-Grade Vision-Language Models",
+          "arxiv": "https://arxiv.org/abs/2606.23087"
+        },
+        {
+          "title": "Tangram: Hiding GPU Heterogeneity for Efficient LLM Parallelization",
+          "arxiv": "https://arxiv.org/abs/2606.16907"
+        },
+        {
+          "title": "RollArt: Disaggregated Multi-Task Agentic RL Training at Scale",
+          "arxiv": "https://arxiv.org/abs/2512.22560"
+        }
+      ]
+    },
+    {
       "date": "2026-07-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-05.html",
@@ -1127,7 +1159,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
