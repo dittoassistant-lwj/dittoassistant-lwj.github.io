@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-07",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-07.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-07.html",
+      "topPaper": {
+        "title": "DynamiQ: Accelerating Gradient Synchronization using Compressed Multi-hop All-reduce",
+        "arxiv": "https://arxiv.org/abs/2602.08923"
+      },
+      "papers": [
+        {
+          "title": "DynamiQ: Accelerating Gradient Synchronization using Compressed Multi-hop All-reduce",
+          "arxiv": "https://arxiv.org/abs/2602.08923"
+        },
+        {
+          "title": "Adaptive Space-efficient Collectives for Dynamic and Unstructured Sparsity on GPU Platforms",
+          "arxiv": "https://arxiv.org/abs/2607.04676"
+        },
+        {
+          "title": "Communication-Aware Placement and Pruning for Efficient Mixture-of-Experts Inference",
+          "arxiv": "https://arxiv.org/abs/2607.05116"
+        },
+        {
+          "title": "Direct Model State Migration for Elastic Training of Large Language Models",
+          "arxiv": "https://arxiv.org/abs/2607.04749"
+        },
+        {
+          "title": "GORIO: GPU-Centered Remote I/O for Graph ANNS over NVMe-oF",
+          "arxiv": "https://arxiv.org/abs/2607.04415"
+        }
+      ]
+    },
+    {
       "date": "2026-07-06",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-06.html",
