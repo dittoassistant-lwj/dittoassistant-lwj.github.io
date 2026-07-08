@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-08.html",
+      "topPaper": {
+        "title": "GORGO: Online Tuning for Cross-Region Network-Aware LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2602.11688"
+      },
+      "papers": [
+        {
+          "title": "GORGO: Online Tuning for Cross-Region Network-Aware LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2602.11688"
+        },
+        {
+          "title": "Design Space Exploration of DMA based Finer-Grain Compute Communication Overlap",
+          "arxiv": "https://arxiv.org/abs/2512.10236"
+        },
+        {
+          "title": "Hetu v2: A General and Scalable Deep Learning System with Hierarchical and Heterogeneous Single Program Multiple Data Annotations",
+          "arxiv": "https://arxiv.org/abs/2504.20490"
+        },
+        {
+          "title": "Piper: A Programmable Distributed Training System",
+          "arxiv": "https://arxiv.org/abs/2606.11169"
+        },
+        {
+          "title": "Photon: Federated LLM Pre-Training",
+          "arxiv": "https://arxiv.org/abs/2411.02908"
+        }
+      ]
+    },
+    {
       "date": "2026-07-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-07.html",
@@ -1191,7 +1223,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
