@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-09.html",
+      "topPaper": {
+        "title": "SMaRTT: Sender-based Marked Rapidly-adapting Trimmed & Timed Transport",
+        "arxiv": "https://arxiv.org/abs/2404.01630"
+      },
+      "papers": [
+        {
+          "title": "SMaRTT: Sender-based Marked Rapidly-adapting Trimmed & Timed Transport",
+          "arxiv": "https://arxiv.org/abs/2404.01630"
+        },
+        {
+          "title": "Nezha: Breaking Multi-Rail Network Barriers for Distributed DNN Training",
+          "arxiv": "https://arxiv.org/abs/2405.17870"
+        },
+        {
+          "title": "DFabric: Scaling Out Data Parallel Applications with CXL-Ethernet Hybrid Interconnects",
+          "arxiv": "https://arxiv.org/abs/2409.05404"
+        },
+        {
+          "title": "Reimagining RDMA Through the Lens of ML",
+          "arxiv": "https://arxiv.org/abs/2510.16606"
+        },
+        {
+          "title": "Gryphon: Scaling Hyperscale Multi-Tenant Gateways Beyond the Petabit-Era via DPU-Augmented Hierarchical Co-Offloading",
+          "arxiv": "https://arxiv.org/abs/2510.11043"
+        }
+      ]
+    },
+    {
       "date": "2026-07-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-08.html",
@@ -1223,7 +1255,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
