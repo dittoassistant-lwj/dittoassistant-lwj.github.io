@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-10",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-10.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-10.html",
+      "topPaper": {
+        "title": "UBEP: Re-architecting Expert Parallelism Communication Library for Production Superpods",
+        "arxiv": "https://arxiv.org/abs/2607.06202"
+      },
+      "papers": [
+        {
+          "title": "UBEP: Re-architecting Expert Parallelism Communication Library for Production Superpods",
+          "arxiv": "https://arxiv.org/abs/2607.06202"
+        },
+        {
+          "title": "CTA-Pipelining: A Latency-Oriented Spatial Scaling Method for Multi-GPU Systems",
+          "arxiv": "https://arxiv.org/abs/2607.07862"
+        },
+        {
+          "title": "GIFT: Geometry-Informed Low-precision Gradient Communication for LLM Pretraining",
+          "arxiv": "https://arxiv.org/abs/2607.07494"
+        },
+        {
+          "title": "Toward a Unified GPU-Aware OpenSHMEM Specification",
+          "arxiv": "https://arxiv.org/abs/2607.08006"
+        },
+        {
+          "title": "On the Limitations of Non-GPU AI Accelerators for Large-Model Inference: A Field Study of MoE and Multimodal Serving on Huawei Ascend",
+          "arxiv": "https://arxiv.org/abs/2607.08215"
+        }
+      ]
+    },
+    {
       "date": "2026-07-09",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-09.html",
