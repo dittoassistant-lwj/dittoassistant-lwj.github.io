@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-11",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-11.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-11.html",
+      "topPaper": {
+        "title": "Who Needs DRAM? We Have Fiber",
+        "arxiv": "https://arxiv.org/abs/2607.08407"
+      },
+      "papers": [
+        {
+          "title": "Who Needs DRAM? We Have Fiber",
+          "arxiv": "https://arxiv.org/abs/2607.08407"
+        },
+        {
+          "title": "SMetric: Rethink LLM Scheduling for Serving Agents with Balanced Session-centric Scheduling",
+          "arxiv": "https://arxiv.org/abs/2607.08565"
+        },
+        {
+          "title": "Towards Efficient Large Language Model Serving: A Survey on System-Aware KV Cache Optimization",
+          "arxiv": "https://arxiv.org/abs/2607.08057"
+        },
+        {
+          "title": "Sangam: Efficiently Serving Diffusion LLMs with the AR Stack",
+          "arxiv": "https://arxiv.org/abs/2607.04206"
+        },
+        {
+          "title": "SwiftCache: Efficient LLM Serving for Multi-turn Conversations with Heterogeneous KV Cache Sharing",
+          "arxiv": "https://arxiv.org/abs/2606.16135"
+        }
+      ]
+    },
+    {
       "date": "2026-07-10",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-10.html",
