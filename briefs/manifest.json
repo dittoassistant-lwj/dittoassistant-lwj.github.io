@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-12",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-12.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-12.html",
+      "topPaper": {
+        "title": "Think Before You Grid-Search: Floor-First Triage for LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2607.05876"
+      },
+      "papers": [
+        {
+          "title": "Think Before You Grid-Search: Floor-First Triage for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2607.05876"
+        },
+        {
+          "title": "Bounded-Memory Parallel Image Pulling for Large Container Images",
+          "arxiv": "https://arxiv.org/abs/2607.05596"
+        },
+        {
+          "title": "Seekable OCI: Lazy-Loading Container Images via Range-Request Indexing",
+          "arxiv": "https://arxiv.org/abs/2607.06868"
+        },
+        {
+          "title": "Cross-IP Request Coalescing: Relocating the Fan-out Point in Virtualized I/O",
+          "arxiv": "https://arxiv.org/abs/2607.02969"
+        },
+        {
+          "title": "Online Linear Programming for Multi-Objective Routing in LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2607.03948"
+        }
+      ]
+    },
+    {
       "date": "2026-07-11",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-11.html",
