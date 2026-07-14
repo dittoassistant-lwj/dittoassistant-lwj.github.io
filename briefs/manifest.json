@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-14.html",
+      "topPaper": {
+        "title": "[AAFLOW+] Stateful Operator Abstraction with Zero-Copy Distributed KV Cache Orchestration for Multi-Agent Workflows",
+        "arxiv": "https://arxiv.org/abs/2607.10987"
+      },
+      "papers": [
+        {
+          "title": "[AAFLOW+] Stateful Operator Abstraction with Zero-Copy Distributed KV Cache Orchestration for Multi-Agent Workflows",
+          "arxiv": "https://arxiv.org/abs/2607.10987"
+        },
+        {
+          "title": "MemExchange: Cloud-Scale Memory Trading",
+          "arxiv": "https://arxiv.org/abs/2607.11579"
+        },
+        {
+          "title": "An Experimental Evaluation of Accurate Scheduling and Hardware Timestamping on NVIDIA ConnectX NICs",
+          "arxiv": "https://arxiv.org/abs/2607.11305"
+        },
+        {
+          "title": "GPU-Tile-Sim: A Tile-Centric GPU Simulation Framework for LLM Hardware-Software Co-Design",
+          "arxiv": "https://arxiv.org/abs/2607.11262"
+        }
+      ]
+    },
+    {
       "date": "2026-07-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-13.html",
