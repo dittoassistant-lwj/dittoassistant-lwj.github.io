@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-15",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-15.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-15.html",
+      "topPaper": {
+        "title": "From Tensor Buffer to Distributed Memory Hierarchy: A Survey of KV Cache Management for LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2607.02574"
+      },
+      "papers": [
+        {
+          "title": "From Tensor Buffer to Distributed Memory Hierarchy: A Survey of KV Cache Management for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2607.02574"
+        },
+        {
+          "title": "HCRMap: Pressure-Aware Hot-Expert Residency Mapping for 3.5D MoE Chiplet Inference",
+          "arxiv": "https://arxiv.org/abs/2607.11586"
+        },
+        {
+          "title": "Beyond Task-Agnostic: Task-Aware Grouping for Communication-Efficient Multi-Task MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2606.01007"
+        },
+        {
+          "title": "Parallelizing Large-Scale Tensor Network Contraction on Multiple GPUs",
+          "arxiv": "https://arxiv.org/abs/2606.01852"
+        },
+        {
+          "title": "Bandwidth-Aware and Cost-Efficient Pipeline Parallel Scheduling in Geo-Distributed LLM Training",
+          "arxiv": "https://arxiv.org/abs/2605.25375"
+        }
+      ]
+    },
+    {
       "date": "2026-07-14",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-14.html",
