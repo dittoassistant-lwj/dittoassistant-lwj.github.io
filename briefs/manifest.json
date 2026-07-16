@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-16",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-16.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-16.html",
+      "topPaper": {
+        "title": "Agora: Collective and Permissionless Internet-Scale Pretraining of Large Language Models",
+        "arxiv": "https://arxiv.org/abs/2607.13332"
+      },
+      "papers": [
+        {
+          "title": "Agora: Collective and Permissionless Internet-Scale Pretraining of Large Language Models",
+          "arxiv": "https://arxiv.org/abs/2607.13332"
+        },
+        {
+          "title": "Analyzing Interaction Between CCAs and Traffic Policers",
+          "arxiv": "https://arxiv.org/abs/2607.09984"
+        },
+        {
+          "title": "SmartSwap: Swap-Based Memory Optimization for LLM Training under Varying Operator Sequences",
+          "arxiv": "https://arxiv.org/abs/2509.11076"
+        },
+        {
+          "title": "EvalNet: A Practical Toolchain for Generation and Analysis of Extreme-Scale Interconnects",
+          "arxiv": "https://arxiv.org/abs/2105.12663"
+        }
+      ]
+    },
+    {
       "date": "2026-07-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-15.html",
