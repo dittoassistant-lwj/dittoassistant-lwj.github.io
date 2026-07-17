@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-17",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-17.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-17.html",
+      "topPaper": {
+        "title": "Olaf: Programmable Data Plane Acceleration for Asynchronous Distributed Reinforcement Learning",
+        "arxiv": "https://arxiv.org/abs/2507.05876"
+      },
+      "papers": [
+        {
+          "title": "Olaf: Programmable Data Plane Acceleration for Asynchronous Distributed Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2507.05876"
+        },
+        {
+          "title": "Don't Predict, Prioritize: Rethinking GPU Reliability Assessment",
+          "arxiv": "https://arxiv.org/abs/2607.15115"
+        },
+        {
+          "title": "Bidirectional Resource Scheduling for Disaggregated and Asynchronous RL Post-Training",
+          "arxiv": "https://arxiv.org/abs/2607.09207"
+        },
+        {
+          "title": "DRIFT: Direct Reduced Fourier Transforms for Distributed Spectral Neural Operators",
+          "arxiv": "https://arxiv.org/abs/2607.14394"
+        },
+        {
+          "title": "Ultra Ethernet's Design Principles and Architectural Innovations",
+          "arxiv": "https://arxiv.org/abs/2508.08906"
+        }
+      ]
+    },
+    {
       "date": "2026-07-16",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-16.html",
