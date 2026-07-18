@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-18",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-18.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-18.html",
+      "topPaper": {
+        "title": "Periplus: A Resilient In-band SDN Control Plane via Embedded Forwarding Graphs",
+        "arxiv": "https://arxiv.org/abs/2607.14869"
+      },
+      "papers": [
+        {
+          "title": "Periplus: A Resilient In-band SDN Control Plane via Embedded Forwarding Graphs",
+          "arxiv": "https://arxiv.org/abs/2607.14869"
+        },
+        {
+          "title": "Scheduler-Agnostic Adaptive-FEC for MPQUIC: Field Evaluation over Commercial Cellular Paths",
+          "arxiv": "https://arxiv.org/abs/2607.14482"
+        },
+        {
+          "title": "The Cost and Network Limits of Space-Based AI Compute",
+          "arxiv": "https://arxiv.org/abs/2607.14172"
+        },
+        {
+          "title": "KV-PRM: Efficient Process Reward Modeling via KV-Cache Transfer for Multi-Agent Test-Time Scaling",
+          "arxiv": "https://arxiv.org/abs/2607.09153"
+        },
+        {
+          "title": "MatrixFSDP: communication-free matrix optimizers under ZeRO-3 parameter sharding",
+          "arxiv": "https://arxiv.org/abs/2607.05895"
+        }
+      ]
+    },
+    {
       "date": "2026-07-17",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-17.html",
