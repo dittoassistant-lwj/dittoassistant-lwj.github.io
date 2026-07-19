@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-19",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-19.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-19.html",
+      "topPaper": {
+        "title": "MORES: Mobile Reasoning-as-a-Service via Distributed LLM Inference-Time Scaling",
+        "arxiv": "https://arxiv.org/abs/2607.08116"
+      },
+      "papers": [
+        {
+          "title": "MORES: Mobile Reasoning-as-a-Service via Distributed LLM Inference-Time Scaling",
+          "arxiv": "https://arxiv.org/abs/2607.08116"
+        },
+        {
+          "title": "Tropical: Enhancing SLO Attainment in Disaggregated LLM Serving via SLO-Aware Multiplexing",
+          "arxiv": "https://arxiv.org/abs/2606.16264"
+        },
+        {
+          "title": "Profiling and Scheduling Complex O-RAN Applications Across the 5G Edge and Cloud",
+          "arxiv": "https://arxiv.org/abs/2607.12230"
+        },
+        {
+          "title": "BrownoutMoE: Structure-Aware Expert Grouping for Efficient and Accurate LLM Web-based Services",
+          "arxiv": "https://arxiv.org/abs/2607.04164"
+        }
+      ]
+    },
+    {
       "date": "2026-07-18",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-18.html",
