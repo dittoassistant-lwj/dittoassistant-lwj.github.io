@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-20",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-20.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-20.html",
+      "topPaper": {
+        "title": "Every Microsecond Matters: Achieving Near Speed-of-Light Latency in GPU Collectives",
+        "arxiv": "https://arxiv.org/abs/2607.16100"
+      },
+      "papers": [
+        {
+          "title": "Every Microsecond Matters: Achieving Near Speed-of-Light Latency in GPU Collectives",
+          "arxiv": "https://arxiv.org/abs/2607.16100"
+        },
+        {
+          "title": "Scaling Unmodified Multithreaded Applications with Elastic CXL-based Distributed Shared Memory",
+          "arxiv": "https://arxiv.org/abs/2607.15569"
+        },
+        {
+          "title": "Scalable LLM Agent Tool Access in the Cloud",
+          "arxiv": "https://arxiv.org/abs/2607.15593"
+        },
+        {
+          "title": "ADASCALE: An Adaptive Scaling and Placement Framework for Microservices Under Dynamics",
+          "arxiv": "https://arxiv.org/abs/2607.15681"
+        }
+      ]
+    },
+    {
       "date": "2026-07-19",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-19.html",
