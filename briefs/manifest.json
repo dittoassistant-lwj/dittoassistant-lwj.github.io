@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-21",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-21.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-21.html",
+      "topPaper": {
+        "title": "ExpertPlex: A High-Goodput Disaggregated Serving System for MoE LLMs with Adaptive Persistent Kernels",
+        "arxiv": "https://arxiv.org/abs/2607.18002"
+      },
+      "papers": [
+        {
+          "title": "ExpertPlex: A High-Goodput Disaggregated Serving System for MoE LLMs with Adaptive Persistent Kernels",
+          "arxiv": "https://arxiv.org/abs/2607.18002"
+        },
+        {
+          "title": "HyMCache: A KV Cache Framework for Multi-Turn LLM Serving with CXL-Hybrid Memory",
+          "arxiv": "https://arxiv.org/abs/2607.18141"
+        },
+        {
+          "title": "Full-Pipeline Inference Optimization for MiMo-V2.5 Series: Pushing Hybrid SWA Efficiency to the Limit",
+          "arxiv": "https://arxiv.org/abs/2607.13095"
+        },
+        {
+          "title": "Taurus: Accelerating Out-of-Core Graph Neural Network Inference on Billion-Scale Graphs",
+          "arxiv": "https://arxiv.org/abs/2607.17374"
+        },
+        {
+          "title": "OrderMoE: An expert similarity driven distributed edge MoE inference",
+          "arxiv": "https://arxiv.org/abs/2607.17154"
+        }
+      ]
+    },
+    {
       "date": "2026-07-20",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-20.html",
