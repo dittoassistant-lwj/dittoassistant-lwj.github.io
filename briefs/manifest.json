@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-22",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-22.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-22.html",
+      "topPaper": {
+        "title": "InstantInfer: Enabling Fast LLM Cold Start with Communicating Finite Automata",
+        "arxiv": "https://arxiv.org/abs/2607.18957"
+      },
+      "papers": [
+        {
+          "title": "InstantInfer: Enabling Fast LLM Cold Start with Communicating Finite Automata",
+          "arxiv": "https://arxiv.org/abs/2607.18957"
+        },
+        {
+          "title": "Searching for Plans You Can Actually Build: A Realizability-Aware Full-Space Optimizer for MoE Training and Serving",
+          "arxiv": "https://arxiv.org/abs/2607.18631"
+        },
+        {
+          "title": "Breaking the MoE LLM Trilemma: Dynamic Expert Clustering with Structured Compression",
+          "arxiv": "https://arxiv.org/abs/2510.02345"
+        },
+        {
+          "title": "C2CServe: Leveraging NVLink-C2C for Elastic Serverless LLM Serving on MIG",
+          "arxiv": "https://arxiv.org/abs/2605.19481"
+        },
+        {
+          "title": "SeqBalance: Congestion-Aware Load Balancing with no Reordering for RoCE",
+          "arxiv": "https://arxiv.org/abs/2407.09808"
+        }
+      ]
+    },
+    {
       "date": "2026-07-21",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-21.html",
