@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-23",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-23.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-23.html",
+      "topPaper": {
+        "title": "MoX: Efficient MoE Routing on Direct-Connect Topologies",
+        "arxiv": "https://arxiv.org/abs/2607.20220"
+      },
+      "papers": [
+        {
+          "title": "MoX: Efficient MoE Routing on Direct-Connect Topologies",
+          "arxiv": "https://arxiv.org/abs/2607.20220"
+        },
+        {
+          "title": "Fine-grained Computation-Communication Overlap via Tile-level Signaling and Scheduling for Mixture-of-Experts",
+          "arxiv": "https://arxiv.org/abs/2607.19539"
+        },
+        {
+          "title": "A Training-Memory Regression in MLA Sequence Parallelism: Why Megatron-Core Forbids Absorption, and LAGA -- a Communication-Efficient Fix",
+          "arxiv": "https://arxiv.org/abs/2607.17644"
+        },
+        {
+          "title": "SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD",
+          "arxiv": "https://arxiv.org/abs/2607.20145"
+        },
+        {
+          "title": "Robust KV Cache Management for LLM Serving under Output Token Length Uncertainty",
+          "arxiv": "https://arxiv.org/abs/2607.16892"
+        }
+      ]
+    },
+    {
       "date": "2026-07-22",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-22.html",
