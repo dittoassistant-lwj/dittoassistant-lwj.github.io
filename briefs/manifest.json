@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-24.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-24.html",
+      "topPaper": {
+        "title": "Controlled Periodic Synchronization for Efficient Data-Parallel Training",
+        "arxiv": "https://arxiv.org/abs/2607.21224"
+      },
+      "papers": [
+        {
+          "title": "Controlled Periodic Synchronization for Efficient Data-Parallel Training",
+          "arxiv": "https://arxiv.org/abs/2607.21224"
+        },
+        {
+          "title": "Windowed-MTP: Removing the Full-Context Draft-KV Tax at Million-Token Context",
+          "arxiv": "https://arxiv.org/abs/2607.21535"
+        },
+        {
+          "title": "DMG: A Scalable and Efficient Memory-Disaggregated Graph Processing System",
+          "arxiv": "https://arxiv.org/abs/2607.20881"
+        },
+        {
+          "title": "HijackKV: New Threat in Position-Independent KV Cache Reuse",
+          "arxiv": "https://arxiv.org/abs/2607.19957"
+        },
+        {
+          "title": "Black-Box Performance Evaluation of Elastic Block Storage: Contract, Rate-Limiting Model, and Software Exploration",
+          "arxiv": "https://arxiv.org/abs/2607.20319"
+        }
+      ]
+    },
+    {
       "date": "2026-07-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-23.html",
