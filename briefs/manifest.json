@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-25",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-25.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-25.html",
+      "topPaper": {
+        "title": "UCCL-EP: Portable Expert-Parallel Communication",
+        "arxiv": "https://arxiv.org/abs/2512.19849"
+      },
+      "papers": [
+        {
+          "title": "UCCL-EP: Portable Expert-Parallel Communication",
+          "arxiv": "https://arxiv.org/abs/2512.19849"
+        },
+        {
+          "title": "cMPI: Using CXL Memory Sharing for MPI One-Sided and Two-Sided Inter-Node Communications",
+          "arxiv": "https://arxiv.org/abs/2510.05476"
+        },
+        {
+          "title": "MixNet: A Runtime Reconfigurable Optical-Electrical Fabric for Distributed Mixture-of-Experts Training",
+          "arxiv": "https://arxiv.org/abs/2501.03905"
+        },
+        {
+          "title": "Demystifying NCCL: An In-depth Analysis of GPU Communication Protocols and Algorithms",
+          "arxiv": "https://arxiv.org/abs/2507.04786"
+        },
+        {
+          "title": "An Extensible Software Transport Layer for GPU Networking",
+          "arxiv": "https://arxiv.org/abs/2504.17307"
+        }
+      ]
+    },
+    {
       "date": "2026-07-24",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-24.html",
