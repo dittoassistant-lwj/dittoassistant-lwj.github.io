@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-07-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-26.html",
+      "topPaper": {
+        "title": "STORM: RDMA-based Monte Carlo Transport Scheme for Distributed-Memory Particle Simulations",
+        "arxiv": "https://arxiv.org/abs/2607.20639"
+      },
+      "papers": [
+        {
+          "title": "STORM: RDMA-based Monte Carlo Transport Scheme for Distributed-Memory Particle Simulations",
+          "arxiv": "https://arxiv.org/abs/2607.20639"
+        },
+        {
+          "title": "Codec-Gauge: Learning Compression-Friendly Gauges for Transformer KV Caches",
+          "arxiv": "https://arxiv.org/abs/2607.20538"
+        },
+        {
+          "title": "Dropping the Anchor: Statistical Context Summarization for Distributed Systems via Pulsar Attention",
+          "arxiv": "https://arxiv.org/abs/2607.20457"
+        },
+        {
+          "title": "PagedWeight: Efficient MoE LLM Serving with Dynamic Quality-Aware Weight Quantization",
+          "arxiv": "https://arxiv.org/abs/2607.16184"
+        }
+      ]
+    },
+    {
       "date": "2026-07-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-25.html",
