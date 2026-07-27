@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-27.html",
+      "topPaper": {
+        "title": "Fewer Paths, Better Performance: Understanding the ZCube Topology through Braess's Paradox",
+        "arxiv": "https://arxiv.org/abs/2607.21893"
+      },
+      "papers": [
+        {
+          "title": "Fewer Paths, Better Performance: Understanding the ZCube Topology through Braess's Paradox",
+          "arxiv": "https://arxiv.org/abs/2607.21893"
+        },
+        {
+          "title": "TileSight: A First-Principles Tile-Centric Analytical GPU Performance Model from Cores to Clusters",
+          "arxiv": "https://arxiv.org/abs/2607.22432"
+        },
+        {
+          "title": "PRISM: Evaluating POSIX Storage Systems for AI Research Workflows",
+          "arxiv": "https://arxiv.org/abs/2607.21746"
+        },
+        {
+          "title": "Agentic CPU-GPU Scheduling for Heterogeneous AI Workloads",
+          "arxiv": "https://arxiv.org/abs/2607.22242"
+        },
+        {
+          "title": "Decoupled Attention Fusion: Accelerating RAG with Efficient KV Cache Reuse",
+          "arxiv": "https://arxiv.org/abs/2607.21599"
+        }
+      ]
+    },
+    {
       "date": "2026-07-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-26.html",
