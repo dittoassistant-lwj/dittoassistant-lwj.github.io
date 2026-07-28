@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-28.html",
+      "topPaper": {
+        "title": "Denial of Deadline: Network-Driven Accuracy Collapse in Distributed Inference Pipelines",
+        "arxiv": "https://arxiv.org/abs/2607.24692"
+      },
+      "papers": [
+        {
+          "title": "Denial of Deadline: Network-Driven Accuracy Collapse in Distributed Inference Pipelines",
+          "arxiv": "https://arxiv.org/abs/2607.24692"
+        },
+        {
+          "title": "DICE: Detailed Inter-Chiplet End-to-End PHY Modeling for Accurate Chiplet Simulation",
+          "arxiv": "https://arxiv.org/abs/2607.24221"
+        },
+        {
+          "title": "SpecBox: Speculative Sandbox Scheduling for Efficient LLM Agent Serving",
+          "arxiv": "https://arxiv.org/abs/2607.23933"
+        },
+        {
+          "title": "KernelScript: Cross-Boundary Typed DSL for eBPF Applications",
+          "arxiv": "https://arxiv.org/abs/2607.23900"
+        },
+        {
+          "title": "Fake It No More: Evaluating L4S with SCReAM on Video Traffic",
+          "arxiv": "https://arxiv.org/abs/2607.23767"
+        }
+      ]
+    },
+    {
       "date": "2026-07-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-27.html",
