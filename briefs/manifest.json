@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-07-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-07-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-07-29.html",
+      "topPaper": {
+        "title": "DisDP: Disaggregating Compute, Network, and Storage for Model-Sharded Data-Parallel Training",
+        "arxiv": "https://arxiv.org/abs/2409.00918"
+      },
+      "papers": [
+        {
+          "title": "DisDP: Disaggregating Compute, Network, and Storage for Model-Sharded Data-Parallel Training",
+          "arxiv": "https://arxiv.org/abs/2409.00918"
+        },
+        {
+          "title": "Application-Driven Architecture Exploration for Cross-Layer Heterogeneous Systems",
+          "arxiv": "https://arxiv.org/abs/2607.23042"
+        },
+        {
+          "title": "Beyond Prefill-Decode Disaggregation: Dissecting LLM Inference for Heterogeneous Platforms via Dynamic Operator Scheduling",
+          "arxiv": "https://arxiv.org/abs/2607.25498"
+        },
+        {
+          "title": "Decoding the Skew: Distribution-Aware MoE Inference with Adaptive Kernel Dispatch",
+          "arxiv": "https://arxiv.org/abs/2607.23099"
+        },
+        {
+          "title": "Hardware-Transparent I/O Governance in Disaggregated Heterogeneous Storage",
+          "arxiv": "https://arxiv.org/abs/2607.16578"
+        }
+      ]
+    },
+    {
       "date": "2026-07-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-28.html",
