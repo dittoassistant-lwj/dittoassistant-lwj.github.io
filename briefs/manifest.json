@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-01.html",
+      "topPaper": {
+        "title": "NELSSA: A GPU-PNM Heterogeneous System for Mixed-Length LLM Serving via Length-based Request Placement",
+        "arxiv": "https://arxiv.org/abs/2607.26633"
+      },
+      "papers": [
+        {
+          "title": "NELSSA: A GPU-PNM Heterogeneous System for Mixed-Length LLM Serving via Length-based Request Placement",
+          "arxiv": "https://arxiv.org/abs/2607.26633"
+        },
+        {
+          "title": "DualDecoder: Accelerate Long Context LLM Inference by Predictive Prefetch",
+          "arxiv": "https://arxiv.org/abs/2607.26475"
+        },
+        {
+          "title": "KAP: Bridging the Knowledge Selection-Runtime Consumption Gap in LLM Systems",
+          "arxiv": "https://arxiv.org/abs/2607.24260"
+        },
+        {
+          "title": "SemPIC: Learning Semantic Position-Independent KV Caches",
+          "arxiv": "https://arxiv.org/abs/2607.28069"
+        },
+        {
+          "title": "LongStraw: Long-Context RL Beyond 2M Tokens under a Fixed GPU Budget",
+          "arxiv": "https://arxiv.org/abs/2607.14952"
+        }
+      ]
+    },
+    {
       "date": "2026-07-31",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-07-31.html",
