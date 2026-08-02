@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-02.html",
+      "topPaper": {
+        "title": "TraCT: Disaggregated LLM Serving with CXL Shared Memory KV Cache at Rack-Scale",
+        "arxiv": "https://arxiv.org/abs/2512.18194"
+      },
+      "papers": [
+        {
+          "title": "TraCT: Disaggregated LLM Serving with CXL Shared Memory KV Cache at Rack-Scale",
+          "arxiv": "https://arxiv.org/abs/2512.18194"
+        },
+        {
+          "title": "PTStore (Prefix Tensor Store): Distributed Prefix Caching and Replication for High Throughput Inference Serving",
+          "arxiv": "https://arxiv.org/abs/2607.22648"
+        },
+        {
+          "title": "DITRON: Distributed Multi-level Tiling Compiler for Parallel Tensor Programs",
+          "arxiv": "https://arxiv.org/abs/2605.02953"
+        },
+        {
+          "title": "CXLRAMSim v1.0: System-Level Exploration of CXL Memory Expander Cards",
+          "arxiv": "https://arxiv.org/abs/2603.29483"
+        },
+        {
+          "title": "Versatile yet Efficient Network Traffic Analysis: Offloading Network Foundation Model to SmartNIC",
+          "arxiv": "https://arxiv.org/abs/2508.02001"
+        }
+      ]
+    },
+    {
       "date": "2026-08-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-01.html",
