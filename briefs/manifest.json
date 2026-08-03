@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-03.html",
+      "topPaper": {
+        "title": "Topology-Aware Data Movement for Disaggregated GPU Inference",
+        "arxiv": "https://arxiv.org/abs/2607.28633"
+      },
+      "papers": [
+        {
+          "title": "Topology-Aware Data Movement for Disaggregated GPU Inference",
+          "arxiv": "https://arxiv.org/abs/2607.28633"
+        },
+        {
+          "title": "X-Stage: An Overlooked Pipeline Stage for Communication-Computation Overlap in DiT Inference",
+          "arxiv": "https://arxiv.org/abs/2607.23264"
+        },
+        {
+          "title": "Gleam: Adaptive Network-Efficient CUDA API Remoting for Cross-Device GPU Sharing over LANs",
+          "arxiv": "https://arxiv.org/abs/2607.23115"
+        },
+        {
+          "title": "REPS: Recycled Entropy Packet Spraying for Adaptive Load Balancing and Failure Mitigation",
+          "arxiv": "https://arxiv.org/abs/2407.21625"
+        },
+        {
+          "title": "CAPS: Fine-Tuning CCA Timing",
+          "arxiv": "https://arxiv.org/abs/2607.22821"
+        }
+      ]
+    },
+    {
       "date": "2026-08-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-02.html",
