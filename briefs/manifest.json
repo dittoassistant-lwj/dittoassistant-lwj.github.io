@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-04.html",
+      "topPaper": {
+        "title": "NUNA: Characterizing and Mitigating Non-Uniform Network Access in Multi-Die GPU Scale-Up Systems",
+        "arxiv": "https://arxiv.org/abs/2608.00867"
+      },
+      "papers": [
+        {
+          "title": "NUNA: Characterizing and Mitigating Non-Uniform Network Access in Multi-Die GPU Scale-Up Systems",
+          "arxiv": "https://arxiv.org/abs/2608.00867"
+        },
+        {
+          "title": "NIXT: A NCCL Inspector Exporter Tool for Observability of Collective Communication in Large Model Training",
+          "arxiv": "https://arxiv.org/abs/2608.01449"
+        },
+        {
+          "title": "NCCLZ: Compression-Enabled GPU Collectives with Decoupled Quantization and Entropy Coding",
+          "arxiv": "https://arxiv.org/abs/2605.12396"
+        },
+        {
+          "title": "CCL-D: A High-Precision Diagnostic System for Slow and Hang Anomalies in Large-Scale Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.04478"
+        }
+      ]
+    },
+    {
       "date": "2026-08-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-03.html",
