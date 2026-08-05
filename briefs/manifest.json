@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-05.html",
+      "topPaper": {
+        "title": "HCCL: Collective Communication for Meta Training and Inference Accelerators",
+        "arxiv": "https://arxiv.org/abs/2608.00358"
+      },
+      "papers": [
+        {
+          "title": "HCCL: Collective Communication for Meta Training and Inference Accelerators",
+          "arxiv": "https://arxiv.org/abs/2608.00358"
+        },
+        {
+          "title": "An Internet for the KV Cache: Rethinking Classical Infrastructure Boundaries in the LLM Inference Age",
+          "arxiv": "https://arxiv.org/abs/2608.01526"
+        },
+        {
+          "title": "TAOT: Topology-Aware Optimal Transport for Dynamic Expert Replica Placement in MoE Training",
+          "arxiv": "https://arxiv.org/abs/2608.03676"
+        },
+        {
+          "title": "Broadcast Rate Limits in Wi-Fi: A Forgotten Bottleneck for Collaborative Edge LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2608.02341"
+        },
+        {
+          "title": "AuroraRL: Fast, Fault-Tolerant, and Cost-Efficient Reinforcement Learning over Decentralized Network",
+          "arxiv": "https://arxiv.org/abs/2602.11456"
+        }
+      ]
+    },
+    {
       "date": "2026-08-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-04.html",
@@ -2059,7 +2091,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
