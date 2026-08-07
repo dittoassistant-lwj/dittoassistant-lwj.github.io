@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-08-07, focused on ML training topology, pooled memory/NDP serving, tensor data movement, heterogeneous PNM serving, and split-inference activation compression." />
+    <title>Daily AI Cluster Networking Brief — 2026-08-07 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-08-07</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s theme is fabric-aware state movement: topology choices for collective training, pooled-memory/NDP designs for LoRA serving, and new abstractions for moving tensors, KV cache, and activations without turning the network into invisible tax.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2608.01707">On Topology&#x27;s Role in ML Training Performance</a></h3>
+          <p class="muted">Authors &amp; affiliations: Sarah McClure, Tegan Wilson, Brad Karp, Michael Mitzenmacher, Sylvia Ratnasamy, Scott Shenker, and Minlan Yu. Affiliations: UC Berkeley; Northeastern University; University College London; Google; Harvard University; ICSI.</p>
+          <p><strong>Tags:</strong> AI Cluster Topology, Collective Communication, Scale-out Networking</p>
+          <p><strong>Why this is the top pick:</strong> This is the cleanest network paper in today’s batch because it directly asks how accelerator-cluster topology shapes the completion time of the collectives behind modern ML training. It is not a generic “network matters” paper; it derives topology-dependent behavior for Clos and torus designs and then stresses the comparison with placement, bandwidth ratios, multicast, and failures.</p>
+          <p><strong>Deeper explanation:</strong> The paper’s useful mental model is that topology determines what collectives can achieve before software optimizations even start. A torus can be compelling when the job maps cleanly onto local dimensions, but its lower path diversity and larger diameter hurt under less-local placement and failures. A Clos spends more switching/fabric budget to buy path diversity, bisection bandwidth, and operational flexibility. The authors’ analytical framing is especially relevant for superpod design because it separates topology, link bandwidth, and collective pattern instead of compressing everything into a single “network bandwidth” number.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> AI training fabrics need principled topology choices, but Clos-vs.-torus arguments are often made with incomplete assumptions about collectives, placement, and failures.</li>
+            <li><strong>Key contributions:</strong> Analytical collective models for Clos and torus; comparison across bandwidth ratios and placement assumptions; discussion of multicast-capable switches and link failures.</li>
+            <li><strong>Why it matters architecturally:</strong> The results point toward a design process where topology, collective library behavior, multicast/in-network support, and failure recovery are co-designed rather than selected independently.</li>
+            <li><strong>Diagram note:</strong> Figure 1 and Figure 2 are the highest-value visuals: completion-time curves and the bandwidth-ratio boundary where topology preference changes.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · topology, ML training, collectives</div>
+            <h2><a href="https://arxiv.org/abs/2608.01707">On Topology&#x27;s Role in ML Training Performance</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Sarah McClure, Tegan Wilson, Brad Karp, Michael Mitzenmacher, Sylvia Ratnasamy, Scott Shenker, and Minlan Yu. Affiliations: UC Berkeley; Northeastern University; University College London; Google; Harvard University; ICSI.</p>
+            <p><strong>Tags:</strong> AI Cluster Topology, Collective Communication, Scale-out Networking</p>
+            <p><strong>Problem:</strong> Large ML training jobs rely on a small set of collectives, but operators still lack a clean analytical answer for when fat-tree Clos or torus-style accelerator networks are the better substrate, especially under scale, bandwidth ratio, placement, multicast, and failures.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Derives analytical completion-time models for core ML collectives on Clos and torus topologies rather than relying only on simulator anecdotes.</li><li>Compares how topology interacts with scale-up/scale-out bandwidth ratios, job placement locality, enhanced switch multicast, and link failures.</li><li>Finds that no topology dominates universally, but Clos usually has better collective completion time plus stronger resilience and placement flexibility.</li></ul>
+            <p><strong>Why it matters:</strong> This is directly in the superpod design lane: topology is not just a wiring diagram, it sets the achievable lower bound for AllReduce, AllGather, ReduceScatter, AllToAll, multicast-like replication, and failure recovery.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Clos benefits from abundant path diversity and bisection bandwidth, which matter once jobs spill beyond neatly local placement.</li><li>Torus remains attractive when communication can be mapped with strong locality, but its diameter and limited path diversity become painful for less-local placements or failures.</li><li>Multicast-capable switches change the comparison because replication-heavy collectives can stop wasting bandwidth on duplicate payloads across the same links.</li><li>The paper’s useful framing is to compare topology under equal accelerator count and explicit per-link bandwidth assumptions; otherwise “torus vs. Clos” debates become apples-to-optical-oranges.</li></ul>
+            <p><strong>Actionable lessons:</strong> For architecture studies, model collectives separately instead of averaging them into a single bandwidth number. Treat job placement and failure repair as first-class topology properties. If multicast or in-network replication is on the roadmap, include it in the topology model early; it can change the ranking.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 plots collective completion times for default parameters, and Figure 2 shows the bandwidth-ratio boundary where torus and Clos trade places. These are the most useful visuals for turning topology choice into a design-space plot.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · pooled memory, NDP, multi-LoRA serving</div>
+            <h2><a href="https://arxiv.org/abs/2608.05483">PLoRA: An NDP-Enhanced Pooled-Memory System for Cost-Efficient Multi-LoRA Serving</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Zhongkai Yu, Ohm Rishabh Venkatachalam, Zheng Wang, Yikai Li, Yichen Lin, Zihao Yu, Yuke Wang, Liu Liu, Xulong Tang, Shuyi Pei, Yangwook Kang, and Yufei Ding. Affiliations: University of California, San Diego; New York University; University of California, Santa Cruz; Rice University; Rensselaer Polytechnic Institute; University of Pittsburgh; Samsung Semiconductor, Inc..</p>
+            <p><strong>Tags:</strong> Pooled Memory, CXL/NVLink Fabrics, LLM Serving</p>
+            <p><strong>Problem:</strong> Multi-LoRA deployments can require thousands of adapters and very large KV/cache-resident state, but today’s systems stage adapters through CPU DRAM and PCIe, wasting GPU compute and bottlenecking on host-mediated movement.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces PLoRA, which keeps adapters and KV cache in pooled memory and uses near-data processing so the GPU receives reduced results rather than raw remote bytes.</li><li>Defines a GPU-driven read-compute interface and a memory manager that selects among LoRA and attention execution strategies using a link-parameterized cost model.</li><li>Reports lower decode latency than a real-machine S-LoRA baseline, with modeled scaling from CXL-class to NVLink-class fabrics.</li></ul>
+            <p><strong>Why it matters:</strong> The interesting part is the network/memory boundary: if adapters live behind a fabric, the system should not blindly pull them into GPU HBM; it should push small, structured computation toward the bytes.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>PLoRA treats the fabric as a semantic memory path, not just a slower DRAM extension.</li><li>The design’s claim that throughput saturates around 32 GB/s for short contexts implies that pooled capacity can matter more than raw link speed after near-data reduction.</li><li>Adapter traffic shards naturally with tensor parallelism, so the architecture becomes more attractive at larger model deployments.</li><li>The cost model is useful because the best execution strategy changes with adapter batch size, context length, link bandwidth, and cache residency.</li></ul>
+            <p><strong>Actionable lessons:</strong> For pooled-memory LLM serving, expose remote operations at a higher semantic level than load/store when possible. Keep link bandwidth, GPU cache budget, and NDP area in one model; optimizing only one of them can buy idle silicon.</p>
+            <p><strong>Useful diagram:</strong> Figure 2 contrasts pooled memory with NDP against the PCIe+CPU offload path, and Figure 5 sketches the PLoRA memory-device organization. Those diagrams make the data-movement cut very clear.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · tensor lifecycle management, KV movement, serving infrastructure</div>
+            <h2><a href="https://arxiv.org/abs/2608.06007">TensorCast: The Missing Tensor Management Layer in Large Language Model Infrastructure</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Yuhan Zhou, Yuchu Luo, Hao Nie, Wangrunze Lv, Yu Zhou, Yibo Zhu, Daxin Jiang, and Chenren Xu. Affiliations: Peking University; Stepfun; Beijing University of Posts and Telecommunications.</p>
+            <p><strong>Tags:</strong> LLM Infrastructure, Tensor/Data Movement, KV Cache</p>
+            <p><strong>Problem:</strong> LLM systems now move persistent tensors—weights, KV cache, checkpoints, and routing state—across distributed components, but each system embeds its own task-specific data movement logic inside execution engines, network paths, or storage backends.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Proposes Tensor-as-a-Service as a missing abstraction layer that decouples tensor lifecycle management from computation.</li><li>Builds TensorCast with first-class tensor abstractions, programmable lifecycle primitives, and a distributed runtime.</li><li>Integrates with vLLM and SGLang and evaluates model weight materialization, weight synchronization, KV cache management, and programmable routing.</li></ul>
+            <p><strong>Why it matters:</strong> This is less about a new transport and more about control-plane hygiene: AI infra is accumulating ad hoc tensor movement mechanisms, and those mechanisms increasingly determine serving latency and operational complexity.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>KV cache migration, weight loading, and checkpoint synchronization are all variants of tensor lifecycle management, but today they are usually implemented as separate vertical stacks.</li><li>Separating policy from movement mechanism makes cross-component optimizations possible, such as request routing aware of tensor placement.</li><li>The reported median TTFT improvement up to 93.2% under concurrent multi-turn agent workloads suggests that tensor placement policy can dominate scheduler tweaks.</li><li>The abstraction could become a useful place to encode network locality, fabric bandwidth, and cache residency without modifying every serving engine.</li></ul>
+            <p><strong>Actionable lessons:</strong> When building disaggregated serving, define a tensor identity/lifecycle layer before bolting on one-off KV transfer code. Keep placement, transformation, materialization, and coordination explicit; hidden data movement is where latency budgets go to die.</p>
+            <p><strong>Useful diagram:</strong> Figure 4 shows TensorCast’s system architecture and the workflow for a KV migration task across worker nodes, instance nodes, and the request-router application.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · PNM, sparse attention, heterogeneous LLM serving</div>
+            <h2><a href="https://arxiv.org/abs/2608.03555">Heterogeneous LLM Serving with General-Purpose Processing-Near-Memory for Retrieval-Based Sparse Attention</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Hyungkyu Ham, Junhyeong Bae, Seungheon Lee, Myeongjae Jeon, and Gwangsun Kim. Affiliations: Pohang University of Science and Technology (POSTECH).</p>
+            <p><strong>Tags:</strong> Heterogeneous Serving, PNM, KV Cache</p>
+            <p><strong>Problem:</strong> Million-token retrieval-based sparse attention reduces attention FLOPs, but it leaves huge KV cache and index-key state outside what GPU memory can comfortably hold; moving that state naively makes decode memory/fabric-bound.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Proposes KARAT, a general-purpose processing-near-memory design that stores KV cache and index keys while GPU nodes handle projections and MoE layers.</li><li>Derives design requirements showing why prior fixed-function PIM/PNM assumptions do not match retrieval-based sparse attention.</li><li>Adds opportunistic fine-grained micro-batch scheduling and context-length-aware rebalancing to reduce pipeline bubbles between GPU and PNM stages.</li></ul>
+            <p><strong>Why it matters:</strong> This is a concrete heterogeneous-infrastructure proposal for long-context serving: split the decode path by operation type, then schedule around the network-facing boundary between GPU compute and memory-side compute.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Retrieval-based sparse attention shifts the bottleneck from dense attention math to indexed KV/cache access, which is a different architecture target.</li><li>General-purpose PNM is favored because sparse-attention algorithms are still evolving; fixed-function attention engines risk ossifying too early.</li><li>OFMS hides expert all-to-all behind another micro-batch’s GEMMs, which is exactly the kind of overlap trick Ethan tends to care about.</li><li>Context-length variance in agentic traces can create load imbalance even when average batch sizes look fine.</li></ul>
+            <p><strong>Actionable lessons:</strong> For long-context serving, partition by data residency and operational intensity, not by model layer labels alone. Any GPU+PNM design needs a scheduler that sees both expert communication and context-length skew, or the fabric boundary becomes bubbles.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 decomposes retrieval-based sparse attention stages, and later figures show the GPU/PNM split plus scheduling timeline. The first figure is especially useful for seeing what reads KV state and what should stay on GPU.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · split inference, activation compression, edge-cloud communication</div>
+            <h2><a href="https://arxiv.org/abs/2608.04991">RAC: Reference-Aware Activation Compression for Communication-Efficient Split LLM Inference</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Guotao Yang, Mingxi Zhao, Haopeng Li, Zhengchao Wang, Sheng Chen, Yitao Hu, and Keqiu Li. Affiliations: Tianjin University, China.</p>
+            <p><strong>Tags:</strong> Split Inference, Activation Compression, Edge-Cloud Networking</p>
+            <p><strong>Problem:</strong> Edge-cloud split LLM inference keeps sensitive inputs and outputs local, but it sends boundary hidden states across the local-cloud-local path during prefill and decode, creating a bandwidth and latency bottleneck.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces RAC, a reference-aware boundary codec that reuses exact-token historical spans, same-round reconstructed uplink state, and boundary-specific decode references.</li><li>Combines grouped affine alignment, calibrated residual quantization, optional prefill outliers, and sender-side wire-format reconstruction.</li><li>Reports Raw-to-RAC TTFT and TPOT improvements across multiple models and links while keeping task-score changes small.</li></ul>
+            <p><strong>Why it matters:</strong> This is useful when “distributed inference” really means repeated activation movement over a constrained link. The core trick is to compress relative to predictable references instead of treating every hidden-state tensor as fresh entropy.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Agent workflows create repeated contexts and same-round structure; RAC exploits that temporal locality at activation boundaries.</li><li>The split-inference bottleneck is asymmetric: prefill moves full-sequence states, while decode needs low-latency per-token transfers.</li><li>Reference synchronization matters because sender and receiver must agree on the reconstructed state used for later residuals.</li><li>The privacy story and the systems story are coupled: keeping plaintext local only helps if activation traffic does not erase latency wins.</li></ul>
+            <p><strong>Actionable lessons:</strong> For edge/cloud or privacy-preserving split inference, measure activation movement as a first-order network workload. Build codecs around workload repetition and boundary-specific predictors, not only generic quantization.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 gives the RAC overview across prefill and decode, showing historical-span search, decode predictors, and the aligned residual codec at each split boundary.</p>
+          </article>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Ditto · research briefs</span>
+        <a href="index.html">Back to brief archive</a>
+      </footer>
+    </div>
+  </body>
+</html>
