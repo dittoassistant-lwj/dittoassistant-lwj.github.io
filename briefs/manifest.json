@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-08.html",
+      "topPaper": {
+        "title": "A Switch-Centric In-Network Architecture for Accelerating LLM Inference in Shared-Memory Network",
+        "arxiv": "https://arxiv.org/abs/2603.28239"
+      },
+      "papers": [
+        {
+          "title": "A Switch-Centric In-Network Architecture for Accelerating LLM Inference in Shared-Memory Network",
+          "arxiv": "https://arxiv.org/abs/2603.28239"
+        },
+        {
+          "title": "Operating Multi-Node Full Fine-Tuning on NVIDIA B300: A Field Report on Telemetry-Based Triage, Negative Results, and Operational Hardening",
+          "arxiv": "https://arxiv.org/abs/2608.05944"
+        },
+        {
+          "title": "TELLER: Non-intrusive Cross-Layer Root-Cause Analysis for LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2608.01975"
+        },
+        {
+          "title": "Zero-Instrumentation Dependency Discovery for Guided Microservice Migration Using eBPF",
+          "arxiv": "https://arxiv.org/abs/2608.04413"
+        },
+        {
+          "title": "HetCCL: Enabling Collective Communication For Mixed-Vendor Heterogeneous Clusters",
+          "arxiv": "https://arxiv.org/abs/2605.31000"
+        }
+      ]
+    },
+    {
       "date": "2026-08-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-07.html",
