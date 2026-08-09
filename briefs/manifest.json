@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-09.html",
+      "topPaper": {
+        "title": "AFD-Ledger: Deployment Provisioning for Attention--FFN Disaggregation",
+        "arxiv": "https://arxiv.org/abs/2608.04502"
+      },
+      "papers": [
+        {
+          "title": "AFD-Ledger: Deployment Provisioning for Attention--FFN Disaggregation",
+          "arxiv": "https://arxiv.org/abs/2608.04502"
+        },
+        {
+          "title": "AsymSpec: Efficient Cloud-Edge Speculative Decoding over Asymmetric Networks",
+          "arxiv": "https://arxiv.org/abs/2608.04974"
+        },
+        {
+          "title": "MARS: Multipath Adaptive Reliable Service",
+          "arxiv": "https://arxiv.org/abs/2608.06101"
+        },
+        {
+          "title": "Automated Synthesis of Heterogeneous, Hierarchical, Scoped Coherence Protocols",
+          "arxiv": "https://arxiv.org/abs/2608.05965"
+        },
+        {
+          "title": "Learning Compression Rules for Network Traffic",
+          "arxiv": "https://arxiv.org/abs/2608.04545"
+        }
+      ]
+    },
+    {
       "date": "2026-08-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-08.html",

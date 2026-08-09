@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-08-09, focused on MoE disaggregation provisioning, cloud-edge speculative decoding over asymmetric networks, multipath transport, CXL/coherence protocol synthesis, and learned network traffic compression." />
+    <title>Daily AI Cluster Networking Brief — 2026-08-09 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-08-09</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s strongest signal is MoE serving disaggregation as a provisioning problem, with a side lane on network-aware speculative decoding, multipath transport, CXL-style coherence boundaries, and learned traffic-compression rules.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2608.04502">AFD-Ledger: Deployment Provisioning for Attention--FFN Disaggregation</a></h3>
+          <p class="muted">Authors &amp; affiliations: Chengyu Qiu, Xiao Fu, Fengcun Li, Yulei Qian, Yuchen Xie, Xunliang Cai, Yingdi Shan, Yongwei Wu, and Mingxing Zhang. Affiliations: Tsinghua University; Meituan.</p>
+          <p><strong>Tags:</strong> LLM Serving, MoE Disaggregation, Heterogeneous AI Infrastructure</p>
+          <p><strong>Why this is the top pick:</strong> This is a useful antidote to “disaggregation is automatically better.” It treats MoE serving as a full cluster provisioning problem where KV capacity, attention workers, expert workers, batching, replicas, device prices, and TPOT boundaries interact.</p>
+          <p><strong>Deeper explanation:</strong> AFD-Ledger is valuable because it attacks the real decision operators face: not whether an expert pool runs faster in isolation, but whether the full deployment serves more tokens under a fixed budget and SLO after KV capacity, request concurrency, worker allocation, batching, and device pricing are all re-optimized. For Ethan’s world, the useful mental model is that disaggregation changes the cluster resource ledger, not just the kernel timeline.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> Attention–FFN disaggregation can look attractive from local FFN utilization, but the real decision is deployment-level: under the same model, TPOT SLO, hardware budget, hardware catalog, and runtime constraints, does AFD beat the best collocated deployment?</li>
+            <li><strong>Key contributions:</strong> Introduces AFD-Ledger, an offline analytical provisioning system that independently searches collocated and AFD deployments under a fixed deployment specification.; Uses an evaluation-bounded hardware search to cut complete deployment evaluations by 68.8%–83.5% while recovering the exhaustive optimum in feasible search spaces.; Validates the model on three physical LongCat 2.0 deployments, preserving the correct AFD-vs-collocated decision and predicting throughput ratios within 6.6%–9.6% of measurements.</li>
+            <li><strong>Why it matters architecturally:</strong> It gives a defensible methodology for deciding when heterogeneous MoE serving should be split across attention and FFN roles, rather than assuming disaggregation wins by default.</li>
+            <li><strong>Diagram note:</strong> Figure 5 is the central system diagram for AFD-Ledger’s workflow. Figure 1 is also worth looking at because it shows why component-level signals such as FFN MFU can mispredict complete deployment throughput.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · llm serving, moe disaggregation, heterogeneous ai infrastructure</div>
+            <h2><a href="https://arxiv.org/abs/2608.04502">AFD-Ledger: Deployment Provisioning for Attention--FFN Disaggregation</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Chengyu Qiu, Xiao Fu, Fengcun Li, Yulei Qian, Yuchen Xie, Xunliang Cai, Yingdi Shan, Yongwei Wu, and Mingxing Zhang. Affiliations: Tsinghua University; Meituan.</p>
+            <p><strong>Tags:</strong> LLM Serving, MoE Disaggregation, Heterogeneous AI Infrastructure</p>
+            <p><strong>Problem:</strong> Attention–FFN disaggregation can look attractive from local FFN utilization, but the real decision is deployment-level: under the same model, TPOT SLO, hardware budget, hardware catalog, and runtime constraints, does AFD beat the best collocated deployment?</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces AFD-Ledger, an offline analytical provisioning system that independently searches collocated and AFD deployments under a fixed deployment specification.</li><li>Uses an evaluation-bounded hardware search to cut complete deployment evaluations by 68.8%–83.5% while recovering the exhaustive optimum in feasible search spaces.</li><li>Validates the model on three physical LongCat 2.0 deployments, preserving the correct AFD-vs-collocated decision and predicting throughput ratios within 6.6%–9.6% of measurements.</li></ul>
+            <p><strong>Why it matters:</strong> This is a useful antidote to “disaggregation is automatically better.” It treats MoE serving as a full cluster provisioning problem where KV capacity, attention workers, expert workers, batching, replicas, device prices, and TPOT boundaries interact.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Local FFN MFU gains can be erased by losing request-serving capacity on attention/KV workers.</li><li>The best role-specific device choice is not necessarily the best end-to-end hardware pair; hardware complementarity only appears after complete deployment provisioning.</li><li>Homogeneous AFD improves fixed-budget throughput only in a minority of the studied settings, while heterogeneous AFD needs the right capability–price boundary crossing.</li><li>Memory capacity and device cost often matter more than raw compute or bandwidth once they unlock more replicas, larger resident batches, or different worker allocations.</li></ul>
+            <p><strong>Actionable lessons:</strong> For production MoE serving, compare AFD against a fully reprovisioned collocated baseline, not a reported/default collocated layout. Model attention/KV capacity as a first-class resource, and evaluate sensitivity to device price, memory, runtime overhead, and TPOT target before buying into disaggregation.</p>
+            <p><strong>Useful diagram:</strong> Figure 5 is the central system diagram for AFD-Ledger’s workflow. Figure 1 is also worth looking at because it shows why component-level signals such as FFN MFU can mispredict complete deployment throughput.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · llm serving, edge/cloud networking, speculative decoding</div>
+            <h2><a href="https://arxiv.org/abs/2608.04974">AsymSpec: Efficient Cloud-Edge Speculative Decoding over Asymmetric Networks</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Guotao Yang, Hao Chen, Rui Guo, Xinyu Li, Liang Zheng, Sheng Chen, Yitao Hu, and Keqiu Li. Affiliations: Tianjin University, China.</p>
+            <p><strong>Tags:</strong> LLM Serving, Edge/Cloud Networking, Speculative Decoding</p>
+            <p><strong>Problem:</strong> Cloud-edge speculative decoding inserts network communication into every speculative block. When the uplink is constrained, candidate uploads queue while cloud verification idles; if the edge runs ahead on the same request, later drafts can be invalidated by rejection or bonus tokens.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Proposes an asymmetric verification protocol that keeps common-path acceptance uploads compact and shifts richer rejection-only correction information to the downlink.</li><li>Uses a total-variation certificate to decide when a small target top-K response is enough, escalating only when needed toward exact recovery or full distribution fallback.</li><li>Introduces a confirmed-prefix pipeline that schedules only independent, valid requests at the edge while the cloud re-batches arrived blocks.</li><li>Reports 2.82×–28.03× output-token throughput over the strongest baseline across draft/target pairs, workloads, and asymmetric network profiles.</li></ul>
+            <p><strong>Why it matters:</strong> The paper is not superpod scale-up networking, but it is directly about network-facing LLM serving: it designs the decoding protocol around asymmetric link capacity rather than treating network transfer as a fixed tax.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>For edge/cloud inference, uplink bottlenecks are more damaging than raw RTT because they serialize candidate traffic and starve cloud verification.</li><li>Same-request runahead is tempting but unsafe: unresolved prefixes create dependency chains that can waste draft compute.</li><li>Protocol asymmetry matters; put small, frequent acceptance-path data on the constrained direction and reserve larger correction payloads for the direction with more capacity.</li><li>Ready-pool scheduling is a clean way to hide verification waits without violating speculative-decoding correctness.</li></ul>
+            <p><strong>Actionable lessons:</strong> When designing disaggregated or edge/cloud serving, make the protocol aware of directional bandwidth. Separate “confirmed prefix” work from speculative descendants, and measure throughput under asymmetric uplink/downlink profiles rather than symmetric datacenter assumptions.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 gives the best conceptual comparison: prior cloud-edge speculative serving leaves edge resources idle during verification, while AsymSpec drafts independent confirmed-prefix requests and reduces common-path communication.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · transport protocols, multipath networking, wan/cloud pipelines</div>
+            <h2><a href="https://arxiv.org/abs/2608.06101">MARS: Multipath Adaptive Reliable Service</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Yitong Li, Xinjiao Li, and Dirk Kutscher. Affiliations: The Hong Kong University of Science and Technology (Guangzhou).</p>
+            <p><strong>Tags:</strong> Transport Protocols, Multipath Networking, WAN/Cloud Pipelines</p>
+            <p><strong>Problem:</strong> End-to-end multipath transports such as MPTCP and MPQUIC are deployable but limited by endpoint-visible paths and delayed congestion feedback, while forwarder-assisted designs can expose more paths but risk unsafe coordination or infrastructure dependence.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Presents MARS, a receiver-driven, forwarder-assisted multipath transport deployed as an incremental UDP overlay at clients, servers, relays, or CDN-like nodes.</li><li>Combines tier-synchronized overlay path discovery with coupled consumer/forwarder congestion control so forwarding choices expand path diversity without unsafe loops or stale bottleneck feedback.</li><li>Implements MARS in simulation and as a prototype; evaluation reports up to 81.5% lower max p95 flow completion time than ECMP-limited baselines with cooperating forwarders.</li></ul>
+            <p><strong>Why it matters:</strong> This is more WAN/cloud-service than AI superpod, but the mechanism is relevant for geo-distributed AI pipelines, checkpoint movement, dataset/cache transfer, and multi-site service backbones where endpoint-only multipath underuses available path diversity.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Multipath gains depend heavily on deployment: endpoint-only MARS stays competitive, while cooperating forwarders expose the larger benefit.</li><li>Receiver-driven synchronization avoids local forwarding decisions that create loops, backward paths, or unnecessarily long detours.</li><li>Coupling congestion control between consumers and forwarders lets the transport react nearer to bottlenecks than pure endpoint feedback.</li><li>Failure recovery is part of the transport design, not a separate routing afterthought.</li></ul>
+            <p><strong>Actionable lessons:</strong> For AI infrastructure that moves large state across sites, consider whether the transport can see enough path diversity. If not, overlay forwarders or service-managed relays may be more effective than only tuning endpoint CCAs. Keep loop-safety and bottleneck-local feedback in the design from day one.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 sketches the MARS forwarder design, while Figures 4–6 explain the synchronized path discovery pipeline. Figure 7 shows the WAN topology used for evaluation.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · cxl/coherence, heterogeneous systems, scale-up architecture</div>
+            <h2><a href="https://arxiv.org/abs/2608.05965">Automated Synthesis of Heterogeneous, Hierarchical, Scoped Coherence Protocols</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Fletch Rydell, An Qi Zhang, Nicolai Oswald, Andres Goens, Vijay Nagarajan, and Daniel Sorin. Affiliations: Duke University; University of Utah; NVIDIA; TU Darmstadt.</p>
+            <p><strong>Tags:</strong> CXL/Coherence, Heterogeneous Systems, Scale-up Architecture</p>
+            <p><strong>Problem:</strong> Modern heterogeneous shared-memory systems combine clusters with different memory consistency models through global protocols such as CXL or AMBA CHI. Manually writing shims between cluster-local and global coherence protocols is subtle, error-prone, and can leave performance on the floor.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Defines a shim API that classifies protocol transactions by semantic coherence guarantees instead of forcing every transaction into a conservative SWMR mapping.</li><li>Builds ShimGen, an automated synthesis engine that composes hierarchical protocols with both SWMR and relaxed accesses, including scoped memory accesses and lazy invalidation.</li><li>Shows a case where a manually designed AMD APU-style hierarchical protocol fails compound consistency, while ShimGen’s synthesized protocol preserves it.</li><li>Demonstrates performance benefits from accommodating non-SWMR global behavior rather than mapping everything to strict ownership.</li></ul>
+            <p><strong>Why it matters:</strong> This is adjacent but important for scale-up AI infrastructure: CXL-style coherent fabrics, CPU/GPU/NPU memory sharing, and multi-chip modules all need correct and performant protocol boundaries. Bad shims become invisible latency, correctness, or interoperability traps.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The key abstraction is semantic: shims should map the guarantees a transaction provides, not just the operation name.</li><li>GPU-style relaxed/self-invalidating behavior does not fit cleanly into CPU-centric SWMR coherence assumptions.</li><li>Correctness across hierarchy is compound consistency; preserving each cluster’s memory model through the global fabric is harder than preserving per-protocol invariants in isolation.</li><li>Conservative coherence composition can be correct but unnecessarily slow, especially when global protocols support one-off or scoped accesses.</li></ul>
+            <p><strong>Actionable lessons:</strong> When evaluating CXL or coherent accelerator fabrics, ask how local accelerator protocols compose with the global fabric and what assumptions the shim makes. Treat coherence translation as a design surface, not glue logic. For AI nodes with heterogeneous accelerators, correctness and performance both live at the protocol boundary.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is the useful architecture diagram: heterogeneous clusters with distinct coherence protocols fused by a global protocol. Figure 3 walks through ShimGen synthesizing a CXL-facing transaction mapping.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · network traffic, compression, programmable rules</div>
+            <h2><a href="https://arxiv.org/abs/2608.04545">Learning Compression Rules for Network Traffic</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Quentin Lampin, Éloi Sainte-Beuve, Louis-Adrien Dufrène, Guillaume Larue, and Massih-Reza Amini. Affiliations: Orange Research; Université Grenoble Alpes.</p>
+            <p><strong>Tags:</strong> Network Traffic, Compression, Programmable Rules</p>
+            <p><strong>Problem:</strong> Rule-based header compression standards such as SCHC rely on shared sender/receiver rule contexts, but efficient rule sets are usually hand-written and hard to maintain as protocols, deployments, and traffic patterns change.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Casts rule learning as unsupervised structure discovery followed by constrained rule selection under a hard budget on installable rules.</li><li>Introduces RECAP, using normalized entropy-ratio recursive partitioning plus dynamic programming to select the rule subset with maximum expected compression gain.</li><li>Evaluates on four real IoT and 5G core-network datasets and reports better held-out compression than expert-style baselines with small learned rule budgets.</li></ul>
+            <p><strong>Why it matters:</strong> This is lower priority than the LLM-serving papers, but it is a real networking systems paper with a practical data-plane angle: learning compact rule sets for structured traffic could matter wherever rule-table budget and protocol evolution collide.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The rule budget is a real systems constraint; maximizing compression without limiting installable rules is the wrong objective.</li><li>Separating structural templates from value-based entropy splits makes the learned rules more robust to small samples.</li><li>The paper’s 5G core-network datasets are a useful reminder that header compression and traffic structure are not only IoT problems.</li><li>Learned rules can outperform expert-written profiles, but operational safety would still require validation against protocol corner cases.</li></ul>
+            <p><strong>Actionable lessons:</strong> If considering traffic compression or rule-table offload, optimize for compact installable rules and held-out traffic, not just training-set compressibility. Keep rule generation auditable: learned data-plane rules need explainability, constraints, and fallback behavior.</p>
+            <p><strong>Useful diagram:</strong> Figure 2 shows the candidate hierarchy and the selected rule path; Figure 3 summarizes compression ratio versus rule budget across datasets.</p>
+          </article>
+
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Ditto · research briefs</span>
+        <a href="index.html">Back to brief archive</a>
+      </footer>
+    </div>
+  </body>
+</html>
