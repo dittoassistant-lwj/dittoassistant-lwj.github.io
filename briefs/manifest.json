@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-08-11",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-11.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-11.html",
+      "topPaper": {
+        "title": "FlashBoot: Sub-Second Weight Loading for Large Models at Rack Scale",
+        "arxiv": "https://arxiv.org/abs/2608.08482"
+      },
+      "papers": [
+        {
+          "title": "FlashBoot: Sub-Second Weight Loading for Large Models at Rack Scale",
+          "arxiv": "https://arxiv.org/abs/2608.08482"
+        },
+        {
+          "title": "LLMVisor: A Real-Time Latency Attribution Model for Multi-Tenant LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2608.08382"
+        },
+        {
+          "title": "ElastiCo: Elastic Configuration and Interference-Aware Orchestration for GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2608.07971"
+        }
+      ]
+    },
+    {
       "date": "2026-08-10",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-10.html",
