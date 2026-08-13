@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-13",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-13.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-13.html",
+      "topPaper": {
+        "title": "RoutePack: Expert Placement and Attention-Aware Data Packing for MoE Reinforcement Learning",
+        "arxiv": "https://arxiv.org/abs/2608.12146"
+      },
+      "papers": [
+        {
+          "title": "RoutePack: Expert Placement and Attention-Aware Data Packing for MoE Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2608.12146"
+        },
+        {
+          "title": "Who Should Own the Expert Cache? Kernel-Managed Tiering for Trillion-Parameter MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2608.12103"
+        },
+        {
+          "title": "The Ingestion Tax: Adopting File-Backed Weights in Tensor Frameworks",
+          "arxiv": "https://arxiv.org/abs/2608.12114"
+        },
+        {
+          "title": "Ready Cohorts: Bounding GPU Opportunity and Avoiding Host Round Trips in LLM-Agent Control",
+          "arxiv": "https://arxiv.org/abs/2608.12123"
+        }
+      ]
+    },
+    {
       "date": "2026-08-12",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-12.html",
