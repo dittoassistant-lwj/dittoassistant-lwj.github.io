@@ -1,0 +1,59 @@
+\documentclass[10.5pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\setlist[itemize]{leftmargin=1.2em,itemsep=0.2em,topsep=0.2em}
+\setlist[enumerate]{leftmargin=1.4em,itemsep=0.2em,topsep=0.2em}
+\title{MP-RDMA: Multi-Path Transport for RDMA in Datacenters\\\large Technical Reading Note}
+\author{Ditto}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\section{Paper and Context}
+\textbf{Paper:} Yuanwei Lu, Guo Chen, Bojie Li, Kun Tan, Yongqiang Xiong, Peng Cheng, Jiansong Zhang, Enhong Chen, and Thomas Moscibroda. ``Multi-Path Transport for RDMA in Datacenters.'' NSDI 2018. A later journal version appears as ``MP-RDMA: Enabling RDMA With Multi-Path Transport in Datacenters,'' IEEE/ACM ToN 2019. The NSDI open-access PDF is available at \url{https://www.usenix.org/system/files/conference/nsdi18/nsdi18-lu.pdf}.
+
+The paper attacks a very specific tension in RoCE-style datacenter RDMA. The network topology is rich in equal-cost paths, but an RDMA queue pair behaves as a single-path transport because packets keep the same five-tuple. This leaves throughput and resilience on the table: path failures or lossy links can collapse an otherwise healthy RDMA connection, and ECMP can hash large elephant transfers onto unlucky paths. TCP multipath ideas are not directly reusable because RDMA transport is implemented in NIC hardware with small on-chip state and tight latency/throughput constraints.
+
+\section{Core Mechanism}
+MP-RDMA is a NIC-level multipath transport. The sender exposes multiple \emph{virtual paths} (VPs), encoded using the UDP source port in RoCEv2 packets, so ECMP can place packets from one RDMA connection onto different fabric paths. The design goal is not merely to spray packets; it is to do so while keeping the NIC state overhead small enough for hardware implementation.
+
+The mechanism has three main pieces:
+\begin{enumerate}
+  \item \textbf{Multi-path ACK clocking.} Each data packet is sent on a VP. The receiver immediately returns an ACK that echoes the VP. The sender lets ACKs clock out later packets on the same VP, so faster/less congested paths naturally return more ACKs and receive more traffic. Congestion control is ECN based and per-packet: ACKs without ECN increase the aggregate congestion window, while ECN-marked ACKs reduce it. The clever part is that MP-RDMA avoids maintaining a full congestion-control state per path.
+  \item \textbf{Out-of-order-aware path selection.} Multipath transmission creates reordering. The receiver tracks out-of-order packets using a small bitmap, e.g., 64 entries, rather than a large reordering buffer. The sender monitors how far ACKed packets are ahead of the cumulative ACK frontier and suppresses ACK-clocked sends from paths that appear too slow. This prunes bad or delayed paths and keeps the out-of-order degree inside the receiver's tiny bitmap window.
+  \item \textbf{Synchronise operation for memory-order semantics.} RDMA WRITE/READ can place data directly into application memory, including out of order. For applications that require ordered memory visibility, MP-RDMA exposes a synchronise flag. A synchronise operation updates memory only after previous operations are complete, avoiding the need to make every operation stop-and-wait.
+\end{enumerate}
+
+The packet format adds fields such as a message sequence number, intra-message packet sequence number, echoed VP ID, selective ACK PSN, cumulative ACK, ECN echo, retransmission, and synchronise indicators. The authors report that the full design adds only 66 bytes of extra per-connection state compared with single-path RDMA, roughly comparable to the state cost of DCQCN-style congestion control.
+
+\section{Evaluation and Main Results}
+The authors implement MP-RDMA on an Altera Stratix V FPGA using ClickNP. The prototype runs at 40Gbps line rate for most message sizes and adds sub-microsecond transport-logic latency in their validation. The testbed uses ten servers under two ToR switches with four cross-ToR paths; larger experiments use NS-3 simulations with a 320-server leaf-spine topology.
+
+Key empirical results:
+\begin{itemize}
+  \item \textbf{Failure robustness:} under lossy paths with 0.5\%--10\% random drop, MP-RDMA achieves roughly 2x--4x higher throughput than single-path DCQCN because ACK clocking migrates traffic away from lossy paths.
+  \item \textbf{Path recovery:} when paths fail and later recover, MP-RDMA quickly stops using failed paths, keeps healthy paths busy, and resumes using restored paths within about one RTT-scale probing cycle.
+  \item \textbf{Network utilization:} in permutation traffic, the small testbed shows that MP-RDMA uses all four cross-ToR paths fairly, while single-path RDMA can leave paths idle because of ECMP hash collisions. Large-scale simulation reports up to about 47\% higher overall throughput.
+  \item \textbf{FCT:} in web-search-like workloads, MP-RDMA improves average flow completion time by roughly 3.6\%--13.3\%, with stronger benefits when path imbalance or hash collisions matter.
+  \item \textbf{Reordering control:} the out-of-order-aware algorithm reduces the 99.9th percentile out-of-order degree by about 5x under ECN misconfiguration and about 50x under link degradation compared with multipath without OOO control.
+\end{itemize}
+
+\section{Limitations and Caveats}
+The design assumes a PFC-enabled RDMA network and ECN/RED-style marking. That assumption fits the RoCE deployment context of the paper, but it also means MP-RDMA does not solve all lossless-Ethernet operational pathologies. Its evaluation is convincing for a prototype paper, but the real deployment question is whether commercial RNICs can absorb the packet-format, ACKing, bitmap, retransmission, and synchronise semantics without disrupting existing RoCE compatibility.
+
+The design also uses per-packet ACKs, which the paper says adds less than 4\% bandwidth overhead. That is small for throughput, but at modern AI-cluster link speeds and high fan-in collectives, ACK processing pressure and reverse-path congestion would need careful silicon and fabric validation. Finally, the application-facing synchronise flag is useful but shifts a semantic decision to software: systems must know which RDMA operations can tolerate out-of-order visibility and which cannot.
+
+\section{Relevance to AI Datacenter Networks}
+MP-RDMA is highly relevant to AI superpod transport design because training and serving infrastructure often produces large, synchronized elephant transfers where single-path hash collisions and degraded links can dominate tail behavior. The paper's biggest contribution is the decomposition of multipath RDMA into three hardware-conscious control problems: how to distribute traffic without per-path state explosion, how to control reordering without a large NIC buffer, and how to preserve memory-order semantics only when required.
+
+For future AI fabrics, the paper suggests a useful design principle: multipath should be a transport primitive, not just a routing trick. If the NIC understands virtual paths, ACK timing, ECN, and bounded reordering, it can react much faster than a host-level scheduler or an application-level retry loop. At the same time, MP-RDMA exposes why modern UEC/RoCE alternatives are hard: the transport must jointly reason about congestion control, packet spraying, reliability, receiver state, and application memory semantics.
+
+\end{document}
