@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-14.html",
+      "topPaper": {
+        "title": "Janus: Disaggregating Attention and Experts for Scalable MoE Inference",
+        "arxiv": "https://arxiv.org/abs/2512.13525"
+      },
+      "papers": [
+        {
+          "title": "Janus: Disaggregating Attention and Experts for Scalable MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2512.13525"
+        },
+        {
+          "title": "OasisKV: Scaling In-Decode KV Cache Beyond HBM with Lookahead Sparse Prefetching",
+          "arxiv": "https://arxiv.org/abs/2608.08097"
+        },
+        {
+          "title": "Potential Applications of HBF in LLM Serving Systems",
+          "arxiv": "https://arxiv.org/abs/2608.13127"
+        },
+        {
+          "title": "vToken: Token-Level Virtualization for Reclaimable KV Caches",
+          "arxiv": "https://arxiv.org/abs/2608.13263"
+        },
+        {
+          "title": "OpScale: Operator-level Provisioning and Autoscaling for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2608.13499"
+        }
+      ]
+    },
+    {
       "date": "2026-08-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-13.html",
