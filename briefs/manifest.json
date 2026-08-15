@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-15",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-15.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-15.html",
+      "topPaper": {
+        "title": "TEMPO: Makespan-Aware Expert-Parallel Load Balancing Across Memory- and Compute-Bound Regimes",
+        "arxiv": "https://arxiv.org/abs/2608.13057"
+      },
+      "papers": [
+        {
+          "title": "TEMPO: Makespan-Aware Expert-Parallel Load Balancing Across Memory- and Compute-Bound Regimes",
+          "arxiv": "https://arxiv.org/abs/2608.13057"
+        },
+        {
+          "title": "Compute-Optimal Is Not Cluster-Optimal: Systems-Aware Scaling for Sparse Mixture-of-Experts",
+          "arxiv": "https://arxiv.org/abs/2608.10605"
+        },
+        {
+          "title": "ImpactHO: Importance-Aware KV Cache Transfer for Multi-User Edge LLM Handover",
+          "arxiv": "https://arxiv.org/abs/2608.10545"
+        },
+        {
+          "title": "Agentic Coding in the Wild: Characterizing GitHub Copilot Traces at Production Scale",
+          "arxiv": "https://arxiv.org/abs/2608.00101"
+        }
+      ]
+    },
+    {
       "date": "2026-08-14",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-14.html",
