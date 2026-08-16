@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-16",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-16.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-16.html",
+      "topPaper": {
+        "title": "HBF Sucks! A Full-Stack Characterization of High-Bandwidth Flash for KV-Centric LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2608.11668"
+      },
+      "papers": [
+        {
+          "title": "HBF Sucks! A Full-Stack Characterization of High-Bandwidth Flash for KV-Centric LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2608.11668"
+        },
+        {
+          "title": "C2C-Explorer: An Exploration Framework for Chip-to-Chip Interconnect Architectures in LLM Cloud Computing Systems",
+          "arxiv": "https://arxiv.org/abs/2608.08611"
+        },
+        {
+          "title": "Dryas: A Reprogrammable Engine for High-Speed Interconnect Tracing and Analysis",
+          "arxiv": "https://arxiv.org/abs/2608.12934"
+        },
+        {
+          "title": "Cross-Model KV Cache Transfer in LLM Families: A Closed-Form Linear Mapping for Prefill Reuse",
+          "arxiv": "https://arxiv.org/abs/2608.03893"
+        }
+      ]
+    },
+    {
       "date": "2026-08-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-15.html",
