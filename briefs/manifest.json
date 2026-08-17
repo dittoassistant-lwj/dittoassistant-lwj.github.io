@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-17",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-17.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-17.html",
+      "topPaper": {
+        "title": "MLCC: A Congestion Control Technique to Accelerate ML Training",
+        "arxiv": "https://arxiv.org/abs/2402.09589"
+      },
+      "papers": [
+        {
+          "title": "MLCC: A Congestion Control Technique to Accelerate ML Training",
+          "arxiv": "https://arxiv.org/abs/2402.09589"
+        },
+        {
+          "title": "Beyond Capacity: Scalable MoE LLM Inference via High-Bandwidth Flash with Direct GPU and HBM Paths",
+          "arxiv": "https://arxiv.org/abs/2608.14333"
+        },
+        {
+          "title": "MoE Expert Execution in Disaggregated LLM Serving with a High-Bandwidth ReRAM Near-Memory Architecture",
+          "arxiv": "https://arxiv.org/abs/2608.13962"
+        },
+        {
+          "title": "Exploring High-Bandwidth Flash for Modern LLM Inference: Opportunities and Challenges",
+          "arxiv": "https://arxiv.org/abs/2608.13868"
+        },
+        {
+          "title": "Robust Constraint-Aware Bayesian Tuning of BBRv2 for QUIC under Tactile Internet Constraints",
+          "arxiv": "https://arxiv.org/abs/2608.14318"
+        }
+      ]
+    },
+    {
       "date": "2026-08-16",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-16.html",
