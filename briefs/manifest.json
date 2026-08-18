@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-18",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-18.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-18.html",
+      "topPaper": {
+        "title": "NetReduce: RDMA-Compatible In-Network Reduction for Distributed DNN Training Acceleration",
+        "arxiv": "https://arxiv.org/abs/2009.09736"
+      },
+      "papers": [
+        {
+          "title": "NetReduce: RDMA-Compatible In-Network Reduction for Distributed DNN Training Acceleration",
+          "arxiv": "https://arxiv.org/abs/2009.09736"
+        },
+        {
+          "title": "Impact of RoCE Congestion Control Policies on Distributed Training of DNNs",
+          "arxiv": "https://arxiv.org/abs/2207.10898"
+        },
+        {
+          "title": "FlexLink: Boosting your NVLink Bandwidth by 27% without accuracy concern",
+          "arxiv": "https://arxiv.org/abs/2510.15882"
+        },
+        {
+          "title": "Holmes: Towards Distributed Training Across Clusters with Heterogeneous NIC Environment",
+          "arxiv": "https://arxiv.org/abs/2312.03549"
+        },
+        {
+          "title": "OptiReduce: Resilient and Tail-Optimal AllReduce for Distributed Deep Learning in the Cloud",
+          "arxiv": "https://arxiv.org/abs/2310.06993"
+        }
+      ]
+    },
+    {
       "date": "2026-08-17",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-17.html",
