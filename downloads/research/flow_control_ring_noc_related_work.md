@@ -3,6 +3,28 @@
 Generated: 2026-08-19  
 Scope: recent and closely related academic work around flow control, traffic modelling, and performance/latency analysis for bufferless or routerless ring-style Network-on-Chip (NoC) designs.
 
+
+## Quick Comparison Table
+
+| Paper | Year | Link | Closest relevance | Method / evidence | Main difference from your likely report |
+|---|---:|---|---|---|---|
+| Balanced Flow Control for Routerless Multi-Ring Networks-on-Chip | 2025 | [DOI](https://doi.org/10.1109/EEI67650.2025.11334773) | Closest recent flow-control match for routerless/multi-ring NoCs | Proposed flow-control mechanism + interface microarchitecture; simulation/experimental evaluation | Multi-ring and experimentally driven; not primarily a simple-ring steady-state model |
+| Affine-NoC: Multi-ring NoCs exploiting long physical links | 2024 | [DOI](https://doi.org/10.1109/NoCArc64615.2024.10749957), [PDF](https://repositorio.unican.es/xmlui/bitstream/10902/35518/2/AffineNoCMultiring.pdf) | Recent routerless multi-ring topology/fairness work | Topology construction using affine-plane-inspired ring layout | Improves load structurally via topology, not via a flow-control law |
+| Traffic Divergence Theory: An Analysis Formalism for Dynamic Networks | 2024 | [DOI](https://doi.org/10.1109/ACCESS.2024.3383436) | Mathematically useful for flow-balance/imbalance language | General traffic-dynamics formalism using divergence-like metrics | Not NoC-specific and not ring-specific |
+| Real-Time Guarantees in Routerless Networks-on-Chip | 2023 / 2022 | [DOI](https://doi.org/10.1145/3616539), [arXiv](https://arxiv.org/abs/2209.10430) | Closest analytical routerless-NoC work | Analytical latency upper-bound framework for hard real-time flows | Worst-case latency analysis, not steady-state throughput/fairness equilibrium |
+| Routerless networks-on-chip | 2022 | [DOI](https://doi.org/10.1016/bs.adcom.2021.11.002) | Broad routerless-NoC background | Survey/chapter-style architectural overview | Background reference rather than a specific flow-control model |
+| Energy-Efficient Deflection-based On-chip Networks: Topology, Routing, Flow Control | 2021 / 2022 | [arXiv](https://arxiv.org/abs/2112.02516) | Strong background on bufferless/deflection NoC design space | Survey/chapter discussion of topology, routing, and flow-control trade-offs | Broad synthesis, not a new simple-ring model |
+| Network-Cognitive Traffic Control: A Fluidity-Aware On-Chip Communication | 2020 | [DOI](https://doi.org/10.3390/electronics9101667) | Broader NoC traffic-control context | Traffic-aware/fluidity-aware control perspective | Not clearly bufferless-ring-specific |
+| An Approximate Bufferless Network-on-Chip | 2019 | [DOI](https://doi.org/10.1109/ACCESS.2019.2943922) | Related only if approximation/loss is allowed | Approximate bufferless NoC design | Less relevant for lossless flow-control modelling |
+| Design and Analysis of Hybrid Flow Control for Hierarchical Ring Network-on-Chip | 2016 | [DOI](https://doi.org/10.1109/TC.2015.2417525) | Direct ring-NoC flow-control foundation | Hybrid flow-control design/analysis for hierarchical rings | Hierarchical and older; may not be purely bufferless/simple-ring |
+| A case for hierarchical rings with deflection routing: An energy-efficient on-chip communication substrate | 2016 | [DOI](https://doi.org/10.1016/j.parco.2016.01.009) | Ring + deflection-routing foundation | Architecture/topology evaluation | Deflection-ring architecture, not steady-state flow-control law |
+| Design and Evaluation of Hierarchical Rings with Deflection Routing | 2014 | [DOI](https://doi.org/10.1109/SBAC-PAD.2014.31) | Ring + deflection-routing foundation | Hierarchical ring design and evaluation | Architecture-oriented, older, not mainly mathematical flow-control modelling |
+| Clumsy Flow Control for High-Throughput Bufferless On-Chip Networks | 2013 | [DOI](https://doi.org/10.1109/L-CA.2012.22) | Foundational bufferless NoC flow-control baseline | Flow-control mechanism for high-throughput bufferless NoCs | Not ring-specific and likely simulation/microarchitecture-focused |
+| Throttling Control for Bufferless Routing in On-chip Networks | 2012 | [DOI](https://doi.org/10.1109/MCSOC.2012.25) | Foundational throttling/admission-control baseline | Injection/throttling control for bufferless routing | Older; not simple-ring steady-state analysis |
+| Evaluating Bufferless Flow Control for On-chip Networks | 2010 | [DOI](https://doi.org/10.1109/NOCS.2010.10) | Foundational bufferless-flow-control evaluation | Evaluation of bufferless NoC flow-control trade-offs | Older evaluation paper, not recent ring-specific modelling |
+
+---
+
 ## Executive Summary
 
 Your colleague's report sounds like it sits in a fairly specific niche: **steady-state mathematical modelling of a proposed flow-control method on a simple bufferless ring NoC**. I found several adjacent lines of published work, but the exact intersection of **ring topology + bufferless/routerless design + flow control + closed-form steady-state analysis** appears sparse in recent publications.
@@ -638,6 +660,7 @@ To make the modelling more publishable, I would run these checks against a simul
 
 - Wen, K., Liu, W., Jiang, J., Jing, N., Shen, W., Wang, Q. **Balanced Flow Control for Routerless Multi-Ring Networks-on-Chip**. EEI 2025. DOI: https://doi.org/10.1109/EEI67650.2025.11334773
 - Indrusiak, L. S., Burns, A. **Real-Time Guarantees in Routerless Networks-on-Chip**. ACM TECS 2023; arXiv 2022. DOI: https://doi.org/10.1145/3616539; arXiv: https://arxiv.org/abs/2209.10430
+- **Routerless networks-on-chip**. Advances in Computers, 2022. DOI: https://doi.org/10.1016/bs.adcom.2021.11.002
 - **Affine-NoC: Multi-ring NoCs exploiting long physical links**. NoCArc 2024. DOI: https://doi.org/10.1109/NoCArc64615.2024.10749957
 - **Traffic Divergence Theory: An Analysis Formalism for Dynamic Networks**. IEEE Access 2024. DOI: https://doi.org/10.1109/ACCESS.2024.3383436
 - Ausavarungnirun, R., Mutlu, O. **Energy-Efficient Deflection-based On-chip Networks: Topology, Routing, Flow Control**. arXiv 2021/2022. https://arxiv.org/abs/2112.02516
