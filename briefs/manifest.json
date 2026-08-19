@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-19",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-19.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-19.html",
+      "topPaper": {
+        "title": "Completion-Path Credits: Multi-Resource Control for Scale-Up Fabrics",
+        "arxiv": "https://arxiv.org/abs/2608.17523"
+      },
+      "papers": [
+        {
+          "title": "Completion-Path Credits: Multi-Resource Control for Scale-Up Fabrics",
+          "arxiv": "https://arxiv.org/abs/2608.17523"
+        },
+        {
+          "title": "Predict Before Replay: Joint FEC and Flight Control for Reliable Scale-Up Links",
+          "arxiv": "https://arxiv.org/abs/2608.17503"
+        },
+        {
+          "title": "Collective Communication for Distributed LLM Systems: Planning, Runtime Adaptation, and Computation Coordination",
+          "arxiv": "https://arxiv.org/abs/2608.15118"
+        },
+        {
+          "title": "Bounded-State Restoration: Decoupling Local Restore Capacity from External LLM State",
+          "arxiv": "https://arxiv.org/abs/2608.17826"
+        }
+      ]
+    },
+    {
       "date": "2026-08-18",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-18.html",
