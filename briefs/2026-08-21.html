@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-08-21, focused on packet-level load balancing, LLM cluster modeling, KV routing, KV migration, and pipeline-parallel efficiency." />
+    <title>Daily AI Cluster Networking Brief — 2026-08-21 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-08-21</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s signal is unusually fabric-heavy: packet-level load balancing for AI datacenter Clos networks, fault-aware LLM cluster modeling, and several KV-state papers where routing, migration, or layout choices decide whether expensive accelerators wait.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2608.08425">PSP: Low-Overhead Packet-Level Load Balancing for Stale-State and Bandwidth-Asymmetric Networks</a></h3>
+          <p class="muted">Authors &amp; affiliations: Jiaqi Liu, Chunyang Zhang, Heng Pan, and Yanbiao Li. Jiaqi Liu, Heng Pan, and Yanbiao Li — Computer Network Information Center, Chinese Academy of Sciences, China; Chunyang Zhang — Huawei Technologies Company Ltd., Shenzhen, China.</p>
+          <p><strong>Tags:</strong> Packet-Level Load Balancing, AI Datacenter Networks, Congestion/Hotspot Control</p>
+          <p><strong>Why this is the top pick:</strong> This is the strongest fabric-facing signal today: it attacks packet-level load balancing under exactly the nasty conditions AI clusters expose — stale telemetry, bandwidth-asymmetric paths, microbursts, and limited switch datapath budget.</p>
+          <p><strong>Deeper explanation:</strong> PSP is interesting because it focuses on the part of packet spraying that usually gets under-modeled: stale state and hardware budget. In an AI Clos fabric, microbursty collectives and high-concurrency inference traffic can make greedy state-aware choices herd toward the same apparently good path. PSP’s answer is not “collect more telemetry”; it quantizes path quality into bands and maps those bands into probabilities, creating a smoother controller that is easier to implement at line rate. For Ethan’s world, the architectural takeaway is that load balancing has to be evaluated as a stability mechanism under delayed signals and asymmetric residual capacity, not just as an average-utilization optimizer.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> AI training and generative-service traffic creates micro-bursty, high-concurrency Clos-fabric load where ECMP misses hotspots, while state-aware packet spraying can chase stale queue signals and oscillate.</li>
+            <li><strong>Key contributions:</strong> Proposes probabilistic state-proportional (PSP) dispatching, using Band-based discrete path-state representation and probability mapping instead of global port sorting.; Derives an engineering-oriented threshold configuration model so path-selection aggressiveness can be aligned with end-host and switch hardware capabilities.; Evaluates PSP on a 51.2T in-house cycle-accurate Clos simulator, reporting better loss, buffer occupancy, and scalability than JSQ and Random, with performance close to or slightly better than Top-k at lower hardware cost.</li>
+            <li><strong>Why it matters architecturally:</strong> It gives a concrete datapath-friendly design point for packet-level load balancing in AI datacenters, with explicit attention to stale signals, bandwidth asymmetry, and switch logic complexity.</li>
+            <li><strong>Diagram note:</strong> The extracted PDF did not expose one canonical architecture block diagram, but the paper’s early figures around stale-state path selection and later evaluation figures illustrate the key mechanism: probabilistic port choice from quantized path bands, then robustness under threshold and asymmetry sweeps.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · packet-level load balancing, ai datacenter networks, congestion/hotspot control</div>
+            <h2><a href="https://arxiv.org/abs/2608.08425">PSP: Low-Overhead Packet-Level Load Balancing for Stale-State and Bandwidth-Asymmetric Networks</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Jiaqi Liu, Chunyang Zhang, Heng Pan, and Yanbiao Li. Jiaqi Liu, Heng Pan, and Yanbiao Li — Computer Network Information Center, Chinese Academy of Sciences, China; Chunyang Zhang — Huawei Technologies Company Ltd., Shenzhen, China.</p>
+            <p><strong>Tags:</strong> Packet-Level Load Balancing, AI Datacenter Networks, Congestion/Hotspot Control</p>
+            <p><strong>Problem:</strong> AI training and generative-service traffic creates micro-bursty, high-concurrency Clos-fabric load where ECMP misses hotspots, while state-aware packet spraying can chase stale queue signals and oscillate.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Proposes probabilistic state-proportional (PSP) dispatching, using Band-based discrete path-state representation and probability mapping instead of global port sorting.</li><li>Derives an engineering-oriented threshold configuration model so path-selection aggressiveness can be aligned with end-host and switch hardware capabilities.</li><li>Evaluates PSP on a 51.2T in-house cycle-accurate Clos simulator, reporting better loss, buffer occupancy, and scalability than JSQ and Random, with performance close to or slightly better than Top-k at lower hardware cost.</li></ul>
+            <p><strong>Why it matters:</strong> This is the strongest fabric-facing signal today: it attacks packet-level load balancing under exactly the nasty conditions AI clusters expose — stale telemetry, bandwidth-asymmetric paths, microbursts, and limited switch datapath budget.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The paper treats stale state as a control-loop problem: greedy shortest-queue decisions can synchronize senders and create herding when remote state is even a few microseconds old.</li><li>Bandwidth asymmetry matters operationally because failures, mixed-generation NICs/switches, and background elephant flows make “equal-cost” paths unequal in available capacity.</li><li>Replacing hard top-k selection with probabilistic mapping is a stability knob: it avoids over-concentrating traffic on the same recently-good path while still biasing away from congested paths.</li><li>The hardware argument is useful: packet-level scheduling only helps if the logic is simple enough to run at line rate in a high-radix switch data plane.</li></ul>
+            <p><strong>Actionable lessons:</strong> For AI Ethernet/RoCE fabrics, evaluate packet spraying as a closed-loop controller, not just a load-balancing heuristic. Stress it with delayed telemetry, partial link degradation, fixed-flow interference, and bandwidth-asymmetric paths before trusting mean FCT or average utilization.</p>
+            <p><strong>Useful diagram:</strong> The extracted PDF did not expose one canonical architecture block diagram, but the paper’s early figures around stale-state path selection and later evaluation figures illustrate the key mechanism: probabilistic port choice from quantized path bands, then robustness under threshold and asymmetry sweeps.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · ai cluster modeling, interconnect faults, training/inference performance</div>
+            <h2><a href="https://arxiv.org/abs/2512.19606">RAPID-LLM: Resilience-Aware Performance analysis of Infrastructure for Distributed LLM Training and Inference</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> George Karfakis, Lime Yao, Binglu Chen, Faraz Tahmasebi, Saptarshi Mitra, Tianyue Pan, Hyoukjun Kwon, and Puneet Gupta. George Karfakis, Lime Yao, Binglu Chen, and Puneet Gupta — University of California, Los Angeles, USA; Faraz Tahmasebi, Saptarshi Mitra, and Hyoukjun Kwon — University of California, Irvine, USA; Tianyue Pan — University of British Columbia, Canada.</p>
+            <p><strong>Tags:</strong> AI Cluster Modeling, Interconnect Faults, Training/Inference Performance</p>
+            <p><strong>Problem:</strong> GPU-cluster LLM performance depends on coupled compute, memory hierarchy, parallelism strategy, routing, congestion, and link failures; coarse layer-level tools or trace-bound simulators are poor at exploring future topologies and degraded fabrics.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Builds hardware-aware operator models, including an extended-roofline GEMM model, to generate per-operator Chakra execution traces for training and inference under hybrid parallelism.</li><li>Models multidimensional interconnects with per-link congestion plus degraded and failed links, enabling topology-, routing-, and fault-aware what-if analysis.</li><li>Validates across 124 cases on A100/H100 systems, reporting 10.0% overall MAPE and network predictions within 8% of ns-3 on representative communication patterns; the code is listed as open source.</li></ul>
+            <p><strong>Why it matters:</strong> This is a useful bridge between simulator fantasy and production intuition: it gives a way to ask “what does a degraded link or mapping choice do to this LLM job?” without needing a full deployment trace or cycle-level GPU simulation.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The central modeling move is to keep operator-level hardware detail while making the network explicit enough to express congestion, routing, and link-fault sensitivity.</li><li>The paper’s examples show why average bandwidth is insufficient: the location of a degraded link relative to the parallelism layout can determine whether the pipeline stalls or barely notices.</li><li>Memory hierarchy is part of the network story because operator tiling changes when traffic reaches the fabric and how much slack communication can hide behind compute.</li><li>The framework is most compelling for relative design-space sweeps — topology, mapping, packaging, memory variants — rather than as a replacement for final cluster measurement.</li></ul>
+            <p><strong>Actionable lessons:</strong> For superpod architecture studies, pair workload parallelism choices with explicit degraded-link and congestion cases. A good design-space tool should vary topology, mapping, and GPU memory assumptions together; otherwise it will miss second-order bottlenecks that only appear when the fabric is imperfect.</p>
+            <p><strong>Useful diagram:</strong> The first pages lay out RAPID-LLM as a frontend that produces hardware-aware operator traces and a backend that executes them over congestion- and fault-aware multidimensional networks; the later case-study figures are the useful artifacts for link-fault and mapping sensitivity.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · llm serving, kv cache locality, request routing</div>
+            <h2><a href="https://arxiv.org/abs/2608.19677">CacheRoute: Planned Prefix-Affinity Routing for Large-Scale LLM Serving</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Huang Cheng — Meta, Menlo Park, California, USA.</p>
+            <p><strong>Tags:</strong> LLM Serving, KV Cache Locality, Request Routing</p>
+            <p><strong>Problem:</strong> Prefix caching saves prefill only if repeated requests land on a server that still holds the prefix KV, but cache-blind balancing destroys locality while naive affinity maps hot-key skew directly into tail latency.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Designs a periodic prefix-affinity routing plan that admits high-rate keys to a warm set, assigns them by expected load, and falls back to cache-blind power-of-two choices for unadmitted traffic.</li><li>Evaluates six routing policies on Llama-3.3-70B fp8 across 60 H100 GPUs, reporting 176±11 QPS at a 3.5 s p99 SLO, 2.3× the strongest baseline in the primary workload.</li><li>Identifies operating envelopes where affinity wins and counterexamples where improved hit rate is not enough because residual load skew erases capacity; recommends shadow replay before deployment.</li></ul>
+            <p><strong>Why it matters:</strong> This is highly relevant for serving-fleet routing because it frames KV locality as a routing-table planning problem, not a cache implementation detail. The caveat is equally valuable: prefix affinity can improve hit rate and still hurt p99 if it creates hot destinations.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The planner separates slow control-plane assignment from fast request dispatch; that is a clean pattern for keeping the serving data path simple.</li><li>The p99 win comes from both locality and placement: higher KV hit rate reduces prefill work, while LPT-style assignment prevents the hottest prefixes from owning the tail.</li><li>Cache capacity alone is not enough; revisit time and active-set breadth decide whether a server still has the right prefix when the next request arrives.</li><li>The paper’s negative cases are architecture-grade useful: if the recoverable KV work is small, affinity-induced skew can dominate and ordinary load balancing is better.</li></ul>
+            <p><strong>Actionable lessons:</strong> Before adding prefix-aware routing to an LLM fleet, run shadow replay over real key-rate distributions and compute both cache-hit gain and destination-load skew. Treat the router’s stability interval, warm-set size, and spill policy as SLO controls, not just cache knobs.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is the key architecture diagram: CacheRoute splits periodic, rate-aware assignment from fast online dispatch, showing how warm-prefix planning and fallback load balancing coexist.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · ai-ran, kv cache migration, edge llm serving</div>
+            <h2><a href="https://arxiv.org/abs/2608.16477">Pallas: A Proactive KV Cache Migration Framework for LLM Inference in AI-RAN</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Tianhang Ding, Jianchun Liu, and Hongli Xu — University of Science and Technology of China.</p>
+            <p><strong>Tags:</strong> AI-RAN, KV Cache Migration, Edge LLM Serving</p>
+            <p><strong>Problem:</strong> In AI-RAN, user handover can move the client to a new gNB while the active LLM session’s KV cache remains at the old gNB; forwarding preserves continuity but increases ITL, while post-handover state recovery creates long service interruption.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Identifies the continuity-versus-locality trade-off in mobile LLM handover and reframes handover as a preparation deadline rather than a recovery trigger.</li><li>Designs Pallas, which reconstructs the stable historical prefix at the predicted target while the source streams newly generated suffix KV blocks in parallel with ongoing decode.</li><li>Implements a vLLM 0.8.5 prototype and reports 2.28–89.68× average SIT reduction versus target-side recovery, plus 16.0%–50.0% average ITL reduction versus source-side forwarding across three LLMs and 100–500 Mbps inter-gNB links.</li></ul>
+            <p><strong>Why it matters:</strong> Even though it is edge/RAN rather than datacenter superpod, the mechanism is a clean state-migration lesson: for large KV state, “move after failure/handover” is too late; you need prediction, partitioning, and overlap.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The paper quantifies the timescale mismatch: a Qwen3-32B KV cache can reach roughly 1 GiB at 4k tokens, making naive transfer over hundreds-of-Mbps inter-gNB links absurdly slow.</li><li>Splitting state into a stable prefix and evolving suffix is the important systems trick: local prefill rebuilds the old part, streaming covers the moving frontier.</li><li>The scheduler’s prefetch window is a three-way trade-off among prediction accuracy, available goodput, and wasted work if handover time or target changes.</li><li>The same abstraction maps to datacenter failover: proactive state preparation beats reactive recovery when state grows linearly and the serving loop is latency-sensitive.</li></ul>
+            <p><strong>Actionable lessons:</strong> For any disaggregated or mobile inference design, decide which state can be recomputed locally and which state must be transferred incrementally. Trigger migration from predicted disruption deadlines, and measure both service interruption and steady-state token latency.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 is the useful workflow diagram for Pallas; Figure 4 compares recovery timelines across Full-Copy, recomputation-style recovery, and proactive migration.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · pipeline parallelism, kv sharing, training/inference efficiency</div>
+            <h2><a href="https://arxiv.org/abs/2608.15943">KV-Pipe: On the Relation Between KV Sharing and Pipeline Parallel Efficiency in LLMs</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Maryam Dialameh, Hossein Rajabzadeh, Harish Krishnamoorthy Murali, Walid Ahmed, Weiwei Zhang, and Hyock Ju Kwon. Maryam Dialameh, Hossein Rajabzadeh, and Hyock Ju Kwon — School of Engineering, University of Waterloo, Waterloo, Canada; Maryam Dialameh, Hossein Rajabzadeh, Harish Krishnamoorthy Murali, Walid Ahmed, and Weiwei Zhang — Ascend Team, Huawei Technologies, Toronto, Canada.</p>
+            <p><strong>Tags:</strong> Pipeline Parallelism, KV Sharing, Training/Inference Efficiency</p>
+            <p><strong>Problem:</strong> Pipeline-parallel LLM training wastes accelerator time when stages are imbalanced, while cross-layer KV sharing has mostly been treated as an inference memory optimization rather than a way to reshape per-stage work.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces KV-Pipe, a stage-aware KV-sharing procedure that converts selected attention layers in tail-first order and retargets the current bottleneck to move the FLOPs Imbalance Ratio toward 1.</li><li>Runs offline using only a pipeline partition and per-layer FLOPs estimates, adding negligible runtime overhead and avoiding online tuning.</li><li>Reports up to 9.2% higher training MFU and up to 9.8% lower iteration time, with larger gains at higher pipeline-parallel degrees; also improves long-context decoding throughput by reducing KV-cache growth and redundant KV projection work.</li></ul>
+            <p><strong>Why it matters:</strong> This is not a network-protocol paper, but it is communication-facing infrastructure: it changes model-internal KV layout to reduce pipeline bubbles and improve utilization, which changes how much pressure falls onto the inter-stage communication schedule.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>KV layout becomes a system-architecture degree of freedom, not merely a model-compression trick.</li><li>The tail-first heuristic is pragmatic: later pipeline stages often dominate bubbles, so shifting their attention work can improve global MFU without changing the runtime scheduler.</li><li>The win grows with pipeline degree because stage imbalance is amplified as stages become narrower and bubbles take a larger fraction of iteration time.</li><li>There is a useful dual benefit: the same KV sharing can help training stage balance and inference-side long-context decode throughput.</li></ul>
+            <p><strong>Actionable lessons:</strong> When optimizing pipeline-parallel training, do not only repartition layers or tweak schedules. Include model-internal KV sharing/layout as a knob, then evaluate its effect on stage balance, activation/KV traffic, and end-to-end iteration time.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is the best mental-model figure: it shows pipeline bubbles, how KV sharing redistributes attention workload, and how KV-Pipe reduces bubble time. Figure 2 compares KV sharing placement strategies.</p>
+          </article>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Ditto · research briefs</span>
+        <a href="index.html">Back to brief archive</a>
+      </footer>
+    </div>
+  </body>
+</html>
