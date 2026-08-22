@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-22",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-22.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-22.html",
+      "topPaper": {
+        "title": "HYDRA: A Heterogeneous Chiplet DSE Framework for Serving Dynamic Hybrid LLM Workloads",
+        "arxiv": "https://arxiv.org/abs/2608.19395"
+      },
+      "papers": [
+        {
+          "title": "HYDRA: A Heterogeneous Chiplet DSE Framework for Serving Dynamic Hybrid LLM Workloads",
+          "arxiv": "https://arxiv.org/abs/2608.19395"
+        },
+        {
+          "title": "The Road Less Traveled: Congestion-Aware NoC Placement and Packet Routing for FPGAs",
+          "arxiv": "https://arxiv.org/abs/2608.17266"
+        },
+        {
+          "title": "Global Simulation-Guided Dynamic Operator Scheduling for Efficient Multi-Tenant Model Serving",
+          "arxiv": "https://arxiv.org/abs/2608.15762"
+        },
+        {
+          "title": "Which Eviction Policy Should an LLM Cache Use? A Systematic Study Across Workloads, Capacities, and Encoders",
+          "arxiv": "https://arxiv.org/abs/2608.20280"
+        }
+      ]
+    },
+    {
       "date": "2026-08-21",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-21.html",
