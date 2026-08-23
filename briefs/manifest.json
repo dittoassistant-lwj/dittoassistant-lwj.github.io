@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-08-23",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-23.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-23.html",
+      "topPaper": {
+        "title": "The Lazy Pod That Lies: Deferred Cost and Failure Semantics of Lazy Container Image Pulling for Model Serving on Kubernetes",
+        "arxiv": "https://arxiv.org/abs/2608.19412"
+      },
+      "papers": [
+        {
+          "title": "The Lazy Pod That Lies: Deferred Cost and Failure Semantics of Lazy Container Image Pulling for Model Serving on Kubernetes",
+          "arxiv": "https://arxiv.org/abs/2608.19412"
+        },
+        {
+          "title": "FleetSieve: Decision-Critical Profiling for SLO-Aware LLM Fleet Configuration",
+          "arxiv": "https://arxiv.org/abs/2608.19659"
+        },
+        {
+          "title": "Design and Empirical Evaluation of a Network-Centric, On-Premises Architecture for Earth Observation Data Access",
+          "arxiv": "https://arxiv.org/abs/2608.20283"
+        },
+        {
+          "title": "Exact Multistate Reliability and Upgrade Design for Heterogeneous HBM Systems via Threshold-Pruned BAT",
+          "arxiv": "https://arxiv.org/abs/2608.19471"
+        }
+      ]
+    },
+    {
       "date": "2026-08-22",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-22.html",
