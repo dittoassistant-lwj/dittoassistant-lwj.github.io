@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-24.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-24.html",
+      "topPaper": {
+        "title": "TokenCake: A KV-Cache-centric Serving Framework for LLM-based Multi-Agent Applications",
+        "arxiv": "https://arxiv.org/abs/2510.18586"
+      },
+      "papers": [
+        {
+          "title": "TokenCake: A KV-Cache-centric Serving Framework for LLM-based Multi-Agent Applications",
+          "arxiv": "https://arxiv.org/abs/2510.18586"
+        },
+        {
+          "title": "Towards Traffic Modelling of Multi-Agent Systems: The Role of Coordination Topology",
+          "arxiv": "https://arxiv.org/abs/2608.20494"
+        },
+        {
+          "title": "TurboRetry: Mitigating Large-Scale QUIC Handshake Floods with Off-the-Shelf DPU Offloading",
+          "arxiv": "https://arxiv.org/abs/2608.02264"
+        },
+        {
+          "title": "Oasis: Hiding the Cost of Querying Parquet Files in the Datapath",
+          "arxiv": "https://arxiv.org/abs/2608.02268"
+        },
+        {
+          "title": "Assessing Triple Modular Redundancy for Wide-Link, Low-Latency NoC Routers: Reliability and Physical Design Challenges",
+          "arxiv": "https://arxiv.org/abs/2608.21288"
+        }
+      ]
+    },
+    {
       "date": "2026-08-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-23.html",
