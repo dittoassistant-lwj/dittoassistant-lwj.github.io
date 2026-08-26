@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-26.html",
+      "topPaper": {
+        "title": "Maia 200: A Software Defined Dataflow System for Large-scale AI Acceleration",
+        "arxiv": "https://arxiv.org/abs/2608.24664"
+      },
+      "papers": [
+        {
+          "title": "Maia 200: A Software Defined Dataflow System for Large-scale AI Acceleration",
+          "arxiv": "https://arxiv.org/abs/2608.24664"
+        },
+        {
+          "title": "Scalable datacenter replication with mostly-synchronous consensus on hardware",
+          "arxiv": "https://arxiv.org/abs/2608.24622"
+        },
+        {
+          "title": "Optimizing Allreduce Operations for Modern Heterogeneous Architectures with Multiple Processes per GPU",
+          "arxiv": "https://arxiv.org/abs/2508.13397"
+        },
+        {
+          "title": "WiCi: Wireless GPU Computing Infrastructure",
+          "arxiv": "https://arxiv.org/abs/2608.24204"
+        },
+        {
+          "title": "Simthesizer: An Agent-Driven Simulation Framework for LLM Serving Systems",
+          "arxiv": "https://arxiv.org/abs/2608.24650"
+        }
+      ]
+    },
+    {
       "date": "2026-08-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-25.html",
