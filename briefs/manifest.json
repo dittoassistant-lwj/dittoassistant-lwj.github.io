@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-27",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-27.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-27.html",
+      "topPaper": {
+        "title": "FLINT: Efficiently Leveraging High Bandwidth Flash for Capacity-Scalable LLM Inference Acceleration",
+        "arxiv": "https://arxiv.org/abs/2608.25062"
+      },
+      "papers": [
+        {
+          "title": "FLINT: Efficiently Leveraging High Bandwidth Flash for Capacity-Scalable LLM Inference Acceleration",
+          "arxiv": "https://arxiv.org/abs/2608.25062"
+        },
+        {
+          "title": "SlimTCP: It's fast, but not because it's slim",
+          "arxiv": "https://arxiv.org/abs/2608.25834"
+        },
+        {
+          "title": "ShardMeter: Sharded and Geo-Distributed Training Without the Guesswork",
+          "arxiv": "https://arxiv.org/abs/2608.23840"
+        },
+        {
+          "title": "Memory-Sovereign Inference: Output-Exact Execution Beyond Full Residency",
+          "arxiv": "https://arxiv.org/abs/2608.23805"
+        },
+        {
+          "title": "NeuroPrefetcher: Storage-Aware Sparse LLM Inference via Delta Prefetching",
+          "arxiv": "https://arxiv.org/abs/2608.22643"
+        }
+      ]
+    },
+    {
       "date": "2026-08-26",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-26.html",
@@ -2711,7 +2743,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
