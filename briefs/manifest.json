@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-28",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-28.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-28.html",
+      "topPaper": {
+        "title": "Distributed Training using an Intelligent Network",
+        "arxiv": "https://arxiv.org/abs/2608.26453"
+      },
+      "papers": [
+        {
+          "title": "Distributed Training using an Intelligent Network",
+          "arxiv": "https://arxiv.org/abs/2608.26453"
+        },
+        {
+          "title": "VPP: Virtual Pipeline Parallelism for Efficient Chunked Prefill in Long-Context LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2608.26523"
+        },
+        {
+          "title": "Astrolabe: Balancing Load in LLM Serving with Randomized Prediction-Guided Scheduling",
+          "arxiv": "https://arxiv.org/abs/2508.03611"
+        },
+        {
+          "title": "LiveR: Fine-Grained Elasticity via Live Reconfiguration for Model Training",
+          "arxiv": "https://arxiv.org/abs/2605.22014"
+        },
+        {
+          "title": "Host-Driven Flowlet Balancing with Segment Routing over IPv6",
+          "arxiv": "https://arxiv.org/abs/2606.27697"
+        }
+      ]
+    },
+    {
       "date": "2026-08-27",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-27.html",
