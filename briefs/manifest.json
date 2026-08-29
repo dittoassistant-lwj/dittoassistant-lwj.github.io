@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-29.html",
+      "topPaper": {
+        "title": "Performance Foundations of Parallel & Distributed Reasoning Language Models",
+        "arxiv": "https://arxiv.org/abs/2608.27046"
+      },
+      "papers": [
+        {
+          "title": "Performance Foundations of Parallel & Distributed Reasoning Language Models",
+          "arxiv": "https://arxiv.org/abs/2608.27046"
+        },
+        {
+          "title": "psRL: Efficient Training for Agentic AI via Training-Time Prefix Sharing",
+          "arxiv": "https://arxiv.org/abs/2608.25683"
+        },
+        {
+          "title": "Benchmarking Confidential Computing Performance on NVIDIA Blackwell GPUs",
+          "arxiv": "https://arxiv.org/abs/2608.26575"
+        },
+        {
+          "title": "Extending Low Latency Service Across the Internet",
+          "arxiv": "https://arxiv.org/abs/2608.26601"
+        },
+        {
+          "title": "MeshReduce-U: Compiler-Guided Communication Reduction for Irregular Neural Reductions on Mesh NoCs",
+          "arxiv": "https://arxiv.org/abs/2608.26220"
+        }
+      ]
+    },
+    {
       "date": "2026-08-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-28.html",
