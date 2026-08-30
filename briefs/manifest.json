@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-30.html",
+      "topPaper": {
+        "title": "FaulT-Bench: Towards Benchmarking Network Troubleshooting LLM Agents under Unreliable User Tickets",
+        "arxiv": "https://arxiv.org/abs/2608.27021"
+      },
+      "papers": [
+        {
+          "title": "FaulT-Bench: Towards Benchmarking Network Troubleshooting LLM Agents under Unreliable User Tickets",
+          "arxiv": "https://arxiv.org/abs/2608.27021"
+        },
+        {
+          "title": "End-to-End Data Movement: Paradigm Reexamination and Principles for Efficiency",
+          "arxiv": "https://arxiv.org/abs/2512.15028"
+        },
+        {
+          "title": "Decoupled I/O-Dominant Pipelines for Large-Scale Whole-Slide Image Embedding Extraction",
+          "arxiv": "https://arxiv.org/abs/2608.27278"
+        },
+        {
+          "title": "PRO-RAN: Processor-Level Characterization of Open RAN Centralized and Distributed Units",
+          "arxiv": "https://arxiv.org/abs/2608.26498"
+        },
+        {
+          "title": "Optimizing API Gateway Placement in Multi-Cloud Kubernetes",
+          "arxiv": "https://arxiv.org/abs/2608.26573"
+        }
+      ]
+    },
+    {
       "date": "2026-08-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-29.html",
