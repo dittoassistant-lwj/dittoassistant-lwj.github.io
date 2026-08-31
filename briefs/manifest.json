@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-08-31",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-08-31.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-08-31.html",
+      "topPaper": {
+        "title": "TerraceMoE: A Cost Model for Hierarchical MoE All-to-All Communication",
+        "arxiv": "https://arxiv.org/abs/2608.27874"
+      },
+      "papers": [
+        {
+          "title": "TerraceMoE: A Cost Model for Hierarchical MoE All-to-All Communication",
+          "arxiv": "https://arxiv.org/abs/2608.27874"
+        },
+        {
+          "title": "Training Communication-Efficient Mixture-of-Experts Language Models with Layer Re-Configuration",
+          "arxiv": "https://arxiv.org/abs/2608.28511"
+        },
+        {
+          "title": "SwiftQK: Fast and Communication-Efficient Tensor Parallelism for Query-Key Normalization",
+          "arxiv": "https://arxiv.org/abs/2608.09160"
+        },
+        {
+          "title": "Configurable and Hierarchical Allreduce",
+          "arxiv": "https://arxiv.org/abs/2608.02884"
+        },
+        {
+          "title": "Characterizing LLM Kernel Access and Memory Interaction in Multi-Partition NUMA GPUs",
+          "arxiv": "https://arxiv.org/abs/2607.28824"
+        }
+      ]
+    },
+    {
       "date": "2026-08-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-30.html",
