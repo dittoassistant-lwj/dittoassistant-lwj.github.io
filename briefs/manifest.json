@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-01.html",
+      "topPaper": {
+        "title": "Revisiting Bruck: Phase-Efficient All-to-All Collective Communication in Reconfigurable Networks",
+        "arxiv": "https://arxiv.org/abs/2605.26930"
+      },
+      "papers": [
+        {
+          "title": "Revisiting Bruck: Phase-Efficient All-to-All Collective Communication in Reconfigurable Networks",
+          "arxiv": "https://arxiv.org/abs/2605.26930"
+        },
+        {
+          "title": "Short-circuiting Rings for Low-Latency AllReduce",
+          "arxiv": "https://arxiv.org/abs/2510.03491"
+        },
+        {
+          "title": "Flowcut Switching: High-Performance Adaptive Routing with In-Order Delivery Guarantees",
+          "arxiv": "https://arxiv.org/abs/2506.21406"
+        },
+        {
+          "title": "Distributed Training under Packet Loss",
+          "arxiv": "https://arxiv.org/abs/2507.07114"
+        },
+        {
+          "title": "Analytical Provisioning for Attention-FFN Disaggregated LLM Serving under Stochastic Workloads",
+          "arxiv": "https://arxiv.org/abs/2601.21351"
+        }
+      ]
+    },
+    {
       "date": "2026-08-31",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-08-31.html",
