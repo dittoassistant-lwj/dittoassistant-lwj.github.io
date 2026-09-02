@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-02.html",
+      "topPaper": {
+        "title": "Characterizing the Scalability and Performance of Large-Scale AI Training Under Multi-Tenancy",
+        "arxiv": "https://arxiv.org/abs/2609.00817"
+      },
+      "papers": [
+        {
+          "title": "Characterizing the Scalability and Performance of Large-Scale AI Training Under Multi-Tenancy",
+          "arxiv": "https://arxiv.org/abs/2609.00817"
+        },
+        {
+          "title": "DART: Aiming for Tail-Delay Control in Reconfigurable Networks",
+          "arxiv": "https://arxiv.org/abs/2609.01071"
+        },
+        {
+          "title": "AInfer-PD: Communication-Safe In-Place Prefill–Decode Multiplexing for Distributed MoE Rollouts",
+          "arxiv": "https://arxiv.org/abs/2609.00993"
+        },
+        {
+          "title": "Compressing AI Traffic: Standardized Neural Network Coding of Visual-Token Representations in Split Vision–Language Inference",
+          "arxiv": "https://arxiv.org/abs/2609.01200"
+        }
+      ]
+    },
+    {
       "date": "2026-09-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-01.html",
