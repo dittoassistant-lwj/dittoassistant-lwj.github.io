@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-03.html",
+      "topPaper": {
+        "title": "Scaling Inference Prefill with High-Radix Photonic Interconnects",
+        "arxiv": "https://arxiv.org/abs/2609.01821"
+      },
+      "papers": [
+        {
+          "title": "Scaling Inference Prefill with High-Radix Photonic Interconnects",
+          "arxiv": "https://arxiv.org/abs/2609.01821"
+        },
+        {
+          "title": "AceSpec: An Asymmetric Edge-Cloud Collaborative Framework for Communication-Efficient LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2609.02514"
+        },
+        {
+          "title": "CHIPSMORE: Compute-in-Interconnect and -Memory Chiplets for Multi-Mode Multi-Request LLM Inference Acceleration",
+          "arxiv": "https://arxiv.org/abs/2608.30509"
+        },
+        {
+          "title": "Design and Physical Constraints of Synthetic-Frequency Photonic Switching Fabrics",
+          "arxiv": "https://arxiv.org/abs/2609.01130"
+        },
+        {
+          "title": "Tri-Band Channel Measurement-Enabled Multi-Layer Digital Twin for Terahertz Wireless Data Centers",
+          "arxiv": "https://arxiv.org/abs/2609.01699"
+        }
+      ]
+    },
+    {
       "date": "2026-09-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-02.html",
