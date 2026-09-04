@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-04.html",
+      "topPaper": {
+        "title": "BASP: Communication-Efficient Batch-Aware Sequence Parallelism for LLM Training",
+        "arxiv": "https://arxiv.org/abs/2609.03151"
+      },
+      "papers": [
+        {
+          "title": "BASP: Communication-Efficient Batch-Aware Sequence Parallelism for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2609.03151"
+        },
+        {
+          "title": "Every Kernel Is a Join: Automatic Multi-GPU Parallelism for AI Computations in Einsummable",
+          "arxiv": "https://arxiv.org/abs/2609.03905"
+        },
+        {
+          "title": "Latency-Aware Orchestration for Multi-Agent LLM Workflows on Heterogeneous GPUs",
+          "arxiv": "https://arxiv.org/abs/2609.03335"
+        },
+        {
+          "title": "DynaNDE: Dynamic Near-Data Expert Scheduling for Batched MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2609.00407"
+        },
+        {
+          "title": "Multi-Turn LLM Conversations under the Least-Recently-Used Policy: Mean-Field Asymptotics and Hit Ratio Approximation",
+          "arxiv": "https://arxiv.org/abs/2609.02027"
+        }
+      ]
+    },
+    {
       "date": "2026-09-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-03.html",
