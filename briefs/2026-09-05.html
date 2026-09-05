@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-09-05, focused on bandwidth-backed LLM inference, KV-cache tiering over RDMA/CXL/NVMe, communication-avoiding training, asynchronous HPC communication, and CXL memory access." />
+    <title>Daily AI Cluster Networking Brief — 2026-09-05 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-09-05</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s useful signal is not a brand-new transport paper; it is the recurring systems pattern that LLM infrastructure keeps turning memory into a bandwidth-backed network resource. The best pick is SiDP because it makes NVLink bandwidth, weight residency, and KV-cache capacity a first-class inference design trade-off.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2605.28095">SiDP: Memory-Efficient Data Parallelism for Offline LLM Inference</a></h3>
+          <p class="muted">Authors &amp; affiliations: Alan Zhao and Cyril Y. He. Affiliation: scitix.</p>
+          <p><strong>Tags:</strong> LLM Serving, NVLink/Data Movement, KV Cache</p>
+          <p><strong>Why this is the top pick:</strong> SiDP is the strongest match today because it attacks a real inference-cluster resource tension: data parallelism gives clean scheduling and throughput scaling, but replicated weights eat HBM that could have held KV cache. The paper’s move is to treat weights as a shared, bandwidth-backed resource inside a DP group instead of requiring every GPU to store a full copy.</p>
+          <p><strong>Deeper explanation:</strong> The design splits execution into two network-facing modes. In Weight-as-a-Service, a layer owner streams weights over NVLink into a small local cache for large-batch offline decoding; in Compute-as-a-Service, small-batch tail work can ship activations to the owner instead. That is a useful architecture pattern for superpod thinking: the question is not simply “replicate or shard,” but which tensor is cheaper to move under the current batch regime, interconnect bandwidth, and memory pressure. The authors evaluate on NVIDIA H20, H200, and B200 GPUs with Qwen and Llama models, reporting up to 1.8× usable KV-capacity gain and up to 1.5× end-to-end throughput improvement over vLLM baselines for offline workloads.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> Offline LLM inference wants large batches to saturate GPUs, but full data-parallel weight replication consumes HBM and limits KV-cache capacity; model parallelism saves memory but introduces fine-grained synchronization and more complex scheduling.</li>
+            <li><strong>Key contributions:</strong></li>
+            <li>Proposes SiDP, a memory-efficient data-parallel paradigm that pools weights across a DP group rather than replicating every layer on every GPU.</li><li>Introduces Weight-as-a-Service and Compute-as-a-Service execution modes, choosing whether to move remote weights or activations depending on batch size and efficiency regime.</li><li>Reports higher usable KV capacity and offline throughput across H20/H200/B200 evaluations with Qwen3-32B, Qwen2.5-72B, and Llama-3.1-70B.</li>
+            <li><strong>Why it matters architecturally:</strong> Treat model state as an interconnect-served cacheable object. For throughput-oriented inference, reserve HBM for KV when it buys batch size, and pay controlled NVLink movement for weights only when the batch is large enough to amortize the transfer.</li>
+            <li><strong>Useful diagram:</strong> Figure 3 gives the system overview and runtime workflow inside a data-parallel group; Figure 4 is the more mechanism-heavy view, showing memory layout and per-layer workflows for the two SiDP modes.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · llm serving, nvlink, kv cache</div>
+            <h2><a href="https://arxiv.org/abs/2605.28095">SiDP: Memory-Efficient Data Parallelism for Offline LLM Inference</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Alan Zhao and Cyril Y. He. Affiliation: scitix.</p>
+            <p><strong>Tags:</strong> LLM Serving, NVLink/Data Movement, KV Cache</p>
+            <p><strong>Problem:</strong> Offline LLM inference wants large batches to saturate GPUs, but full data-parallel weight replication consumes HBM and limits KV-cache capacity; model parallelism saves memory but introduces fine-grained synchronization and more complex scheduling.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Proposes SiDP, a memory-efficient data-parallel paradigm that pools weights across a DP group rather than replicating every layer on every GPU.</li><li>Introduces Weight-as-a-Service and Compute-as-a-Service execution modes, choosing whether to move remote weights or activations depending on batch size and efficiency regime.</li><li>Reports higher usable KV capacity and offline throughput across H20/H200/B200 evaluations with Qwen3-32B, Qwen2.5-72B, and Llama-3.1-70B.</li></ul>
+            <p><strong>Why it matters:</strong> SiDP is the strongest match today because it attacks a real inference-cluster resource tension: data parallelism gives clean scheduling and throughput scaling, but replicated weights eat HBM that could have held KV cache.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>For offline decoding, batch-size efficiency changes the right data-movement choice; moving weights can be acceptable when many tokens amortize the fetch.</li><li>HBM capacity should be allocated to the state that unlocks throughput—often KV cache—not automatically to full weight replicas.</li><li>NVLink bandwidth becomes a memory-system primitive, not merely a tensor-parallel collective path.</li><li>The CaS/WaS split is a useful pattern for heterogeneous serving: switch between moving model state and moving activations as workload shape changes.</li></ul>
+            <p><strong>Actionable lessons:</strong> In offline inference clusters, compare DP replication, TP/PP sharding, and bandwidth-backed weight pooling using a joint model of HBM headroom, KV-cache growth, NVLink bandwidth, and decode batch size. The planner should decide what to move, not assume weights are always local.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 gives the system overview and runtime workflow inside a data-parallel group; Figure 4 shows the memory layout and per-layer workflows for Weight-as-a-Service and Compute-as-a-Service.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · kv cache, rdma/cxl/nvme, llm infrastructure</div>
+            <h2><a href="https://arxiv.org/abs/2604.26968">Predictive Multi-Tier Memory Management for KV Cache in Large-Scale GPU Inference</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Sanjeev Rao Ganjihal. Affiliation listed in the paper as AI Infrastructure Builder, AI Researcher.</p>
+            <p><strong>Tags:</strong> KV Cache, Memory Disaggregation, RDMA/CXL/NVMe</p>
+            <p><strong>Problem:</strong> Large-context inference over-provisions or confines KV cache in GPU HBM even though modern clusters have CPU DRAM, CXL memory, NVMe/GPUDirect Storage, RDMA fabric, and parallel filesystem tiers that could store colder state.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Builds an attention-architecture-aware KV sizing engine across MHA, GQA, MQA, and MLA, highlighting MLA over-provisioning when frameworks size it like full MHA.</li><li>Proposes a six-tier KV hierarchy spanning GPU HBM, CPU DRAM, CXL memory, NVMe, RDMA fabric, and parallel filesystems.</li><li>Uses a Bayesian predictor to place KV blocks by expected reuse and latency tolerance rather than only reacting after cache pressure appears.</li></ul>
+            <p><strong>Why it matters:</strong> This paper is directly about the memory/network boundary for serving. Even if some evaluation details are projection-heavy, the resource model is the right one: KV capacity is no longer a single-GPU HBM problem once context windows and agentic reuse grow.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The tier list makes RDMA and CXL explicit serving resources, which forces the system to account for bandwidth, latency, and predictability rather than just bytes.</li><li>MLA-aware sizing is a sharp example of why cache allocation must understand model architecture, not just tensor dimensions exposed by a framework.</li><li>Predictive placement is attractive because KV misses are not equal: a missed hot prefix can trigger recompute or cross-tier traffic at exactly the wrong decode step.</li><li>The design should be treated as a blueprint to validate with real traces, especially for RDMA tail latency and contention under multi-tenant serving.</li></ul>
+            <p><strong>Actionable lessons:</strong> For disaggregated serving, build KV-cache admission and placement around explicit tier costs. Track per-block reuse probability, transfer size, fabric path, and decode criticality; then validate policies under network contention, not isolated tier bandwidth numbers.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is the key verified architecture diagram: it shows the six-tier memory hierarchy and Bayesian predictor that decides where KV state should live.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · distributed training, zeRO-3, communication avoidance</div>
+            <h2><a href="https://arxiv.org/abs/2602.06499">FCDP: Fully Cached Data Parallel for Communication-Avoiding Large-Scale Training</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Gyeongseo Park, Eungyeong Lee, Song-woo Sok, Myung-Hoon Cha, Kwangwon Koh, Baik-Song An, Hongyeon Kim, and Ki-Dong Kang. Affiliation: Electronics and Telecommunications Research Institute (ETRI).</p>
+            <p><strong>Tags:</strong> Distributed Training, Communication Avoidance, Host-Memory Caching</p>
+            <p><strong>Problem:</strong> ZeRO-3 keeps GPU memory low but repeatedly all-gathers parameters across nodes. On bandwidth-limited commodity clusters, inter-node all-gather dominates training time even though local host-memory transfers may be faster than fetching the same parameters over the network.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces FCDP, which caches forward-pass parameters in host memory and reuses them during backward pass to cut redundant inter-node all-gather.</li><li>Reduces inter-node all-gather by 50% for full fine-tuning while preserving ZeRO-3’s GPU memory footprint.</li><li>For PEFT workloads, selectively communicates trainable parameters and reports over 99% inter-node traffic reduction in the authors’ setup.</li></ul>
+            <p><strong>Why it matters:</strong> FCDP is a good reminder that “offload” is not always a capacity hack; on weak fabrics, host memory can be a faster cache than the remote GPU path. That is very relevant when training stacks leave DGX-class networking and land on mixed public-cloud clusters.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The paper’s core inequality is local CPU-to-GPU bandwidth versus inter-node all-gather cost; when that flips, caching beats communication.</li><li>The design preserves GPU memory headroom, unlike GPU-resident parameter caches that can force smaller batches.</li><li>PEFT changes the traffic structure dramatically because most parameters are frozen; communication policy should exploit trainable/frozen separation.</li><li>The result is topology-dependent: on high-end NVLink/InfiniBand fabrics, the crossover point must be remeasured rather than assumed.</li></ul>
+            <p><strong>Actionable lessons:</strong> Add a measured crossover test to training planners: for each cluster class, compare host-memory reload against inter-node all-gather by layer size and overlap opportunity. If host reload wins, cache forward parameters locally and reserve fabric bandwidth for unavoidable synchronization.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 shows the FCDP components; Figure 4 is the clearest mechanism diagram, comparing ZeRO-3, ZeRO++, and FCDP per-layer schedules and showing where FCDP replaces backward inter-node all-gather with CPU caching plus intra-node gather.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · communication library, infiniband, multithreaded runtimes</div>
+            <h2><a href="https://arxiv.org/abs/2505.01864">LCI: a Lightweight Communication Interface for Efficient Asynchronous Multithreaded Communication</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Jiakun Yan and Marc Snir. Affiliation: University of Illinois Urbana-Champaign, Urbana, IL, USA.</p>
+            <p><strong>Tags:</strong> Communication Runtime, InfiniBand/Slingshot, Async Messaging</p>
+            <p><strong>Problem:</strong> MPI-era communication interfaces struggle with highly asynchronous, multithreaded runtimes where many threads initiate fine-grained communication concurrently and need flexible completion mechanisms.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Designs LCI as a lightweight point-to-point communication interface with multiple completion mechanisms and tunable runtime resources.</li><li>Builds a threading-efficient runtime using atomic data structures, fine-grained non-blocking locks, packet pools, queues, and network-aware resource management.</li><li>Evaluates on InfiniBand and Slingshot-11 clusters, reporting strong multithreaded microbenchmark and application-level performance versus existing communication libraries.</li></ul>
+            <p><strong>Why it matters:</strong> This is HPC-facing rather than LLM-specific, but the interface problem maps to AI runtimes as they move away from simple bulk-synchronous collectives. Fine-grained overlap and runtime-initiated communication need APIs that do not collapse under MPI_THREAD_MULTIPLE-style contention.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The paper separates communication mechanisms from runtime resources, which is useful for systems that need different completion and progress behavior per workload phase.</li><li>Thread scalability is treated as a first-order network-stack property, not just an implementation detail.</li><li>As AI execution becomes more dynamic—MoE dispatch, pipeline bubbles, agent workflows—the need for efficient many-thread communication paths increases.</li><li>LCI’s evaluation across InfiniBand and Slingshot makes it a useful baseline for thinking beyond a single vendor fabric.</li></ul>
+            <p><strong>Actionable lessons:</strong> For AI communication libraries, benchmark concurrent initiation and completion paths directly. A fast collective datapath is not enough if runtime threads serialize around progress, queue locks, or shared endpoints.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 gives the LCI overview; Figure 2 shows the runtime architecture with operations and resource objects, which is the most useful diagram for understanding where thread scalability is engineered.</p>
+          </article>
+
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · cxl memory, near-memory acceleration, heterogeneous systems</div>
+            <h2><a href="https://arxiv.org/abs/2309.04011">CXLMemUring: A Hardware Software Co-design Paradigm for Asynchronous and Flexible Parallel CXL Memory Pool Access</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Yiwei Yang, Yusheng Zheng, Kexin Chu, Jianchang Su, Jesun Firoz, and Andi Quinn. Affiliations: UC Santa Cruz, University of Connecticut, and Pacific Northwest National Lab.</p>
+            <p><strong>Tags:</strong> CXL Memory, Hardware/Software Co-design, Near-Memory Execution</p>
+            <p><strong>Problem:</strong> CXL-attached memory expands capacity but adds latency that ordinary CPU prefetching and software asynchrony do not hide well, especially for pointer-heavy workloads with dependent address generation.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Measures CXL memory slowdown on a real Granite Rapids CXL platform, showing graph workloads slow substantially versus local DRAM.</li><li>Introduces CXLMemUring, which forms larger asynchronous “hoists” containing CXL-resident memory operations and nearby address-generation logic.</li><li>Runs hoists on a near-memory accelerator built with a commodity CXL Type 2 FPGA while the host CPU continues useful work.</li></ul>
+            <p><strong>Why it matters:</strong> CXL keeps showing up in LLM serving proposals for KV cache and memory expansion, but raw capacity is not the whole story. This paper is useful because it treats CXL latency hiding as a co-design problem rather than assuming the load/store abstraction makes remote memory free.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The latency gap is awkward: CXL is too slow to look like local DRAM but too fast for coarse OS-level async mechanisms to be natural.</li><li>Batching dependent memory work into hoists is a plausible pattern for making near-memory devices useful without rewriting whole applications.</li><li>For LLM serving, CXL-backed KV tiers will need similar orchestration around access granularity, prefetch distance, and compute overlap.</li><li>The result argues against evaluating CXL only with bandwidth microbenchmarks; dependent-access latency is the real boss fight.</li></ul>
+            <p><strong>Actionable lessons:</strong> When designing CXL memory pools for AI infrastructure, prototype the critical access pattern—not just sequential bandwidth. For KV/cache metadata paths, test whether access can be hoisted, batched, prefetched, or offloaded to a near-memory engine before betting on capacity economics.</p>
+            <p><strong>Useful diagram:</strong> Figure 2 shows the CXLMemUring architecture; Figures 3 and 4 illustrate how linked-list traversal is transformed into host-side orchestration plus device-side hoist execution.</p>
+          </article>
+
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Ditto · research briefs</span>
+        <a href="index.html">Back to brief archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

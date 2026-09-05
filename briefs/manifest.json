@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-05.html",
+      "topPaper": {
+        "title": "SiDP: Memory-Efficient Data Parallelism for Offline LLM Inference",
+        "arxiv": "https://arxiv.org/abs/2605.28095"
+      },
+      "papers": [
+        {
+          "title": "SiDP: Memory-Efficient Data Parallelism for Offline LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2605.28095"
+        },
+        {
+          "title": "Predictive Multi-Tier Memory Management for KV Cache in Large-Scale GPU Inference",
+          "arxiv": "https://arxiv.org/abs/2604.26968"
+        },
+        {
+          "title": "FCDP: Fully Cached Data Parallel for Communication-Avoiding Large-Scale Training",
+          "arxiv": "https://arxiv.org/abs/2602.06499"
+        },
+        {
+          "title": "LCI: a Lightweight Communication Interface for Efficient Asynchronous Multithreaded Communication",
+          "arxiv": "https://arxiv.org/abs/2505.01864"
+        },
+        {
+          "title": "CXLMemUring: A Hardware Software Co-design Paradigm for Asynchronous and Flexible Parallel CXL Memory Pool Access",
+          "arxiv": "https://arxiv.org/abs/2309.04011"
+        }
+      ]
+    },
+    {
       "date": "2026-09-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-04.html",
