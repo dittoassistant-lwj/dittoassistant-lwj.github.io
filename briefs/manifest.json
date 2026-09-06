@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-06.html",
+      "topPaper": {
+        "title": "Contribution-Aware Bandwidth Allocation for Multimodal Split Learning",
+        "arxiv": "https://arxiv.org/abs/2609.01406"
+      },
+      "papers": [
+        {
+          "title": "Contribution-Aware Bandwidth Allocation for Multimodal Split Learning",
+          "arxiv": "https://arxiv.org/abs/2609.01406"
+        },
+        {
+          "title": "GrowPage: On-Demand KV Budgeting for Efficient LLM Reasoning Serving",
+          "arxiv": "https://arxiv.org/abs/2609.03494"
+        },
+        {
+          "title": "A Universal Context-Reuse Layer for Cross-Model KV Sharing",
+          "arxiv": "https://arxiv.org/abs/2608.30963"
+        },
+        {
+          "title": "More GPUs or a Smaller Cache? Tensor Parallelism versus KV Compression for Memory-Bound LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2608.23962"
+        },
+        {
+          "title": "Minima-KV: Retention-Preserving KV Cache Compression with Mixed-Format Paged Attention",
+          "arxiv": "https://arxiv.org/abs/2608.23834"
+        }
+      ]
+    },
+    {
       "date": "2026-09-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-05.html",
