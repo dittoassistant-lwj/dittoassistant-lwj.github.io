@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-07",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-07.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-07.html",
+      "topPaper": {
+        "title": "CIERA: Cross-Iteration Exponent Reuse for Lossless Allgather in Sharded MoE Training",
+        "arxiv": "https://arxiv.org/abs/2609.04609"
+      },
+      "papers": [
+        {
+          "title": "CIERA: Cross-Iteration Exponent Reuse for Lossless Allgather in Sharded MoE Training",
+          "arxiv": "https://arxiv.org/abs/2609.04609"
+        },
+        {
+          "title": "Adaptive Context Parallelism for Production LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.04774"
+        },
+        {
+          "title": "A Wavelength Borrowing Architecture for Optical Data Center Networks - Extended Version",
+          "arxiv": "https://arxiv.org/abs/2609.04874"
+        },
+        {
+          "title": "Decoupling Disaggregated Memory Optimizations from Indexing: A Compiler-Runtime Approach",
+          "arxiv": "https://arxiv.org/abs/2609.02669"
+        },
+        {
+          "title": "From Prior-Guided Heuristics to Deployable Agents: Accelerating Demonstration-Driven Reinforcement Learning for Deadline-Constrained Network Control",
+          "arxiv": "https://arxiv.org/abs/2609.03590"
+        }
+      ]
+    },
+    {
       "date": "2026-09-06",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-06.html",
