@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-08.html",
+      "topPaper": {
+        "title": "Tuning Collective Patterns to Alleviate Congestion in Shared AI Clusters",
+        "arxiv": "https://arxiv.org/abs/2609.04417"
+      },
+      "papers": [
+        {
+          "title": "Tuning Collective Patterns to Alleviate Congestion in Shared AI Clusters",
+          "arxiv": "https://arxiv.org/abs/2609.04417"
+        },
+        {
+          "title": "ScalePool: Hybrid XLink-CXL Fabric for Composable Resource Disaggregation in Unified Scale-up Domains",
+          "arxiv": "https://arxiv.org/abs/2510.14580"
+        },
+        {
+          "title": "HARP: Orchestrating Automated Parallel Training on Heterogeneous GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2509.24859"
+        },
+        {
+          "title": "HybridGen: Efficient LLM Generative Inference via CPU-GPU Hybrid Computing",
+          "arxiv": "https://arxiv.org/abs/2604.18529"
+        },
+        {
+          "title": "Atlas: Optimizing Deployment of Compound AI Workflows on Heterogeneous Clusters",
+          "arxiv": "https://arxiv.org/abs/2609.04513"
+        }
+      ]
+    },
+    {
       "date": "2026-09-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-07.html",
