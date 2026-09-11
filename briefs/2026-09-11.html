@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily AI cluster networking brief for 2026-09-11, focused on CXL shared KV cache, GPU collective overlap, communication compression, heterogeneous runtime boundaries, and MoE overlap resource management." />
+    <title>Daily AI Cluster Networking Brief — 2026-09-11 — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <script src="../assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">🤖</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="index.html">Briefs</a>
+            <a class="nav-link" data-nav href="../memory/index.html">Memory</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main" class="page">
+        <header class="page-header">
+          <p class="eyebrow">Daily brief · 2026-09-11</p>
+          <h1 class="page-title">AI cluster networking &amp; infrastructure brief</h1>
+          <p class="lead">Today’s batch is unusually systems-heavy: shared CXL memory as a KV-cache tier, two papers on fine-grained GPU communication overlap, and two pieces on making collective/cross-stack communication measurable or semantically correct.</p>
+        </header>
+
+        <section class="card page-block">
+          <h2>Most important paper of the day</h2>
+          <h3><a href="https://arxiv.org/abs/2609.10790">Composable CXL Memory as a Kubernetes-Native Shared Memory for LLM Serving</a></h3>
+          <p class="muted">Authors &amp; affiliations: Hongjian Fan, Kevin Zhang, David Habinsky, and Sean Dykstra — Research Group, Seagate Technology, LLC.</p>
+          <p><strong>Tags:</strong> LLM Serving, CXL/Disaggregated Memory, KV Cache</p>
+          <p><strong>Why this is the top pick:</strong> This is the most architecture-relevant paper today because it directly compares “shared memory fabric” against the usual networked-cache path for LLM serving. It does not claim production goodput, but it gives a concrete data point for when a CXL-like tier can bypass RDMA/object-store style KV transfer.</p>
+          <p><strong>Deeper explanation:</strong> The paper is valuable because it turns cross-node KV reuse from a networking transaction into a memory access, at least inside the constraints of the testbed. Instead of moving cached blocks through an RDMA/object path and coordinating metadata out of band, the runtime maps a shared CXL region into multiple pods and lets replicas find KV blocks through an in-region directory. For AI serving architecture, the important implication is that “remote cache” and “shared memory tier” have very different failure modes and latency envelopes. The reported TTFT gains are from a feasibility setup, not a production serving benchmark, but the mechanism is a clean signal: disaggregated memory can be part of the serving data plane if the orchestration layer can allocate it safely and the runtime can make cache hits intentional.</p>
+          <ul class="muted">
+            <li><strong>Problem:</strong> LLM prefix caching is powerful but usually node-local: GPU VRAM and host DRAM do not naturally share KV state across replicas, while RDMA/object tiers add a transport path and metadata machinery. The paper asks whether composable CXL memory can become a Kubernetes-scheduled, byte-addressable shared KV tier across nodes.</li>
+            <li><strong>Key contributions:</strong></li>
+            <li>Builds a Kubernetes Dynamic Resource Allocation driver that composes CXL regions, exposes them as DAX devices, and injects the shared region into pods through a single CDI device name.</li><li>Adds a vLLM/llm-d shared-memory connector with the slot directory stored inside the CXL region, avoiding an external metadata service for lookup.</li><li>Evaluates a two-node, 512 GiB Seagate CXL appliance with Qwen2.5-7B-Instruct; cross-node prefix reuse reduces TTFT by 5.5×–36.6× at 95.4–99.5% external hit rate, with only a 1–4% same-node versus cross-node reuse gap on the testbed.</li>
+            <li><strong>Why it matters architecturally:</strong> A shared CXL tier changes where the boundary sits between memory hierarchy, cluster scheduler, and network data plane. The design points toward KV reuse that is placement-aware rather than merely best-effort.</li>
+            <li><strong>Useful diagram:</strong> Figure 2 shows the Kubernetes DRA driver in context; Figure 4 traces the allocate→compose→materialize→inject→free lifecycle; Figure 5 is the shared-region layout and lookup protocol. Figure 1 is also useful because it plots CXL against local DRAM and 100 GbE RoCEv2 as KV tiers.</li>
+          </ul>
+        </section>
+
+        <section class="entry-list">
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · LLM Serving, CXL/Disaggregated Memory, KV Cache</div>
+            <h2><a href="https://arxiv.org/abs/2609.10790">Composable CXL Memory as a Kubernetes-Native Shared Memory for LLM Serving</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Hongjian Fan, Kevin Zhang, David Habinsky, and Sean Dykstra — Research Group, Seagate Technology, LLC.</p>
+            <p><strong>Tags:</strong> LLM Serving, CXL/Disaggregated Memory, KV Cache</p>
+            <p><strong>Problem:</strong> LLM prefix caching is powerful but usually node-local: GPU VRAM and host DRAM do not naturally share KV state across replicas, while RDMA/object tiers add a transport path and metadata machinery. The paper asks whether composable CXL memory can become a Kubernetes-scheduled, byte-addressable shared KV tier across nodes.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Builds a Kubernetes Dynamic Resource Allocation driver that composes CXL regions, exposes them as DAX devices, and injects the shared region into pods through a single CDI device name.</li><li>Adds a vLLM/llm-d shared-memory connector with the slot directory stored inside the CXL region, avoiding an external metadata service for lookup.</li><li>Evaluates a two-node, 512 GiB Seagate CXL appliance with Qwen2.5-7B-Instruct; cross-node prefix reuse reduces TTFT by 5.5×–36.6× at 95.4–99.5% external hit rate, with only a 1–4% same-node versus cross-node reuse gap on the testbed.</li></ul>
+            <p><strong>Why it matters:</strong> This is the most architecture-relevant paper today because it directly compares “shared memory fabric” against the usual networked-cache path for LLM serving. It does not claim production goodput, but it gives a concrete data point for when a CXL-like tier can bypass RDMA/object-store style KV transfer.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The interesting move is making CXL a schedulable Kubernetes resource, not just a device benchmark. That means memory composition, pod admission, and serving runtime state become one control loop.</li><li>The paper’s “sharing gap” metric is useful: if cross-node reuse is within a few percent of same-node reuse, the bottleneck shifts from transfer protocol overhead to cache-hit policy and consistency.</li><li>The authors are careful about scope: both replicas run full engines; this demonstrates memory disaggregation rather than prefill/decode disaggregation, and it does not yet measure loaded goodput or tail latency.</li><li>For large shared prefixes in RAG, chat, and agentic workflows, the core question is no longer just KV capacity; it is whether the cache tier is shareable at low enough latency to beat recomputation.</li></ul>
+            <p><strong>Actionable lessons:</strong> Treat remote KV reuse as a memory-fabric design problem, not only an RPC/RDMA transfer problem. If a shared-memory tier is available, co-design the scheduler, cache directory, and serving runtime so placement can intentionally create cross-replica cache hits. Keep the caveat front and center: loaded contention, failure isolation, and consistency semantics are the hard production questions.</p>
+            <p><strong>Useful diagram:</strong> Figure 2 shows the Kubernetes DRA driver in context; Figure 4 traces the allocate→compose→materialize→inject→free lifecycle; Figure 5 is the shared-region layout and lookup protocol. Figure 1 is also useful because it plots CXL against local DRAM and 100 GbE RoCEv2 as KV tiers.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · Collectives, GPU Communication, Compute/Communication Overlap</div>
+            <h2><a href="https://arxiv.org/abs/2609.11562">Entwine: Coordinating Tiled Computation and Fine-Grained Communication across GPUs</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Kai Ma, Quanfeng Lv, Jingguo Ge, Bowei Dai, and Kefan Ruan — State Key Laboratory of Cyberspace Security Defense; Institute of Information Engineering, Chinese Academy of Sciences; University of Chinese Academy of Sciences; Institute of Microelectronics, Chinese Academy of Sciences.</p>
+            <p><strong>Tags:</strong> Collectives, GPU Communication, Compute/Communication Overlap</p>
+            <p><strong>Problem:</strong> Tensor-parallel LLM layers produce output tiles before the whole tensor is complete, but conventional GEMM→collective execution waits too long or releases communication in bursts. Fine-grained overlap can help, yet communication kernels consume SM and memory resources and can slow the computation they are trying to hide.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Coordinates tile computation order, tile-level communication, and SM allocation for GEMM–ReduceScatter rather than optimizing GEMM throughput or communication tail latency in isolation.</li><li>Reorders tile production to feed communication at a steadier pace, then uses fine-grained SM-based communication so completed tiles can move earlier with lower waiting time.</li><li>Reports 1.232× geomean speedup over cuBLAS+NCCL across representative tensor-parallel LLM workloads, with up to 1.433× speedup and 3.1–9.8% geomean improvement over overlap baselines.</li></ul>
+            <p><strong>Why it matters:</strong> Entwine is squarely in the “collectives as runtime/fabric-facing objects” bucket. The paper’s key point is that overlap is not free: if communication steals the wrong SM resources or gets tiles in the wrong order, it just moves the bottleneck.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Tile order is a communication-control knob. The logical GEMM output layout determines when each destination has enough data to reduce/scatter.</li><li>Overlap needs resource accounting. Communication CTAs consume residency and bandwidth; the right answer is a joint schedule, not “start communication as early as possible.”</li><li>The design exposes a useful mental model for GPU collectives: a producer rate, consumer rate, and shared-resource coupling. Bad matching creates stalls or a long communication tail.</li><li>The paper is implementation-specific to GEMM–ReduceScatter, but the mechanism generalizes to other tiled compute followed by collective movement.</li></ul>
+            <p><strong>Actionable lessons:</strong> For superpod kernels and collective libraries, make tile readiness and SM budgets visible to the communication planner. A runtime should reason about when communication becomes useful and how much GPU resource it can consume without lengthening the critical path.</p>
+            <p><strong>Useful diagram:</strong> Figure 3 is the main Entwine overview for GEMM–ReduceScatter on four GPUs. Figure 4 illustrates tile-level execution, and Figure 1 is a good visual explanation of how computation order changes communication timing.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · Collective Benchmarking, Compression, HPC/AI Workloads</div>
+            <h2><a href="https://arxiv.org/abs/2609.08739">Tools-CC-Bench: a Benchmark Suite for Collective Communication with Compression in HPC and AI Workloads</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Haozhe Fan, Wei Wang, Xingchen Liu, Man Liu, Xingjian Tian, Haoquan Long, Zedong Liu, Daran Sun, Jinwu Yang, Bo Yang, Jie Liu, Yonggang Che, Hairui Zhao, Guangming Tan, and Dingwen Tao — Institute of Computing Technology, Chinese Academy of Sciences; National University of Defense Technology; Nanjing University.</p>
+            <p><strong>Tags:</strong> Collective Benchmarking, Compression, HPC/AI Workloads</p>
+            <p><strong>Problem:</strong> Communication compression can reduce collective data movement, but isolated latency/bandwidth microbenchmarks miss the real trade-off: compression ratio, reconstruction fidelity, backend choice, and overlap interference all vary by workload and data distribution.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Introduces CC-Bench, a lightweight benchmark suite for compression-enabled collective communication across CPU and GPU backends.</li><li>Uses declarative application-environment modeling so datasets, communication libraries, and application-specific fidelity metrics can be swapped without rewriting the profiler.</li><li>Combines function-level interception with hardware-counter monitoring to report per-phase latency, utilization, numerical fidelity, and compute interference for representative HPC and LLM workloads.</li></ul>
+            <p><strong>Why it matters:</strong> This is less of a new transport design and more of a measurement tool, but it targets exactly the kind of question Ethan would ask before deploying compressed collectives: does the apparent byte reduction survive real backend overhead and overlap contention?</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>Compression is not a scalar win. The best compressor depends on tensor distribution, backend, accuracy tolerance, and whether compression competes with compute.</li><li>Application-specific fidelity matters. A compressor that looks fine under generic error metrics may be unacceptable for a particular LLM or HPC kernel.</li><li>The benchmark explicitly models interference, which is essential because compression can consume CPU/GPU resources that the main workload also needs.</li><li>The suite’s value is in making communication compression comparable across MPI/NCCL/RCCL-like environments rather than locked to a single stack.</li></ul>
+            <p><strong>Actionable lessons:</strong> Before adopting collective compression in training or serving, benchmark it as an end-to-end communication path with workload tensors and fidelity constraints. Track the resources burned by compression itself, not only the bytes saved on the wire.</p>
+            <p><strong>Useful diagram:</strong> Figure 2 shows the CC-Bench architecture with swappable profiling and backend pieces. Figure 3 gives the workflow, and Figures 7–10 are the useful performance/bottleneck views.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · Heterogeneous AI Clusters, Cross-Stack Collectives, Communication Planning</div>
+            <h2><a href="https://arxiv.org/abs/2609.08231">SemBridge: Compiling Consumer Observations into Cross-Stack Communication Plans</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Genlang Chen, Junyi Zhu, and Yuanshan Lin — NingboTech University; Dalian Ocean University.</p>
+            <p><strong>Tags:</strong> Heterogeneous AI Clusters, Cross-Stack Collectives, Communication Planning</p>
+            <p><strong>Problem:</strong> Distributed tensor systems describe where values live, while collective libraries optimize how a requested primitive executes. At the boundary between vendor runtimes such as CUDA/NCCL and CANN/HCCL, neither layer precisely states what a remote consumer actually needs to observe.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Defines a typed boundary contract capturing consumer-visible result, provenance, substitutability, completion, authority, demand, and native-domain locality.</li><li>Builds a deterministic lowerer and symbolic checker that generate backend-neutral communication plans and reject semantically invalid byte-minimizing candidates.</li><li>On measured CUDA/CANN deployments, source-side projection cuts result traffic by more than 99.97% and improves throughput by 8.92–80.20% across Dense, MoE, and MiniMax workloads.</li></ul>
+            <p><strong>Why it matters:</strong> SemBridge is interesting because it separates semantic obligation from physical collective choice. That is exactly the missing layer when heterogeneous accelerators cannot share one native communicator but still need correct distributed inference/training behavior.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The same tensor endpoint can legally require very different payloads. A token-only consumer may need an int32 decision, while a log-probability consumer still needs full logits.</li><li>Byte minimization without semantics is dangerous: the paper reports candidates that look smaller but violate completion, authority, or substitutability obligations.</li><li>The consumer-observation contract creates room for vendor-local collectives plus cross-domain point-to-point movement, instead of forcing everything into one global primitive.</li><li>The 1-GbE capacity-spillover setup is modest, but it makes the qualitative point clearly: projecting before the boundary can erase nearly all result traffic.</li></ul>
+            <p><strong>Actionable lessons:</strong> For mixed-vendor GPU/NPU clusters, insert a semantic lowering layer before collective planning. Ask “what must the consumer observe?” before deciding whether to ship logits, tokens, shards, partials, or representative replicas.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 is the key diagram: it separates consumer-observation choice from delivery obligations. Figure 3 is useful for projection placement and the measured traffic reduction.</p>
+          </article>
+          <article class="card entry-card">
+            <div class="inline-meta">verified arXiv paper · MoE Inference, GPU Resource Management, Communication Overlap</div>
+            <h2><a href="https://arxiv.org/abs/2609.07536">Analytical Resource Management for Fine-grained MoE Computation-Communication Overlap</a></h2>
+            <p class="muted"><strong>Authors &amp; affiliations:</strong> Hongyu Liu, Minyu Cui, and Miquel Pericàs — Chalmers University of Technology and University of Gothenburg; Linnaeus University.</p>
+            <p><strong>Tags:</strong> MoE Inference, GPU Resource Management, Communication Overlap</p>
+            <p><strong>Problem:</strong> Distributed MoE inference sends routed tokens to remote experts and then returns outputs, so expert computation and communication are tightly coupled. Fine-grained overlap helps, but compute and communication CTAs contend for finite SM residency; a fixed split can either create a communication backlog or starve expert compute.</p>
+            <p><strong>Key contributions from the authors:</strong></p>
+            <ul class="muted"><li>Develops a wave-quantized analytical model for dependency-coupled overlap pipelines using routed-tile counts, kernel occupancy, GPU residency limits, and split-level readiness dependencies.</li><li>Selects communication-CTA count and resource partition at launch time without candidate execution, per-workload profiling, or kernel recompilation.</li><li>Integrated into the public COMET A100 implementation in FLUX; reports 3.22% mean regret versus measured oracle and geometric-mean speedups over COMET of 2.528× at GEMM2+GatherRS, 1.771× at the post-router MoE layer, and 1.185× for complete-model prefill.</li></ul>
+            <p><strong>Why it matters:</strong> This is a good companion to Entwine: both papers say that overlap is a scheduling/resource-allocation problem, not just an API call. Here the target is MoE’s routed expert path, where all-to-all-like movement is a first-order inference cost.</p>
+            <p><strong>Key insights:</strong></p>
+            <ul class="muted"><li>The model treats overlap as waves constrained by CTA residency, which matches how GPUs actually admit work better than a continuous bandwidth abstraction.</li><li>Launch-time selection is important because routed expert load changes with input and model behavior; a static partition cannot stay optimal across sequence lengths and router distributions.</li><li>The largest gains are at the fused GEMM2+GatherRS operator, while complete-model gains are smaller because other prefill work dilutes the optimized region.</li><li>The work does not reduce communication volume; it reduces waiting and resource mismatch. That distinction matters when deciding whether to optimize kernels, collectives, or placement.</li></ul>
+            <p><strong>Actionable lessons:</strong> For MoE serving, expose router statistics and kernel occupancy to the communication scheduler. The right control plane is per-launch or per-batch resource partitioning, especially when expert load skew changes rapidly.</p>
+            <p><strong>Useful diagram:</strong> Figure 1 maps the post-router MoE path and the GEMM2+GatherRS target. Figure 2 illustrates split-level execution, and Figure 3 summarizes the launch-time resource-selection control path.</p>
+          </article>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <span>Ditto · research briefs</span>
+        <a href="index.html">Back to brief archive</a>
+      </footer>
+    </div>
+  </body>
+</html>

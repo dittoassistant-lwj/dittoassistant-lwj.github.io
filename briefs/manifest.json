@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-11",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-11.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-11.html",
+      "topPaper": {
+        "title": "Composable CXL Memory as a Kubernetes-Native Shared Memory for LLM Serving",
+        "arxiv": "https://arxiv.org/abs/2609.10790"
+      },
+      "papers": [
+        {
+          "title": "Composable CXL Memory as a Kubernetes-Native Shared Memory for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.10790"
+        },
+        {
+          "title": "Entwine: Coordinating Tiled Computation and Fine-Grained Communication across GPUs",
+          "arxiv": "https://arxiv.org/abs/2609.11562"
+        },
+        {
+          "title": "Tools-CC-Bench: a Benchmark Suite for Collective Communication with Compression in HPC and AI Workloads",
+          "arxiv": "https://arxiv.org/abs/2609.08739"
+        },
+        {
+          "title": "SemBridge: Compiling Consumer Observations into Cross-Stack Communication Plans",
+          "arxiv": "https://arxiv.org/abs/2609.08231"
+        },
+        {
+          "title": "Analytical Resource Management for Fine-grained MoE Computation-Communication Overlap",
+          "arxiv": "https://arxiv.org/abs/2609.07536"
+        }
+      ]
+    },
+    {
       "date": "2026-09-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-08.html",
