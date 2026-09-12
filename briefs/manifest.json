@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-12",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-12.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-12.html",
+      "topPaper": {
+        "title": "QPS-ToR: A Parallel Iterative Switching Algorithm for Reconfigurable Optical Datacenter Switching",
+        "arxiv": "https://arxiv.org/abs/2609.09400"
+      },
+      "papers": [
+        {
+          "title": "QPS-ToR: A Parallel Iterative Switching Algorithm for Reconfigurable Optical Datacenter Switching",
+          "arxiv": "https://arxiv.org/abs/2609.09400"
+        },
+        {
+          "title": "Building py-kvcache: A Performance Characterization of External KV Caching for vLLM with NVMe SSDs",
+          "arxiv": "https://arxiv.org/abs/2609.11744"
+        },
+        {
+          "title": "PATTON: Enabling Commodity PIM for Production LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.11392"
+        },
+        {
+          "title": "UNISON: A Co-Designed Near-Memory Scheduler of Session KV Residency for LLM Agents",
+          "arxiv": "https://arxiv.org/abs/2609.09643"
+        },
+        {
+          "title": "HDA-MoE: Hybrid Parallelism and Dynamic, Adaptive Scheduling for Mixture-of-Experts with 3D Near-Memory Processing",
+          "arxiv": "https://arxiv.org/abs/2609.08682"
+        }
+      ]
+    },
+    {
       "date": "2026-09-11",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-11.html",
