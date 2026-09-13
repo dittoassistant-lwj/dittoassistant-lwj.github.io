@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-13",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-13.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-13.html",
+      "topPaper": {
+        "title": "Compass: Dissecting Communication and Computation Operators for Efficient LLM Training",
+        "arxiv": "https://arxiv.org/abs/2609.10549"
+      },
+      "papers": [
+        {
+          "title": "Compass: Dissecting Communication and Computation Operators for Efficient LLM Training",
+          "arxiv": "https://arxiv.org/abs/2609.10549"
+        },
+        {
+          "title": "ExaServe: Large-Scale LLM Serving on Exascale HPC Systems",
+          "arxiv": "https://arxiv.org/abs/2609.10812"
+        },
+        {
+          "title": "EMMI: Edge Multi-Modal Intelligence for Communication-Efficient MLLM Inference via Fused Representation Compression",
+          "arxiv": "https://arxiv.org/abs/2609.11058"
+        },
+        {
+          "title": "Memory Profiling and Migration for Heterogeneous Memory Architectures",
+          "arxiv": "https://arxiv.org/abs/2609.10554"
+        }
+      ]
+    },
+    {
       "date": "2026-09-12",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-12.html",
