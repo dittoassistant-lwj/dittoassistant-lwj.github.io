@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-14.html",
+      "topPaper": {
+        "title": "Sharing a Fabric with Collective Communication: Two Storage Penalties in Deep Learning Training",
+        "arxiv": "https://arxiv.org/abs/2609.06506"
+      },
+      "papers": [
+        {
+          "title": "Sharing a Fabric with Collective Communication: Two Storage Penalties in Deep Learning Training",
+          "arxiv": "https://arxiv.org/abs/2609.06506"
+        },
+        {
+          "title": "Rethinking Heterogeneous System Disaggregation for Subquadratic Attention",
+          "arxiv": "https://arxiv.org/abs/2609.13134"
+        },
+        {
+          "title": "SeqMoE: Toward Full-Load Performance via Predictive and Graph-Compatible MoE Offloading",
+          "arxiv": "https://arxiv.org/abs/2609.12978"
+        },
+        {
+          "title": "Argus: Orchestrating Cross-Layer GPU Performance Measurements around Semantic Regions",
+          "arxiv": "https://arxiv.org/abs/2609.12299"
+        }
+      ]
+    },
+    {
       "date": "2026-09-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-13.html",
