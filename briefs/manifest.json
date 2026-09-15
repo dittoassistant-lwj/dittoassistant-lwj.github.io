@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-15",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-15.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-15.html",
+      "topPaper": {
+        "title": "PDD: Unleashing Economical and Flexible Heterogeneous LLM Inference via Cross-Datacenter Prefill-Decode Disaggregation",
+        "arxiv": "https://arxiv.org/abs/2609.13161"
+      },
+      "papers": [
+        {
+          "title": "PDD: Unleashing Economical and Flexible Heterogeneous LLM Inference via Cross-Datacenter Prefill-Decode Disaggregation",
+          "arxiv": "https://arxiv.org/abs/2609.13161"
+        },
+        {
+          "title": "OpWeave: Flexible Operator Disaggregation for Heterogeneous LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.14237"
+        },
+        {
+          "title": "Dynamic HBM Repartitioning for Multi-Turn MoE Serving",
+          "arxiv": "https://arxiv.org/abs/2609.13537"
+        },
+        {
+          "title": "Rethinking Software-Defined Networking Link Discovery with Dynamic Randomization",
+          "arxiv": "https://arxiv.org/abs/2609.14805"
+        }
+      ]
+    },
+    {
       "date": "2026-09-14",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-14.html",
