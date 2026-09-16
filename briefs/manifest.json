@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-16",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-16.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-16.html",
+      "topPaper": {
+        "title": "Breaking the Duplex Barrier: Lane-Granularity OCS Scheduling for LLM Training",
+        "arxiv": "https://arxiv.org/abs/2609.14253"
+      },
+      "papers": [
+        {
+          "title": "Breaking the Duplex Barrier: Lane-Granularity OCS Scheduling for LLM Training",
+          "arxiv": "https://arxiv.org/abs/2609.14253"
+        },
+        {
+          "title": "mKernel: Fast Multi-GPU, Multi-Node Fused Kernels",
+          "arxiv": "https://arxiv.org/abs/2609.13585"
+        },
+        {
+          "title": "Cnuas: A Software-Defined AI/HPC Rack-scale Emulation Platform and Hyperscale Data Center Facility Twin",
+          "arxiv": "https://arxiv.org/abs/2609.15889"
+        },
+        {
+          "title": "NoLoCo: No-all-reduce Low Communication Training Method for Large Models",
+          "arxiv": "https://arxiv.org/abs/2506.10911"
+        },
+        {
+          "title": "Calibrate, Then Route: A Measured Study of Learned Request Routing for Disaggregated LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.16206"
+        }
+      ]
+    },
+    {
       "date": "2026-09-15",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-15.html",
