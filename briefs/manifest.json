@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-17",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-17.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-17.html",
+      "topPaper": {
+        "title": "MonkeyTree: Near-Minimal Congestion for Multi-tenant Training via Migration",
+        "arxiv": "https://arxiv.org/abs/2602.08296"
+      },
+      "papers": [
+        {
+          "title": "MonkeyTree: Near-Minimal Congestion for Multi-tenant Training via Migration",
+          "arxiv": "https://arxiv.org/abs/2602.08296"
+        },
+        {
+          "title": "Zero-I/O Fault Recovery for Sharded Deep Learning via Dynamic Framework Dependency Rebinding",
+          "arxiv": "https://arxiv.org/abs/2609.18178"
+        },
+        {
+          "title": "Towards Training Private LLMs: Exploring Fine-Tuning Language Models on Apple Silicon with RDMA over Thunderbolt",
+          "arxiv": "https://arxiv.org/abs/2609.18066"
+        },
+        {
+          "title": "HBFlex: A Flexible Memory System for Bridging Fine-Grained LLM States and Coarse-Grained HBF Parallel Execution",
+          "arxiv": "https://arxiv.org/abs/2609.18675"
+        }
+      ]
+    },
+    {
       "date": "2026-09-16",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-16.html",
