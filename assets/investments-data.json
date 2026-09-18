@@ -1,16 +1,16 @@
 {
   "source": "Notion trading dashboard + Yahoo Finance latest quotes",
-  "syncedAt": "2026-09-18T08:56:15+00:00",
+  "syncedAt": "2026-09-18T09:07:34+00:00",
   "asOf": "2026-09-18",
   "currency": "USD",
   "totals": {
-    "holdingsValue": 14430.69,
-    "costBasis": 13619.921,
-    "unrealized": 810.769,
-    "unrealizedPct": 0.059528,
+    "holdingsValue": 18334.57,
+    "costBasis": 17528.892,
+    "unrealized": 805.678,
+    "unrealizedPct": 0.045963,
     "realizedYtd": -916.586,
     "cash": 2408.439,
-    "accountValue": 16839.129
+    "accountValue": 20743.009
   },
   "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-09-18; public dashboard JSON synced by Ditto.",
   "holdings": [
@@ -29,11 +29,32 @@
       "marketValue": 5331.2,
       "unrealized": 700.54,
       "unrealizedPct": 0.151283,
-      "allocationPct": 0.369435,
+      "allocationPct": 0.290773,
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-18",
-      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected."
+      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+    },
+    {
+      "ticker": "SOXL",
+      "name": "SOXL",
+      "assetClass": "ETF",
+      "quantity": 43.0,
+      "averageCost": 115.969,
+      "costBasis": 4986.667,
+      "currentPrice": 114.82,
+      "previousClose": 103.970001,
+      "dailyChange": 10.849999,
+      "dailyChangePct": 0.104357,
+      "dailyPnl": 466.549957,
+      "marketValue": 4937.26,
+      "unrealized": -49.407,
+      "unrealizedPct": -0.009908,
+      "allocationPct": 0.269287,
+      "currency": "USD",
+      "riskLevel": "Speculative",
+      "lastPriceUpdate": "2026-09-18",
+      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18. Corrected SOXL holding per Ethan's chat update on 2026-09-18: 43 units at 115.969 USD average purchase price; cost basis 4986.667 USD."
     },
     {
       "ticker": "GOOG",
@@ -50,11 +71,11 @@
       "marketValue": 3780.48,
       "unrealized": 58.245,
       "unrealizedPct": 0.015648,
-      "allocationPct": 0.261975,
+      "allocationPct": 0.206194,
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-18",
-      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected."
+      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
     },
     {
       "ticker": "QQQ",
@@ -71,32 +92,11 @@
       "marketValue": 3584.6,
       "unrealized": 49.75,
       "unrealizedPct": 0.014074,
-      "allocationPct": 0.248401,
+      "allocationPct": 0.19551,
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-18",
-      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh."
-    },
-    {
-      "ticker": "SOXL",
-      "name": "SOXL",
-      "assetClass": "ETF",
-      "quantity": 9.0,
-      "averageCost": 119.744,
-      "costBasis": 1077.696,
-      "currentPrice": 114.82,
-      "previousClose": 103.970001,
-      "dailyChange": 10.849999,
-      "dailyChangePct": 0.104357,
-      "dailyPnl": 97.649991,
-      "marketValue": 1033.38,
-      "unrealized": -44.316,
-      "unrealizedPct": -0.041121,
-      "allocationPct": 0.07161,
-      "currency": "USD",
-      "riskLevel": "Speculative",
-      "lastPriceUpdate": "2026-09-18",
-      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected."
+      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
     },
     {
       "ticker": "VOO",
@@ -113,11 +113,11 @@
       "marketValue": 701.03,
       "unrealized": 46.55,
       "unrealizedPct": 0.071125,
-      "allocationPct": 0.048579,
+      "allocationPct": 0.038235,
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-18",
-      "notes": "Synced from morning-brief portfolio file/config."
+      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
     }
   ],
   "actions": [
