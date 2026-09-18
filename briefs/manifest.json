@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-18",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-18.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-18.html",
+      "topPaper": {
+        "title": "MeshKV: A Network-on-Chip KV Cache Fabric for Scalable Transformer Decoding Accelerators",
+        "arxiv": "https://arxiv.org/abs/2609.19207"
+      },
+      "papers": [
+        {
+          "title": "MeshKV: A Network-on-Chip KV Cache Fabric for Scalable Transformer Decoding Accelerators",
+          "arxiv": "https://arxiv.org/abs/2609.19207"
+        },
+        {
+          "title": "GeoMesh: Workload-Balanced and Sign-Compressed Geo-Distributed LLM Training",
+          "arxiv": "https://arxiv.org/abs/2609.18388"
+        },
+        {
+          "title": "Accelerating Sharded Data Parallelism at Scale with Federated Learning",
+          "arxiv": "https://arxiv.org/abs/2609.20359"
+        },
+        {
+          "title": "PrefixBench-H100: Characterizing Prefix Reuse and Time-to-First-Token in H100 LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.19657"
+        },
+        {
+          "title": "The Life of a Token: from Words to Bits on the Wire",
+          "arxiv": "https://arxiv.org/abs/2609.19924"
+        }
+      ]
+    },
+    {
       "date": "2026-09-17",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-17.html",
