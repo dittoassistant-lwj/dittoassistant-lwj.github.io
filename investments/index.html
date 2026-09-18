@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A private, browser-local investment portfolio and transaction tracking dashboard by Ditto." />
+    <title>Investment Tracker — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="../assets/investments.css" />
+    <script src="../assets/site.js" defer></script>
+    <script src="../assets/investments.js" defer></script>
+  </head>
+  <body class="investment-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell investment-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">💼</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="../briefs/index.html">Briefs</a>
+            <a class="nav-link active" data-nav href="index.html" aria-current="page">Investments</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="main" class="investment-app" aria-labelledby="investment-title">
+        <section class="investment-hero card">
+          <div>
+            <p class="eyebrow">Portfolio cockpit</p>
+            <h1 id="investment-title">Investment Tracker</h1>
+            <p class="lead">Track holdings, buys, sells, dividends, realized gains, and portfolio allocation. Everything is saved privately in this browser via local storage.</p>
+          </div>
+          <div class="hero-actions compact-actions">
+            <button class="button primary" id="quick-add-button" type="button">＋ Add transaction</button>
+            <button class="button secondary" id="load-demo-button" type="button">Load demo data</button>
+            <button class="button secondary danger-lite" id="reset-button" type="button">Reset local data</button>
+          </div>
+        </section>
+
+        <section class="summary-grid" aria-label="Portfolio summary">
+          <article class="stat-card card"><span class="stat-label">Portfolio value</span><strong id="stat-value">$0.00</strong><small id="stat-value-sub">No holdings yet</small></article>
+          <article class="stat-card card"><span class="stat-label">Invested capital</span><strong id="stat-invested">$0.00</strong><small>Open cost basis</small></article>
+          <article class="stat-card card"><span class="stat-label">Unrealized P/L</span><strong id="stat-unrealized">$0.00</strong><small id="stat-unrealized-pct">0.00%</small></article>
+          <article class="stat-card card"><span class="stat-label">Realized P/L</span><strong id="stat-realized">$0.00</strong><small>From sell transactions</small></article>
+          <article class="stat-card card"><span class="stat-label">Dividends received</span><strong id="stat-dividends">$0.00</strong><small>Cash income logged</small></article>
+        </section>
+
+        <section class="tab-card card">
+          <div class="tabbar" role="tablist" aria-label="Investment tracker tabs">
+            <button class="tab-button active" role="tab" aria-selected="true" data-tab="dashboard" type="button">📊 Dashboard</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="summary" type="button">💵 DV Summary</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="transactions" type="button">↕ Transactions</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="dividends" type="button">🕒 Dividends</button>
+          </div>
+
+          <section class="tab-panel active" id="tab-dashboard" role="tabpanel">
+            <div class="panel-head">
+              <div><h2>Dashboard</h2><p class="muted">Current holdings, allocation, and profit/loss at a glance.</p></div>
+              <div class="toolbar"><input id="holding-filter" type="search" placeholder="Filter holdings…" aria-label="Filter holdings" /></div>
+            </div>
+            <div id="empty-dashboard" class="empty-state"><div class="empty-icon">▥</div><h3>No transactions yet.</h3><p>Add stocks in the Transactions tab to populate the dashboard.</p><button class="button primary" data-open-tab="transactions" type="button">Add your first transaction</button></div>
+            <div id="dashboard-content" class="dashboard-grid hidden">
+              <div class="table-card wide"><div class="table-title"><h3>Holdings</h3><span class="muted">Edit current price inline</span></div><div class="table-scroll"><table><thead><tr><th>Ticker</th><th>Name</th><th>Qty</th><th>Avg cost</th><th>Last price</th><th>Market value</th><th>Unrealized</th><th>Weight</th></tr></thead><tbody id="holdings-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Allocation</h3><div id="allocation-bars" class="bars"></div></div>
+              <div class="chart-card"><h3>Top movers</h3><div id="movers-list" class="movers"></div></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-summary" role="tabpanel" hidden>
+            <div class="panel-head"><div><h2>Dividend & value summary</h2><p class="muted">Yield-on-cost, dividend contribution, and portfolio concentration.</p></div></div>
+            <div class="dashboard-grid">
+              <div class="table-card wide"><div class="table-title"><h3>Position analytics</h3><span class="muted">Derived from transactions and manually maintained prices</span></div><div class="table-scroll"><table><thead><tr><th>Ticker</th><th>Cost basis</th><th>Value</th><th>Dividends</th><th>Yield on cost</th><th>Total return</th></tr></thead><tbody id="summary-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Income by ticker</h3><div id="income-bars" class="bars"></div></div>
+              <div class="chart-card"><h3>Portfolio notes</h3><ul class="insight-list" id="insight-list"></ul></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-transactions" role="tabpanel" hidden>
+            <div class="split-layout">
+              <form class="transaction-form" id="transaction-form">
+                <div class="panel-head"><div><h2>Add transaction</h2><p class="muted">Buy/sell rows drive holdings. Dividends feed income analytics.</p></div></div>
+                <input type="hidden" id="tx-id" />
+                <label>Type<select id="tx-type" required><option value="buy">Buy</option><option value="sell">Sell</option><option value="dividend">Dividend</option></select></label>
+                <label>Date<input id="tx-date" type="date" required /></label>
+                <label>Ticker<input id="tx-ticker" type="text" placeholder="AAPL" required /></label>
+                <label>Company / Fund<input id="tx-name" type="text" placeholder="Apple Inc." /></label>
+                <div class="form-row"><label>Quantity<input id="tx-quantity" type="number" min="0" step="0.0001" placeholder="10" /></label><label>Price / share<input id="tx-price" type="number" min="0" step="0.0001" placeholder="185.50" /></label></div>
+                <div class="form-row"><label>Fees<input id="tx-fee" type="number" min="0" step="0.01" placeholder="0" /></label><label>Currency<input id="tx-currency" type="text" maxlength="3" value="USD" /></label></div>
+                <label>Account / broker<input id="tx-account" type="text" placeholder="IBKR, HSBC, etc." /></label>
+                <label>Notes<textarea id="tx-notes" rows="3" placeholder="Optional thesis, source, or execution note"></textarea></label>
+                <div class="form-actions"><button class="button primary" type="submit">Save transaction</button><button class="button secondary" id="cancel-edit" type="button">Clear</button></div>
+              </form>
+              <div class="table-card transactions-card"><div class="table-title"><h3>Transactions</h3><div class="toolbar"><input id="transaction-filter" type="search" placeholder="Search transactions…" aria-label="Search transactions" /><button class="mini-button" id="export-json" type="button">Export JSON</button><button class="mini-button" id="export-csv" type="button">Export CSV</button><label class="mini-button file-button">Import JSON<input id="import-json" type="file" accept="application/json" /></label></div></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Ticker</th><th>Qty</th><th>Price</th><th>Cash flow</th><th>Actions</th></tr></thead><tbody id="transactions-body"></tbody></table></div></div>
+            </div>
+          </section>
+
+          <section class="tab-panel" id="tab-dividends" role="tabpanel" hidden>
+            <div class="panel-head"><div><h2>Dividends</h2><p class="muted">Logged dividend transactions by month and ticker.</p></div><button class="button primary" data-open-tab="transactions" data-dividend-shortcut="true" type="button">＋ Add dividend</button></div>
+            <div class="dashboard-grid">
+              <div class="table-card wide"><div class="table-title"><h3>Dividend history</h3><span class="muted">Use transaction type “Dividend” to add rows</span></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Ticker</th><th>Name</th><th>Amount</th><th>Account</th><th>Notes</th></tr></thead><tbody id="dividends-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Monthly income</h3><div id="monthly-dividend-bars" class="bars"></div></div>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="site-footer"><p>© <span id="year"></span> Ditto. Investment data is stored locally in your browser, not on GitHub.</p></footer>
+    </div>
+  </body>
+</html>

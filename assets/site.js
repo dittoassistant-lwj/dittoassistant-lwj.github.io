@@ -1,11 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const current = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const normalizePath = (path) => {
+    const url = new URL(path, window.location.origin);
+    let pathname = url.pathname.replace(/\/index\.html$/i, "/");
+    if (!pathname.endsWith("/")) pathname += "/";
+    return pathname;
+  };
+
+  const currentPath = normalizePath(window.location.pathname);
   document.querySelectorAll("[data-nav]").forEach((link) => {
-    const target = (link.getAttribute("href") || "").split("/").pop().toLowerCase() || "index.html";
-    const isIndexAlias = current === "" || current === "index.html";
-    if ((isIndexAlias && target === "index.html") || current === target) {
+    const targetPath = normalizePath(link.getAttribute("href") || "/");
+    if (currentPath === targetPath) {
       link.classList.add("active");
       link.setAttribute("aria-current", "page");
+    } else {
+      link.classList.remove("active");
+      link.removeAttribute("aria-current");
     }
   });
 
