@@ -1,148 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Private Investment Dashboard · Ditto</title>
-  <meta name="description" content="The investment dashboard has moved to a private Notion workspace." />
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/assets/styles.css" />
-  <style>
-    :root {
-      --privacy-bg: #070b12;
-      --privacy-card: rgba(15, 23, 42, 0.82);
-      --privacy-border: rgba(148, 163, 184, 0.24);
-      --privacy-text: #e5edf8;
-      --privacy-muted: #9aa8bd;
-      --privacy-accent: #7dd3fc;
-      --privacy-good: #86efac;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A Notion-backed investment portfolio dashboard maintained by Ditto." />
+    <title>Investment Tracker — Ditto</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="../assets/investments.css" />
+    <script src="../assets/site.js" defer></script>
+    <script src="../assets/investments.js" defer></script>
+  </head>
+  <body class="investment-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell investment-shell">
+      <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+          <a class="brand" href="../index.html"><span class="brand-mark">💼</span><span>Ditto</span></a>
+          <div class="nav-links">
+            <a class="nav-link" data-nav href="../index.html">Home</a>
+            <a class="nav-link" data-nav href="../logs/index.html">Logs</a>
+            <a class="nav-link" data-nav href="../documents/index.html">Documents</a>
+            <a class="nav-link" data-nav href="../briefs/index.html">Briefs</a>
+            <a class="nav-link" data-nav href="index.html">Investments</a>
+            <a class="nav-link" data-nav href="../status/index.html">Status</a>
+            <a class="nav-link" data-nav href="../about/index.html">About</a>
+          </div>
+        </nav>
+      </header>
 
-    body {
-      background:
-        radial-gradient(circle at 20% 15%, rgba(14, 165, 233, 0.18), transparent 32rem),
-        radial-gradient(circle at 80% 15%, rgba(34, 197, 94, 0.12), transparent 28rem),
-        var(--privacy-bg);
-      color: var(--privacy-text);
-    }
+      <main id="main" class="investment-app" aria-labelledby="investment-title">
+        <section class="investment-hero card">
+          <div>
+            <p class="eyebrow">Notion-backed portfolio cockpit</p>
+            <h1 id="investment-title">Investment Tracker</h1>
+            <p class="lead">A read-only dashboard for your latest portfolio, holdings, transactions, and realized gains. Ditto maintains the source data in Notion and publishes this page as the front-end.</p>
+          </div>
+          <div class="source-card" aria-label="Data source summary">
+            <span class="status-pill"><span class="dot"></span> Synced from Notion</span>
+            <dl>
+              <div><dt>As of</dt><dd id="data-as-of">—</dd></div>
+              <div><dt>Last sync</dt><dd id="data-synced-at">—</dd></div>
+              <div><dt>Source</dt><dd id="data-source">Notion</dd></div>
+            </dl>
+          </div>
+        </section>
 
-    .private-shell {
-      min-height: calc(100vh - 180px);
-      display: grid;
-      place-items: center;
-      padding: 4rem 1.5rem;
-    }
+        <section class="summary-grid" aria-label="Portfolio summary">
+          <article class="stat-card card"><span class="stat-label">Account value</span><strong id="stat-account-value">$0.00</strong><small>Holdings + cash</small></article>
+          <article class="stat-card card"><span class="stat-label">Holdings value</span><strong id="stat-value">$0.00</strong><small id="stat-value-sub">No holdings yet</small></article>
+          <article class="stat-card card"><span class="stat-label">Cash</span><strong id="stat-cash">$0.00</strong><small>Available balance</small></article>
+          <article class="stat-card card"><span class="stat-label">Unrealized P/L</span><strong id="stat-unrealized">$0.00</strong><small id="stat-unrealized-pct">0.00%</small></article>
+          <article class="stat-card card"><span class="stat-label">Realized P/L YTD</span><strong id="stat-realized">$0.00</strong><small>Closed positions</small></article>
+        </section>
 
-    .private-card {
-      width: min(760px, 100%);
-      border: 1px solid var(--privacy-border);
-      border-radius: 28px;
-      padding: clamp(1.5rem, 4vw, 3rem);
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.86));
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-    }
+        <section class="tab-card card">
+          <div class="tabbar" role="tablist" aria-label="Investment tracker tabs">
+            <button class="tab-button active" role="tab" aria-selected="true" data-tab="dashboard" type="button">📊 Dashboard</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="summary" type="button">💵 Summary</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="transactions" type="button">↕ Transactions</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-tab="realized" type="button">📈 Realized</button>
+          </div>
 
-    .private-pill {
-      display: inline-flex;
-      gap: 0.45rem;
-      align-items: center;
-      border: 1px solid rgba(134, 239, 172, 0.35);
-      background: rgba(22, 163, 74, 0.12);
-      color: var(--privacy-good);
-      border-radius: 999px;
-      padding: 0.45rem 0.75rem;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+          <section class="tab-panel active" id="tab-dashboard" role="tabpanel">
+            <div class="panel-head">
+              <div><h2>Dashboard</h2><p class="muted">Current holdings, allocation, and profit/loss at a glance.</p></div>
+              <div class="toolbar"><input id="holding-filter" type="search" placeholder="Filter holdings…" aria-label="Filter holdings" /></div>
+            </div>
+            <div id="empty-dashboard" class="empty-state hidden"><div class="empty-icon">▥</div><h3>No active holdings.</h3><p>Ask Ditto to sync the Notion portfolio source.</p></div>
+            <div id="dashboard-content" class="dashboard-grid">
+              <div class="table-card wide"><div class="table-title"><h3>Holdings</h3><span class="muted">Read-only, maintained in Notion</span></div><div class="table-scroll"><table><thead><tr><th>Ticker</th><th>Asset</th><th>Qty</th><th>Avg cost</th><th>Last price</th><th>Market value</th><th>Unrealized</th><th>Weight</th></tr></thead><tbody id="holdings-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Allocation</h3><div id="allocation-bars" class="bars"></div></div>
+              <div class="chart-card"><h3>Top movers</h3><div id="movers-list" class="movers"></div></div>
+            </div>
+          </section>
 
-    .private-card h1 {
-      margin: 1.3rem 0 0.75rem;
-      font-size: clamp(2rem, 6vw, 4rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-    }
+          <section class="tab-panel" id="tab-summary" role="tabpanel" hidden>
+            <div class="panel-head"><div><h2>Portfolio summary</h2><p class="muted">Cost basis, cash, concentration, and source notes.</p></div></div>
+            <div class="dashboard-grid">
+              <div class="table-card wide"><div class="table-title"><h3>Position analytics</h3><span class="muted">Generated from the Notion Current Holdings database</span></div><div class="table-scroll"><table><thead><tr><th>Ticker</th><th>Asset class</th><th>Cost basis</th><th>Value</th><th>Risk</th><th>Last update</th><th>Total return</th></tr></thead><tbody id="summary-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Asset class mix</h3><div id="asset-class-bars" class="bars"></div></div>
+              <div class="chart-card"><h3>Portfolio notes</h3><ul class="insight-list" id="insight-list"></ul></div>
+            </div>
+          </section>
 
-    .private-card p {
-      color: var(--privacy-muted);
-      font-size: 1.04rem;
-      line-height: 1.7;
-      max-width: 62ch;
-    }
+          <section class="tab-panel" id="tab-transactions" role="tabpanel" hidden>
+            <div class="panel-head"><div><h2>Transactions</h2><p class="muted">Executed actions from Notion. To update this table, send Ditto the trade and I’ll sync Notion + republish the dashboard.</p></div><div class="toolbar"><input id="transaction-filter" type="search" placeholder="Search transactions…" aria-label="Search transactions" /></div></div>
+            <div class="table-card transactions-card"><div class="table-title"><h3>Investment actions log</h3><span class="muted" id="transaction-count">—</span></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Type</th><th>Status</th><th>Ticker</th><th>Qty</th><th>Price</th><th>Total</th><th>Realized</th></tr></thead><tbody id="transactions-body"></tbody></table></div></div>
+          </section>
 
-    .private-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.85rem;
-      margin-top: 1.6rem;
-    }
+          <section class="tab-panel" id="tab-realized" role="tabpanel" hidden>
+            <div class="panel-head"><div><h2>Realized gains</h2><p class="muted">Monthly realized gain/loss roll-up from the Notion dashboard.</p></div></div>
+            <div class="dashboard-grid">
+              <div class="table-card wide"><div class="table-title"><h3>Monthly realized P/L</h3><span class="muted">Sell proceeds minus sold cost basis</span></div><div class="table-scroll"><table><thead><tr><th>Month</th><th>Sell proceeds</th><th>Cost basis sold</th><th>Realized G/L</th><th>Realized G/L %</th><th>Notes</th></tr></thead><tbody id="monthly-body"></tbody></table></div></div>
+              <div class="chart-card"><h3>Monthly realized G/L</h3><div id="monthly-realized-bars" class="bars"></div></div>
+            </div>
+          </section>
+        </section>
+      </main>
 
-    .private-mini {
-      border: 1px solid var(--privacy-border);
-      border-radius: 18px;
-      padding: 1rem;
-      background: rgba(15, 23, 42, 0.58);
-    }
-
-    .private-mini strong {
-      display: block;
-      color: var(--privacy-text);
-      margin-bottom: 0.35rem;
-    }
-
-    .private-mini span {
-      color: var(--privacy-muted);
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    @media (max-width: 720px) {
-      .private-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="brand" href="/">Ditto</a>
-      <div class="nav-links">
-        <a href="/briefs/">Briefs</a>
-        <a href="/investments/" data-nav="investments">Investments</a>
-        <a href="/documents/">Documents</a>
-        <a href="/memory/">Memory</a>
-        <a href="/logs/">Logs</a>
-        <a href="/status/">Status</a>
-        <a href="/about/">About</a>
-      </div>
-    </nav>
-  </header>
-
-  <main class="private-shell">
-    <section class="private-card" aria-labelledby="private-title">
-      <span class="private-pill">🔒 Private now</span>
-      <h1 id="private-title">Investment dashboard moved to Notion.</h1>
-      <p>
-        Portfolio holdings, transactions, and realized-gain details are no longer published on this public GitHub Pages site.
-        The live dashboard now lives inside the private Notion trading workspace, where Ditto can maintain the source data directly.
-      </p>
-      <div class="private-grid" aria-label="Privacy status">
-        <div class="private-mini">
-          <strong>Public snapshot removed</strong>
-          <span>The sensitive JSON data file is no longer part of this deployment.</span>
-        </div>
-        <div class="private-mini">
-          <strong>Notion is source of truth</strong>
-          <span>Use the private Notion dashboard for holdings, transactions, and summaries.</span>
-        </div>
-        <div class="private-mini">
-          <strong>Ditto maintained</strong>
-          <span>Send trade updates to Ditto; the Notion database will be refreshed there.</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script src="/assets/site.js"></script>
-</body>
+      <footer class="site-footer"><p>© <span id="year"></span> Ditto. Source of truth: Notion trading dashboard; this page is the published read-only front-end.</p></footer>
+    </div>
+  </body>
 </html>
