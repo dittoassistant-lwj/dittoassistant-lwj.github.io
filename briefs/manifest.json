@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-19",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-19.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-19.html",
+      "topPaper": {
+        "title": "Budgeted Express-Mesh: Traffic-Aware Link Placement and Deadlock-Free Adaptive Routing",
+        "arxiv": "https://arxiv.org/abs/2609.17057"
+      },
+      "papers": [
+        {
+          "title": "Budgeted Express-Mesh: Traffic-Aware Link Placement and Deadlock-Free Adaptive Routing",
+          "arxiv": "https://arxiv.org/abs/2609.17057"
+        },
+        {
+          "title": "Ask the Tool, Don't Guess: Agent Tool Calls Hold Their Progress, and the Serving System Should Read It",
+          "arxiv": "https://arxiv.org/abs/2609.18849"
+        },
+        {
+          "title": "PixelFlow: Token-Level Workload Management for Efficient Distributed DiT Serving",
+          "arxiv": "https://arxiv.org/abs/2609.20723"
+        },
+        {
+          "title": "Shared KV Caching for Replicated 27B Inference: Correctness Failures and Performance Boundaries",
+          "arxiv": "https://arxiv.org/abs/2609.15021"
+        },
+        {
+          "title": "Netkit: Specializing Linux Packet Delivery for Container Networks",
+          "arxiv": "https://arxiv.org/abs/2609.18633"
+        }
+      ]
+    },
+    {
       "date": "2026-09-18",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-18.html",
