@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-20",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-20.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-20.html",
+      "topPaper": {
+        "title": "SAGE: Semantic-Aware Geographic Error Recovery for AI Data Movement",
+        "arxiv": "https://arxiv.org/abs/2609.10126"
+      },
+      "papers": [
+        {
+          "title": "SAGE: Semantic-Aware Geographic Error Recovery for AI Data Movement",
+          "arxiv": "https://arxiv.org/abs/2609.10126"
+        },
+        {
+          "title": "Accelerating Stateful Network Applications with Performance Prediction on SoC SmartNICs",
+          "arxiv": "https://arxiv.org/abs/2410.22229"
+        },
+        {
+          "title": "Photonic Rails in ML Datacenters",
+          "arxiv": "https://arxiv.org/abs/2507.08119"
+        },
+        {
+          "title": "Libra: Taming Attention Workload Skew in Long-Context LLM Training with Bounded Sequence Pool",
+          "arxiv": "https://arxiv.org/abs/2607.23250"
+        },
+        {
+          "title": "BOOST: Concurrent Access to Host Memory and HBM to Accelerate LLM Inference",
+          "arxiv": "https://arxiv.org/abs/2609.13592"
+        }
+      ]
+    },
+    {
       "date": "2026-09-19",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-19.html",
