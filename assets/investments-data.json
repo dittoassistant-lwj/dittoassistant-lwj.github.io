@@ -1,7 +1,7 @@
 {
   "source": "Notion trading dashboard + Yahoo Finance latest quotes",
-  "syncedAt": "2026-09-19T02:00:31+00:00",
-  "asOf": "2026-09-19",
+  "syncedAt": "2026-09-20T02:00:42+00:00",
+  "asOf": "2026-09-20",
   "currency": "USD",
   "totals": {
     "holdingsValue": 18736.75,
@@ -12,7 +12,7 @@
     "cash": 2408.439,
     "accountValue": 21145.189
   },
-  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-09-19; public dashboard JSON synced by Ditto.",
+  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-09-20; public dashboard JSON synced by Ditto.",
   "holdings": [
     {
       "ticker": "INTC",
@@ -33,7 +33,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-19",
-      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
     },
     {
       "ticker": "SOXL",
@@ -54,7 +54,7 @@
       "currency": "USD",
       "riskLevel": "Speculative",
       "lastPriceUpdate": "2026-09-19",
-      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
     },
     {
       "ticker": "GOOG",
@@ -64,10 +64,10 @@
       "averageCost": 338.385,
       "costBasis": 3722.235,
       "currentPrice": 344.41,
-      "previousClose": 339.359985,
-      "dailyChange": 5.050015,
-      "dailyChangePct": 0.014881,
-      "dailyPnl": 55.550165,
+      "previousClose": 343.679993,
+      "dailyChange": 0.730007,
+      "dailyChangePct": 0.002124,
+      "dailyPnl": 8.030077,
       "marketValue": 3788.51,
       "unrealized": 66.275,
       "unrealizedPct": 0.017805,
@@ -75,7 +75,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-19",
-      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
     },
     {
       "ticker": "QQQ",
@@ -96,7 +96,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-19",
-      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
     },
     {
       "ticker": "VOO",
@@ -117,7 +117,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-19",
-      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-09-18."
+      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
     }
   ],
   "actions": [
