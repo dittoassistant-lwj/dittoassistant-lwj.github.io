@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-21",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-21.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-21.html",
+      "topPaper": {
+        "title": "DLB: Distributed Load Balancing at Scale for Generative AI Inference",
+        "arxiv": "https://arxiv.org/abs/2609.21079"
+      },
+      "papers": [
+        {
+          "title": "DLB: Distributed Load Balancing at Scale for Generative AI Inference",
+          "arxiv": "https://arxiv.org/abs/2609.21079"
+        },
+        {
+          "title": "Beluga: A CXL-Based Memory Architecture for Scalable and Efficient LLM KVCache Management",
+          "arxiv": "https://arxiv.org/abs/2511.20172"
+        },
+        {
+          "title": "P/D-Serve: Serving Disaggregated Large Language Model at Scale",
+          "arxiv": "https://arxiv.org/abs/2408.08147"
+        },
+        {
+          "title": "Thallus: An RDMA-based Columnar Data Transport Protocol",
+          "arxiv": "https://arxiv.org/abs/2412.02192"
+        },
+        {
+          "title": "Datacenter Ethernet and RDMA: Issues at Hyperscale",
+          "arxiv": "https://arxiv.org/abs/2302.03337"
+        }
+      ]
+    },
+    {
       "date": "2026-09-20",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-20.html",
