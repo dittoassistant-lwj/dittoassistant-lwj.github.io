@@ -218,11 +218,56 @@ def latest_price_on_or_before(closes: dict[str, float], target: dt.date, fallbac
     return closes[max(eligible)]
 
 
-def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[str, dict[str, Any]], as_of: str) -> list[dict[str, Any]]:
-    """Build YTD month-end holdings value and cumulative P/L from transaction history.
+def xnpv(rate: float, flows: list[tuple[dt.date, float]]) -> float:
+    if not flows:
+        return 0.0
+    start = min(day for day, _amount in flows)
+    return sum(amount / ((1.0 + rate) ** ((day - start).days / 365.0)) for day, amount in flows)
 
-    P/L % uses a pragmatic portfolio denominator: remaining cost basis plus cost basis sold YTD.
-    That makes the line comparable across months with buys/sells without treating cash deposits as gains.
+
+def xirr(flows: list[tuple[dt.date, float]]) -> float | None:
+    """Compute Excel-like XIRR for dated cash flows.
+
+    Negative amounts are external money invested into the portfolio; positive amounts are
+    withdrawals or the terminal account value. Returns None when no valid sign change exists.
+    """
+    valid_flows = [(day, amount) for day, amount in flows if abs(amount) > 1e-9]
+    if not any(amount < 0 for _day, amount in valid_flows) or not any(amount > 0 for _day, amount in valid_flows):
+        return None
+
+    # Bracket a root. XIRR can have multiple roots, but this mirrors the practical
+    # spreadsheet use case for one portfolio contribution stream and terminal value.
+    low = -0.999999
+    high = 10.0
+    f_low = xnpv(low, valid_flows)
+    f_high = xnpv(high, valid_flows)
+    while f_low * f_high > 0 and high < 1_000_000:
+        high *= 2
+        f_high = xnpv(high, valid_flows)
+    if f_low * f_high > 0:
+        return None
+
+    for _ in range(200):
+        mid = (low + high) / 2
+        f_mid = xnpv(mid, valid_flows)
+        if abs(f_mid) < 1e-7:
+            return mid
+        if f_low * f_mid <= 0:
+            high = mid
+            f_high = f_mid
+        else:
+            low = mid
+            f_low = f_mid
+    return (low + high) / 2
+
+
+def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[str, dict[str, Any]], as_of: str) -> list[dict[str, Any]]:
+    """Build month-end holdings value, simple YTD P/L %, and heuristic YTD XIRR.
+
+    The simple P/L % is `YTD P/L / holdings value`, matching the dashboard mental model.
+    XIRR is inferred from the action log using minimal external cash flows: buys/initial
+    notes are treated as deposits only when existing cash cannot fund them; sells increase
+    cash; terminal account value closes the cash-flow series each month.
     """
     as_of_date = dt.date.fromisoformat(as_of)
     year = as_of_date.year
@@ -248,7 +293,8 @@ def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[s
     positions: dict[str, float] = {}
     basis: dict[str, float] = {}
     realized_ytd = 0.0
-    sold_basis_ytd = 0.0
+    cash_balance = 0.0
+    external_flows: list[tuple[dt.date, float]] = []
     cursor = 0
     monthly: list[dict[str, Any]] = []
 
@@ -257,15 +303,23 @@ def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[s
         while cursor < len(ordered_actions) and str(ordered_actions[cursor].get("date") or "") <= month_end.isoformat():
             row = ordered_actions[cursor]
             cursor += 1
+            action_date = dt.date.fromisoformat(str(row.get("date")))
             symbol = str(row.get("ticker") or "").upper().strip()
             if not symbol:
                 continue
             action_type = str(row.get("type") or "").lower()
             quantity = to_float(row.get("quantity"))
-            total_amount = to_float(row.get("totalAmount")) + to_float(row.get("fees"))
+            fees = to_float(row.get("fees"))
+            gross_amount = to_float(row.get("totalAmount"))
             if action_type in {"buy", "note"} and quantity > 0:
+                cash_needed = gross_amount + fees
+                if cash_balance + 1e-9 < cash_needed:
+                    deposit = cash_needed - cash_balance
+                    external_flows.append((action_date, -deposit))
+                    cash_balance += deposit
+                cash_balance -= cash_needed
                 positions[symbol] = positions.get(symbol, 0.0) + quantity
-                basis[symbol] = basis.get(symbol, 0.0) + total_amount
+                basis[symbol] = basis.get(symbol, 0.0) + cash_needed
             elif action_type == "sell" and quantity > 0:
                 current_qty = positions.get(symbol, 0.0)
                 current_basis = basis.get(symbol, 0.0)
@@ -273,7 +327,7 @@ def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[s
                 sold_basis = supplied_sold_basis or (current_basis * min(quantity, current_qty) / current_qty if current_qty else 0.0)
                 positions[symbol] = max(0.0, current_qty - quantity)
                 basis[symbol] = max(0.0, current_basis - sold_basis)
-                sold_basis_ytd += sold_basis
+                cash_balance += gross_amount - fees
                 realized_ytd += to_float(row.get("realized"), 0.0)
 
         holdings_value = 0.0
@@ -286,16 +340,23 @@ def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[s
         cost_basis = sum(value for value in basis.values() if value > 0)
         unrealized = holdings_value - cost_basis
         ytd_pnl = realized_ytd + unrealized
-        denominator = cost_basis + sold_basis_ytd
+        account_value = holdings_value + cash_balance
+        xirr_value = xirr(external_flows + [(month_end, account_value)]) if account_value > 0 else None
+        simple_pnl_pct = ytd_pnl / holdings_value if holdings_value else 0.0
         monthly.append({
             "month": month,
             "monthEnd": month_end.isoformat(),
             "holdingsValue": rounded(holdings_value),
+            "cash": rounded(cash_balance),
+            "accountValue": rounded(account_value),
             "costBasis": rounded(cost_basis),
             "unrealized": rounded(unrealized),
             "realizedYtd": rounded(realized_ytd),
             "ytdPnl": rounded(ytd_pnl),
-            "ytdPnlPct": rounded(ytd_pnl / denominator if denominator else 0.0),
+            "ytdPnlPct": rounded(simple_pnl_pct),
+            "simpleYtdPnlPct": rounded(simple_pnl_pct),
+            "ytdXirrPct": rounded(xirr_value) if xirr_value is not None else None,
+            "xirrMethod": "heuristic_min_external_cash_flows_from_actions",
             "currency": "USD",
         })
     return monthly
@@ -466,22 +527,20 @@ def main() -> None:
     monthly_performance = build_monthly_performance(actions_json, quotes, latest_as_of)
     if monthly_performance:
         latest_month = latest_as_of[:7]
-        ytd_sold_basis = sum(
-            to_float(row.get("costBasisSold"))
-            for row in monthly_json
-            if str(row.get("month") or "").startswith(str(dt.date.fromisoformat(latest_as_of).year))
-        )
         latest_ytd_pnl = realized_ytd + total_unrealized
-        latest_denominator = total_cost_basis + ytd_sold_basis
+        latest_simple_pct = latest_ytd_pnl / total_market_value if total_market_value else 0.0
         for row in monthly_performance:
             if row.get("month") == latest_month:
                 row.update({
                     "holdingsValue": rounded(total_market_value),
+                    "cash": rounded(cash),
+                    "accountValue": rounded(total_market_value + cash),
                     "costBasis": rounded(total_cost_basis),
                     "unrealized": rounded(total_unrealized),
                     "realizedYtd": rounded(realized_ytd),
                     "ytdPnl": rounded(latest_ytd_pnl),
-                    "ytdPnlPct": rounded(latest_ytd_pnl / latest_denominator if latest_denominator else 0.0),
+                    "ytdPnlPct": rounded(latest_simple_pct),
+                    "simpleYtdPnlPct": rounded(latest_simple_pct),
                 })
                 break
 

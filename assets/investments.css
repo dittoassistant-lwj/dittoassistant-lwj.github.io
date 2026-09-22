@@ -75,16 +75,24 @@ td { color: #d8e4f7; }
 .combo-zero { stroke: rgba(251, 191, 36, .42); stroke-width: 1.2; stroke-dasharray: 5 5; }
 .combo-bar { fill: #4f8cff; opacity: .72; }
 .combo-line { fill: none; stroke: var(--inv-green); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(52, 211, 153, .28)); }
+.combo-line.xirr-line { stroke: var(--inv-yellow); stroke-width: 2.8; stroke-dasharray: 8 6; filter: drop-shadow(0 0 8px rgba(251, 191, 36, .24)); }
 .combo-dot { fill: var(--inv-green); stroke: #06111f; stroke-width: 3; }
+.combo-dot.xirr-dot { fill: var(--inv-yellow); }
 .combo-dot.negative-dot { fill: var(--inv-red); }
 .combo-point-label, .combo-x-label, .combo-y-label, .combo-axis-title { fill: #9fb1c9; font-size: 13px; }
 .combo-point-label { font-weight: 800; fill: #dbeafe; }
+.combo-point-label.xirr-label { fill: #fde68a; }
 .combo-axis-title { font-weight: 800; fill: #cbd5e1; }
 .chart-legend { display: flex; flex-wrap: wrap; gap: 1rem; color: var(--muted); font-size: .9rem; }
 .chart-legend span { display: inline-flex; align-items: center; gap: .4rem; }
 .chart-legend i { width: 1.2rem; height: .45rem; border-radius: 999px; display: inline-block; }
 .legend-bar { background: linear-gradient(90deg, var(--inv-blue), var(--inv-blue-2)); }
 .legend-line { background: var(--inv-green); }
+.legend-line.xirr-legend { background: var(--inv-yellow); }
+.xirr-mini-title { display: flex; justify-content: space-between; gap: 1rem; align-items: center; margin-top: .8rem; color: var(--muted); font-size: .9rem; }
+.xirr-mini-title span { display: inline-flex; align-items: center; gap: .4rem; color: #dbeafe; font-weight: 800; }
+.xirr-mini-title i { width: 1.2rem; height: .45rem; border-radius: 999px; display: inline-block; }
+.xirr-mini-chart { width: 100%; display: block; margin-top: .2rem; }
 .bar-row { display: grid; gap: .35rem; }
 .bar-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .9rem; }
 .bar-track { height: .72rem; border-radius: 999px; background: rgba(148, 163, 184, .11); overflow: hidden; }

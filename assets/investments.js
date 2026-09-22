@@ -113,9 +113,10 @@
     const plotWidth = width - padding.left - padding.right;
     const plotHeight = height - padding.top - padding.bottom;
     const maxValue = Math.max(...monthly.map((row) => Number(row.holdingsValue) || 0), 1);
-    const pnlValues = monthly.map((row) => pctNumber(row.ytdPnlPct));
-    const minPct = Math.min(0, ...pnlValues);
-    const maxPct = Math.max(0, ...pnlValues);
+    const simpleValues = monthly.map((row) => pctNumber(row.simpleYtdPnlPct ?? row.ytdPnlPct));
+    const xirrRows = monthly.filter((row) => row.ytdXirrPct != null);
+    const minPct = Math.min(0, ...simpleValues);
+    const maxPct = Math.max(0, ...simpleValues);
     const pctSpan = Math.max(1, maxPct - minPct);
     const slot = plotWidth / monthly.length;
     const barWidth = Math.min(54, slot * 0.54);
@@ -123,7 +124,7 @@
     const yValue = (value) => padding.top + plotHeight - ((Number(value) || 0) / maxValue) * plotHeight;
     const yPct = (value) => padding.top + plotHeight - ((pctNumber(value) - minPct) / pctSpan) * plotHeight;
     const zeroY = yPct(0);
-    const linePoints = monthly.map((row, index) => `${xCenter(index)},${yPct(row.ytdPnlPct)}`).join(" ");
+    const simpleLinePoints = monthly.map((row, index) => `${xCenter(index)},${yPct(row.simpleYtdPnlPct ?? row.ytdPnlPct)}`).join(" ");
 
     const bars = monthly.map((row, index) => {
       const x = xCenter(index) - barWidth / 2;
@@ -132,33 +133,61 @@
       return `<rect class="combo-bar" x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(1, h).toFixed(2)}" rx="8"><title>${escapeHtml(row.month)} holdings: ${money(row.holdingsValue)}</title></rect>`;
     }).join("");
 
-    const dots = monthly.map((row, index) => {
-      const y = yPct(row.ytdPnlPct);
-      return `<g><circle class="combo-dot ${Number(row.ytdPnlPct) < 0 ? "negative-dot" : ""}" cx="${xCenter(index).toFixed(2)}" cy="${y.toFixed(2)}" r="5"><title>${escapeHtml(row.month)} YTD P/L: ${pct(row.ytdPnlPct)} (${money(row.ytdPnl)})</title></circle><text class="combo-point-label" x="${xCenter(index).toFixed(2)}" y="${(y - 12).toFixed(2)}" text-anchor="middle">${pct(row.ytdPnlPct)}</text></g>`;
+    const simpleDots = monthly.map((row, index) => {
+      const value = row.simpleYtdPnlPct ?? row.ytdPnlPct;
+      const y = yPct(value);
+      return `<g><circle class="combo-dot simple-dot ${Number(value) < 0 ? "negative-dot" : ""}" cx="${xCenter(index).toFixed(2)}" cy="${y.toFixed(2)}" r="5"><title>${escapeHtml(row.month)} simple YTD P/L: ${pct(value)} (${money(row.ytdPnl)})</title></circle><text class="combo-point-label" x="${xCenter(index).toFixed(2)}" y="${(y - 12).toFixed(2)}" text-anchor="middle">${pct(value)}</text></g>`;
     }).join("");
+
+    const xirrSparkline = (() => {
+      if (xirrRows.length < 2) return `<p class="muted">XIRR needs at least two valid monthly points; it will fill in as the log grows.</p>`;
+      const sparkHeight = 150;
+      const sparkPadding = { top: 22, right: 76, bottom: 34, left: 84 };
+      const sparkPlotWidth = width - sparkPadding.left - sparkPadding.right;
+      const sparkPlotHeight = sparkHeight - sparkPadding.top - sparkPadding.bottom;
+      const values = xirrRows.map((row) => pctNumber(row.ytdXirrPct));
+      const minXirr = Math.min(0, ...values);
+      const maxXirr = Math.max(0, ...values);
+      const xirrSpan = Math.max(1, maxXirr - minXirr);
+      const xirrSlot = sparkPlotWidth / xirrRows.length;
+      const xirrX = (index) => sparkPadding.left + xirrSlot * index + xirrSlot / 2;
+      const xirrY = (value) => sparkPadding.top + sparkPlotHeight - ((pctNumber(value) - minXirr) / xirrSpan) * sparkPlotHeight;
+      const line = xirrRows.map((row, index) => `${xirrX(index)},${xirrY(row.ytdXirrPct)}`).join(" ");
+      const dots = xirrRows.map((row, index) => {
+        const y = xirrY(row.ytdXirrPct);
+        return `<g><circle class="combo-dot xirr-dot ${Number(row.ytdXirrPct) < 0 ? "negative-dot" : ""}" cx="${xirrX(index).toFixed(2)}" cy="${y.toFixed(2)}" r="4"><title>${escapeHtml(row.month)} YTD XIRR: ${pct(row.ytdXirrPct)} annualized</title></circle><text class="combo-point-label xirr-label" x="${xirrX(index).toFixed(2)}" y="${(y - 10).toFixed(2)}" text-anchor="middle">${pct(row.ytdXirrPct)}</text></g>`;
+      }).join("");
+      const sparkLabels = xirrRows.map((row, index) => `<text class="combo-x-label" x="${xirrX(index).toFixed(2)}" y="${sparkHeight - 12}" text-anchor="middle">${escapeHtml(row.month.slice(5))}</text>`).join("");
+      const ticks = [minXirr, 0, maxXirr].filter((value, index, arr) => arr.indexOf(value) === index).map((value) => `<text class="combo-y-label" x="${width - sparkPadding.right + 10}" y="${(sparkPadding.top + sparkPlotHeight - ((value - minXirr) / xirrSpan) * sparkPlotHeight + 4).toFixed(2)}">${pct(value)}</text>`).join("");
+      const zero = xirrY(0);
+      return `<div class="xirr-mini-title"><span><i class="legend-line xirr-legend"></i>YTD XIRR %</span><small>Annualized; separate scale because XIRR can spike early in the year.</small></div><svg class="xirr-mini-chart" viewBox="0 0 ${width} ${sparkHeight}" role="presentation" aria-hidden="true"><line class="combo-zero" x1="${sparkPadding.left}" x2="${width - sparkPadding.right}" y1="${zero.toFixed(2)}" y2="${zero.toFixed(2)}"></line><polyline class="combo-line xirr-line" points="${line}"></polyline>${dots}${sparkLabels}${ticks}</svg>`;
+    })();
 
     const labels = monthly.map((row, index) => `<text class="combo-x-label" x="${xCenter(index).toFixed(2)}" y="${height - 24}" text-anchor="middle">${escapeHtml(row.month.slice(5))}</text>`).join("");
     const valueTicks = [0, maxValue / 2, maxValue].map((value) => `<g><line class="combo-grid" x1="${padding.left}" x2="${width - padding.right}" y1="${yValue(value).toFixed(2)}" y2="${yValue(value).toFixed(2)}"></line><text class="combo-y-label" x="${padding.left - 10}" y="${(yValue(value) + 4).toFixed(2)}" text-anchor="end">${money(value)}</text></g>`).join("");
     const pctTicks = [minPct, 0, maxPct].filter((value, index, arr) => arr.indexOf(value) === index).map((value) => `<text class="combo-y-label" x="${width - padding.right + 10}" y="${(padding.top + plotHeight - ((value - minPct) / pctSpan) * plotHeight + 4).toFixed(2)}">${pct(value)}</text>`).join("");
 
     const latest = monthly[monthly.length - 1];
+    const latestSimplePct = latest.simpleYtdPnlPct ?? latest.ytdPnlPct;
     container.innerHTML = `
       <div class="combo-summary">
         <span><strong>${money(latest.holdingsValue)}</strong><small>Latest holdings value</small></span>
-        <span class="${signedClass(latest.ytdPnl)}"><strong>${pct(latest.ytdPnlPct)}</strong><small>YTD P/L % · ${money(latest.ytdPnl)}</small></span>
+        <span class="${signedClass(latest.ytdPnl)}"><strong>${pct(latestSimplePct)}</strong><small>Simple YTD P/L · ${money(latest.ytdPnl)}</small></span>
+        <span class="${signedClass(latest.ytdXirrPct ?? 0)}"><strong>${latest.ytdXirrPct == null ? "—" : pct(latest.ytdXirrPct)}</strong><small>YTD XIRR, annualized</small></span>
       </div>
       <svg viewBox="0 0 ${width} ${height}" role="presentation" aria-hidden="true">
         ${valueTicks}
         <line class="combo-zero" x1="${padding.left}" x2="${width - padding.right}" y1="${zeroY.toFixed(2)}" y2="${zeroY.toFixed(2)}"></line>
         ${bars}
-        <polyline class="combo-line" points="${linePoints}"></polyline>
-        ${dots}
+        <polyline class="combo-line simple-line" points="${simpleLinePoints}"></polyline>
+        ${simpleDots}
         ${labels}
         ${pctTicks}
         <text class="combo-axis-title" x="${padding.left}" y="16">Holdings value</text>
-        <text class="combo-axis-title" x="${width - padding.right}" y="16" text-anchor="end">YTD P/L %</text>
+        <text class="combo-axis-title" x="${width - padding.right}" y="16" text-anchor="end">Simple YTD P/L %</text>
       </svg>
-      <div class="chart-legend"><span><i class="legend-bar"></i>Holdings value</span><span><i class="legend-line"></i>YTD P/L %</span></div>`;
+      <div class="chart-legend"><span><i class="legend-bar"></i>Holdings value</span><span><i class="legend-line simple-legend"></i>Simple YTD P/L %</span></div>
+      ${xirrSparkline}`;
   }
 
   function renderBars(id, items) {
