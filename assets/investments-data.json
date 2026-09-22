@@ -1,6 +1,6 @@
 {
   "source": "Notion trading dashboard + Yahoo Finance latest quotes",
-  "syncedAt": "2026-09-22T00:01:21+00:00",
+  "syncedAt": "2026-09-22T02:48:07+00:00",
   "asOf": "2026-09-22",
   "currency": "USD",
   "totals": {
@@ -22,10 +22,10 @@
       "averageCost": 115.969,
       "costBasis": 4986.667,
       "currentPrice": 141.93,
-      "previousClose": 114.82,
-      "dailyChange": 27.11,
-      "dailyChangePct": 0.236109,
-      "dailyPnl": 1165.73,
+      "previousClose": 123.669998,
+      "dailyChange": 18.260002,
+      "dailyChangePct": 0.147651,
+      "dailyPnl": 785.180086,
       "marketValue": 6102.99,
       "unrealized": 1116.323,
       "unrealizedPct": 0.223862,
@@ -33,7 +33,7 @@
       "currency": "USD",
       "riskLevel": "Speculative",
       "lastPriceUpdate": "2026-09-22",
-      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
+      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-22."
     },
     {
       "ticker": "INTC",
@@ -43,10 +43,10 @@
       "averageCost": 94.503265,
       "costBasis": 4630.66,
       "currentPrice": 121.78,
-      "previousClose": 108.800003,
-      "dailyChange": 12.979997,
-      "dailyChangePct": 0.119301,
-      "dailyPnl": 636.019853,
+      "previousClose": 108.599998,
+      "dailyChange": 13.180002,
+      "dailyChangePct": 0.121363,
+      "dailyPnl": 645.820098,
       "marketValue": 5967.22,
       "unrealized": 1336.56,
       "unrealizedPct": 0.288633,
@@ -54,7 +54,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-22",
-      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
+      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-22."
     },
     {
       "ticker": "GOOG",
@@ -64,10 +64,10 @@
       "averageCost": 338.385,
       "costBasis": 3722.235,
       "currentPrice": 350.87,
-      "previousClose": 343.679993,
-      "dailyChange": 7.190007,
-      "dailyChangePct": 0.020921,
-      "dailyPnl": 79.090077,
+      "previousClose": 344.410004,
+      "dailyChange": 6.459996,
+      "dailyChangePct": 0.018757,
+      "dailyPnl": 71.059956,
       "marketValue": 3859.57,
       "unrealized": 137.335,
       "unrealizedPct": 0.036896,
@@ -75,7 +75,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-22",
-      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
+      "notes": "Created from Ethan's Telegram trade update: bought 11 units @ 338.385. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-09-22."
     },
     {
       "ticker": "QQQ",
@@ -85,10 +85,10 @@
       "averageCost": 706.97,
       "costBasis": 3534.85,
       "currentPrice": 741.47,
-      "previousClose": 716.919983,
-      "dailyChange": 24.550017,
-      "dailyChangePct": 0.034244,
-      "dailyPnl": 122.750085,
+      "previousClose": 721.450012,
+      "dailyChange": 20.019988,
+      "dailyChangePct": 0.02775,
+      "dailyPnl": 100.09994,
       "marketValue": 3707.35,
       "unrealized": 172.5,
       "unrealizedPct": 0.0488,
@@ -96,7 +96,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-22",
-      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
+      "notes": "Synced from Ethan trade updates: bought 3 @ 730.95 on 2026-05-28; bought 2 @ 671 on 2026-08-19. Current price uses latest transaction price placeholder until next quote refresh. Latest price refreshed from Yahoo Finance chart API on 2026-09-22."
     },
     {
       "ticker": "VOO",
@@ -106,10 +106,10 @@
       "averageCost": 654.48,
       "costBasis": 654.48,
       "currentPrice": 712.78,
-      "previousClose": 701.030029,
-      "dailyChange": 11.749971,
-      "dailyChangePct": 0.016761,
-      "dailyPnl": 11.749971,
+      "previousClose": 701.780029,
+      "dailyChange": 10.999971,
+      "dailyChangePct": 0.015674,
+      "dailyPnl": 10.999971,
       "marketValue": 712.78,
       "unrealized": 58.3,
       "unrealizedPct": 0.089078,
@@ -117,7 +117,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-09-22",
-      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-09-19."
+      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-09-22."
     }
   ],
   "actions": [
@@ -438,6 +438,63 @@
       "realizedPct": -0.038834511509878475,
       "currency": "USD",
       "notes": "Synced after NVDA sale: sold 10 @ 212.11 vs cost basis 220.68."
+    }
+  ],
+  "monthlyPerformance": [
+    {
+      "month": "2026-05",
+      "monthEnd": "2026-05-31",
+      "holdingsValue": 13583.023744,
+      "costBasis": 12486.946,
+      "unrealized": 1096.077744,
+      "realizedYtd": -85.7,
+      "ytdPnl": 1010.377744,
+      "ytdPnlPct": 0.068762,
+      "currency": "USD"
+    },
+    {
+      "month": "2026-06",
+      "monthEnd": "2026-06-30",
+      "holdingsValue": 18167.773566,
+      "costBasis": 17592.63,
+      "unrealized": 575.143566,
+      "realizedYtd": 1989.684,
+      "ytdPnl": 2564.827566,
+      "ytdPnlPct": 0.087123,
+      "currency": "USD"
+    },
+    {
+      "month": "2026-07",
+      "monthEnd": "2026-07-31",
+      "holdingsValue": 13312.741775,
+      "costBasis": 17592.63,
+      "unrealized": -4279.888225,
+      "realizedYtd": 1989.684,
+      "ytdPnl": -2290.204225,
+      "ytdPnlPct": -0.077795,
+      "currency": "USD"
+    },
+    {
+      "month": "2026-08",
+      "monthEnd": "2026-08-31",
+      "holdingsValue": 5300.069604,
+      "costBasis": 5267.026,
+      "unrealized": 33.043604,
+      "realizedYtd": -916.586,
+      "ytdPnl": -883.542396,
+      "ytdPnlPct": -0.027733,
+      "currency": "USD"
+    },
+    {
+      "month": "2026-09",
+      "monthEnd": "2026-09-22",
+      "holdingsValue": 20349.91,
+      "costBasis": 17528.892,
+      "unrealized": 2821.018,
+      "realizedYtd": -916.586,
+      "ytdPnl": 1904.432,
+      "ytdPnlPct": 0.043164,
+      "currency": "USD"
     }
   ]
 }

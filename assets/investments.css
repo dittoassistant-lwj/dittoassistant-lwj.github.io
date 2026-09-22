@@ -53,6 +53,7 @@
 
 .dashboard-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 1rem; align-items: start; }
 .wide { grid-column: span 1; }
+.full-span { grid-column: 1 / -1; }
 .table-card, .chart-card, .transaction-form { border: 1px solid var(--inv-border); border-radius: 18px; background: rgba(11, 18, 32, .72); padding: 1rem; box-shadow: 0 18px 45px rgba(0,0,0,.2); }
 .table-scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; min-width: 760px; }
@@ -64,6 +65,26 @@ td { color: #d8e4f7; }
 .price-input { max-width: 104px; color: var(--text); background: rgba(3, 7, 18, .58); border: 1px solid var(--inv-border); border-radius: 10px; padding: .48rem; }
 
 .bars, .movers, .insight-list { display: grid; gap: .7rem; }
+.combo-chart { display: grid; gap: .6rem; overflow-x: auto; }
+.combo-chart svg { width: 100%; min-width: 720px; height: auto; display: block; }
+.combo-summary { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: .2rem; }
+.combo-summary span { min-width: 190px; border: 1px solid rgba(120, 151, 190, .14); border-radius: 14px; background: rgba(3, 7, 18, .28); padding: .7rem .85rem; }
+.combo-summary strong, .combo-summary small { display: block; }
+.combo-summary small { color: var(--muted); margin-top: .15rem; }
+.combo-grid { stroke: rgba(148, 163, 184, .14); stroke-width: 1; }
+.combo-zero { stroke: rgba(251, 191, 36, .42); stroke-width: 1.2; stroke-dasharray: 5 5; }
+.combo-bar { fill: #4f8cff; opacity: .72; }
+.combo-line { fill: none; stroke: var(--inv-green); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 8px rgba(52, 211, 153, .28)); }
+.combo-dot { fill: var(--inv-green); stroke: #06111f; stroke-width: 3; }
+.combo-dot.negative-dot { fill: var(--inv-red); }
+.combo-point-label, .combo-x-label, .combo-y-label, .combo-axis-title { fill: #9fb1c9; font-size: 13px; }
+.combo-point-label { font-weight: 800; fill: #dbeafe; }
+.combo-axis-title { font-weight: 800; fill: #cbd5e1; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 1rem; color: var(--muted); font-size: .9rem; }
+.chart-legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.chart-legend i { width: 1.2rem; height: .45rem; border-radius: 999px; display: inline-block; }
+.legend-bar { background: linear-gradient(90deg, var(--inv-blue), var(--inv-blue-2)); }
+.legend-line { background: var(--inv-green); }
 .bar-row { display: grid; gap: .35rem; }
 .bar-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: .9rem; }
 .bar-track { height: .72rem; border-radius: 999px; background: rgba(148, 163, 184, .11); overflow: hidden; }

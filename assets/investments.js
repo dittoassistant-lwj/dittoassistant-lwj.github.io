@@ -98,6 +98,69 @@
     $("monthly-realized-bars").innerHTML = monthly.length ? monthly.map((row) => `<div class="bar-row"><div class="bar-meta"><strong>${escapeHtml(row.month)}</strong><span class="${signedClass(row.realized)}">${money(row.realized)}</span></div><div class="bar-track"><div class="bar-fill ${Number(row.realized) < 0 ? "bar-negative" : ""}" style="width:${maxAbs ? Math.max(2, Math.abs(Number(row.realized)) / maxAbs * 100) : 2}%"></div></div></div>`).join("") : `<p class="muted">No data yet.</p>`;
   }
 
+  function renderMonthlyPerformance() {
+    const monthly = data.monthlyPerformance || [];
+    const container = $("monthly-performance-chart");
+    if (!container) return;
+    if (!monthly.length) {
+      container.innerHTML = `<p class="muted">No monthly performance history yet. It will appear after the next Notion sync.</p>`;
+      return;
+    }
+
+    const width = 920;
+    const height = 320;
+    const padding = { top: 24, right: 76, bottom: 56, left: 84 };
+    const plotWidth = width - padding.left - padding.right;
+    const plotHeight = height - padding.top - padding.bottom;
+    const maxValue = Math.max(...monthly.map((row) => Number(row.holdingsValue) || 0), 1);
+    const pnlValues = monthly.map((row) => pctNumber(row.ytdPnlPct));
+    const minPct = Math.min(0, ...pnlValues);
+    const maxPct = Math.max(0, ...pnlValues);
+    const pctSpan = Math.max(1, maxPct - minPct);
+    const slot = plotWidth / monthly.length;
+    const barWidth = Math.min(54, slot * 0.54);
+    const xCenter = (index) => padding.left + slot * index + slot / 2;
+    const yValue = (value) => padding.top + plotHeight - ((Number(value) || 0) / maxValue) * plotHeight;
+    const yPct = (value) => padding.top + plotHeight - ((pctNumber(value) - minPct) / pctSpan) * plotHeight;
+    const zeroY = yPct(0);
+    const linePoints = monthly.map((row, index) => `${xCenter(index)},${yPct(row.ytdPnlPct)}`).join(" ");
+
+    const bars = monthly.map((row, index) => {
+      const x = xCenter(index) - barWidth / 2;
+      const y = yValue(row.holdingsValue);
+      const h = padding.top + plotHeight - y;
+      return `<rect class="combo-bar" x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(1, h).toFixed(2)}" rx="8"><title>${escapeHtml(row.month)} holdings: ${money(row.holdingsValue)}</title></rect>`;
+    }).join("");
+
+    const dots = monthly.map((row, index) => {
+      const y = yPct(row.ytdPnlPct);
+      return `<g><circle class="combo-dot ${Number(row.ytdPnlPct) < 0 ? "negative-dot" : ""}" cx="${xCenter(index).toFixed(2)}" cy="${y.toFixed(2)}" r="5"><title>${escapeHtml(row.month)} YTD P/L: ${pct(row.ytdPnlPct)} (${money(row.ytdPnl)})</title></circle><text class="combo-point-label" x="${xCenter(index).toFixed(2)}" y="${(y - 12).toFixed(2)}" text-anchor="middle">${pct(row.ytdPnlPct)}</text></g>`;
+    }).join("");
+
+    const labels = monthly.map((row, index) => `<text class="combo-x-label" x="${xCenter(index).toFixed(2)}" y="${height - 24}" text-anchor="middle">${escapeHtml(row.month.slice(5))}</text>`).join("");
+    const valueTicks = [0, maxValue / 2, maxValue].map((value) => `<g><line class="combo-grid" x1="${padding.left}" x2="${width - padding.right}" y1="${yValue(value).toFixed(2)}" y2="${yValue(value).toFixed(2)}"></line><text class="combo-y-label" x="${padding.left - 10}" y="${(yValue(value) + 4).toFixed(2)}" text-anchor="end">${money(value)}</text></g>`).join("");
+    const pctTicks = [minPct, 0, maxPct].filter((value, index, arr) => arr.indexOf(value) === index).map((value) => `<text class="combo-y-label" x="${width - padding.right + 10}" y="${(padding.top + plotHeight - ((value - minPct) / pctSpan) * plotHeight + 4).toFixed(2)}">${pct(value)}</text>`).join("");
+
+    const latest = monthly[monthly.length - 1];
+    container.innerHTML = `
+      <div class="combo-summary">
+        <span><strong>${money(latest.holdingsValue)}</strong><small>Latest holdings value</small></span>
+        <span class="${signedClass(latest.ytdPnl)}"><strong>${pct(latest.ytdPnlPct)}</strong><small>YTD P/L % · ${money(latest.ytdPnl)}</small></span>
+      </div>
+      <svg viewBox="0 0 ${width} ${height}" role="presentation" aria-hidden="true">
+        ${valueTicks}
+        <line class="combo-zero" x1="${padding.left}" x2="${width - padding.right}" y1="${zeroY.toFixed(2)}" y2="${zeroY.toFixed(2)}"></line>
+        ${bars}
+        <polyline class="combo-line" points="${linePoints}"></polyline>
+        ${dots}
+        ${labels}
+        ${pctTicks}
+        <text class="combo-axis-title" x="${padding.left}" y="16">Holdings value</text>
+        <text class="combo-axis-title" x="${width - padding.right}" y="16" text-anchor="end">YTD P/L %</text>
+      </svg>
+      <div class="chart-legend"><span><i class="legend-bar"></i>Holdings value</span><span><i class="legend-line"></i>YTD P/L %</span></div>`;
+  }
+
   function renderBars(id, items) {
     $(id).innerHTML = items.length ? items.map((item) => `<div class="bar-row"><div class="bar-meta"><strong>${escapeHtml(item.label)}</strong><span>${escapeHtml(item.text)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(2, Math.min(100, item.value))}%"></div></div></div>`).join("") : `<p class="muted">No data yet.</p>`;
   }
@@ -126,6 +189,7 @@
     renderSummary();
     renderTransactions();
     renderRealized();
+    renderMonthlyPerformance();
   }
 
   function escapeHtml(value) {

@@ -127,15 +127,21 @@ def rounded(value: float, digits: int = 6) -> float:
     return round(float(value), digits)
 
 
-def latest_quote(symbol: str) -> dict[str, Any]:
+def yahoo_chart(symbol: str, query: str) -> dict[str, Any]:
     symbol = symbol.upper().strip()
-    url = f"https://query2.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(symbol)}?range=5d&interval=1d"
+    url = f"https://query2.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(symbol)}?{query}"
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as resp:
         payload = json.load(resp)
     result = payload.get("chart", {}).get("result", [None])[0]
     if not result:
         raise RuntimeError(f"No Yahoo Finance chart result for {symbol}")
+    return result
+
+
+def latest_quote(symbol: str) -> dict[str, Any]:
+    symbol = symbol.upper().strip()
+    result = yahoo_chart(symbol, "range=5d&interval=1d")
     meta = result.get("meta", {})
     quote = (result.get("indicators", {}).get("quote") or [{}])[0]
     closes = [x for x in quote.get("close", []) if x is not None]
@@ -161,6 +167,138 @@ def latest_quote(symbol: str) -> dict[str, Any]:
         "asOf": as_of,
         "source": "Yahoo Finance chart API",
     }
+
+
+def historical_daily_closes(symbol: str, start: dt.date, end: dt.date) -> dict[str, float]:
+    """Return split-adjusted daily closes keyed by ISO date for the inclusive date range."""
+    period1 = int(dt.datetime.combine(start, dt.time.min, tzinfo=dt.timezone.utc).timestamp())
+    # Yahoo period2 is exclusive; add two days so month-end weekends can still use the prior trading day.
+    period2 = int(dt.datetime.combine(end + dt.timedelta(days=2), dt.time.min, tzinfo=dt.timezone.utc).timestamp())
+    result = yahoo_chart(symbol, f"period1={period1}&period2={period2}&interval=1d")
+    timestamps = result.get("timestamp") or []
+    adjclose = (result.get("indicators", {}).get("adjclose") or [{}])[0].get("adjclose") or []
+    quote_close = (result.get("indicators", {}).get("quote") or [{}])[0].get("close") or []
+    closes: dict[str, float] = {}
+    for ts, adj, close in zip(timestamps, adjclose, quote_close):
+        price = adj if adj is not None else close
+        if price is None:
+            continue
+        day = dt.datetime.fromtimestamp(int(ts), dt.timezone.utc).date().isoformat()
+        closes[day] = rounded(to_float(price), 6)
+    return closes
+
+
+def month_end_for(month: str, as_of: str) -> dt.date:
+    year, month_num = [int(part) for part in month.split("-")]
+    if month_num == 12:
+        end = dt.date(year + 1, 1, 1) - dt.timedelta(days=1)
+    else:
+        end = dt.date(year, month_num + 1, 1) - dt.timedelta(days=1)
+    as_of_date = dt.date.fromisoformat(as_of)
+    return min(end, as_of_date)
+
+
+def month_sequence(start_month: str, end_month: str) -> list[str]:
+    year, month = [int(part) for part in start_month.split("-")]
+    end_year, end_month_num = [int(part) for part in end_month.split("-")]
+    months: list[str] = []
+    while (year, month) <= (end_year, end_month_num):
+        months.append(f"{year:04d}-{month:02d}")
+        month += 1
+        if month == 13:
+            year += 1
+            month = 1
+    return months
+
+
+def latest_price_on_or_before(closes: dict[str, float], target: dt.date, fallback: float = 0.0) -> float:
+    eligible = [day for day in closes if dt.date.fromisoformat(day) <= target]
+    if not eligible:
+        return fallback
+    return closes[max(eligible)]
+
+
+def build_monthly_performance(actions_json: list[dict[str, Any]], quotes: dict[str, dict[str, Any]], as_of: str) -> list[dict[str, Any]]:
+    """Build YTD month-end holdings value and cumulative P/L from transaction history.
+
+    P/L % uses a pragmatic portfolio denominator: remaining cost basis plus cost basis sold YTD.
+    That makes the line comparable across months with buys/sells without treating cash deposits as gains.
+    """
+    as_of_date = dt.date.fromisoformat(as_of)
+    year = as_of_date.year
+    ytd_actions = [row for row in actions_json if str(row.get("date") or "")[:4] == str(year)]
+    if not ytd_actions:
+        return []
+    first_month = min(str(row.get("date"))[:7] for row in ytd_actions if row.get("date"))
+    months = month_sequence(first_month, as_of_date.strftime("%Y-%m"))
+    symbols = sorted({str(row.get("ticker") or "").upper().strip() for row in ytd_actions if row.get("ticker")})
+    start = dt.date(year, 1, 1)
+    close_history: dict[str, dict[str, float]] = {}
+    for symbol in symbols:
+        if not symbol:
+            continue
+        try:
+            close_history[symbol] = historical_daily_closes(symbol, start, as_of_date)
+            time.sleep(0.2)
+        except Exception as exc:  # keep the dashboard publishable if one historical lookup fails
+            print(f"Warning: failed to fetch historical prices for {symbol}: {exc}")
+            close_history[symbol] = {}
+
+    ordered_actions = sorted(ytd_actions, key=lambda row: str(row.get("date") or ""))
+    positions: dict[str, float] = {}
+    basis: dict[str, float] = {}
+    realized_ytd = 0.0
+    sold_basis_ytd = 0.0
+    cursor = 0
+    monthly: list[dict[str, Any]] = []
+
+    for month in months:
+        month_end = month_end_for(month, as_of)
+        while cursor < len(ordered_actions) and str(ordered_actions[cursor].get("date") or "") <= month_end.isoformat():
+            row = ordered_actions[cursor]
+            cursor += 1
+            symbol = str(row.get("ticker") or "").upper().strip()
+            if not symbol:
+                continue
+            action_type = str(row.get("type") or "").lower()
+            quantity = to_float(row.get("quantity"))
+            total_amount = to_float(row.get("totalAmount")) + to_float(row.get("fees"))
+            if action_type in {"buy", "note"} and quantity > 0:
+                positions[symbol] = positions.get(symbol, 0.0) + quantity
+                basis[symbol] = basis.get(symbol, 0.0) + total_amount
+            elif action_type == "sell" and quantity > 0:
+                current_qty = positions.get(symbol, 0.0)
+                current_basis = basis.get(symbol, 0.0)
+                supplied_sold_basis = to_float(row.get("costBasisSold"), 0.0)
+                sold_basis = supplied_sold_basis or (current_basis * min(quantity, current_qty) / current_qty if current_qty else 0.0)
+                positions[symbol] = max(0.0, current_qty - quantity)
+                basis[symbol] = max(0.0, current_basis - sold_basis)
+                sold_basis_ytd += sold_basis
+                realized_ytd += to_float(row.get("realized"), 0.0)
+
+        holdings_value = 0.0
+        for symbol, quantity in positions.items():
+            if quantity <= 0:
+                continue
+            fallback = to_float(quotes.get(symbol, {}).get("price"))
+            price = latest_price_on_or_before(close_history.get(symbol, {}), month_end, fallback)
+            holdings_value += quantity * price
+        cost_basis = sum(value for value in basis.values() if value > 0)
+        unrealized = holdings_value - cost_basis
+        ytd_pnl = realized_ytd + unrealized
+        denominator = cost_basis + sold_basis_ytd
+        monthly.append({
+            "month": month,
+            "monthEnd": month_end.isoformat(),
+            "holdingsValue": rounded(holdings_value),
+            "costBasis": rounded(cost_basis),
+            "unrealized": rounded(unrealized),
+            "realizedYtd": rounded(realized_ytd),
+            "ytdPnl": rounded(ytd_pnl),
+            "ytdPnlPct": rounded(ytd_pnl / denominator if denominator else 0.0),
+            "currency": "USD",
+        })
+    return monthly
 
 
 def property_update_number(value: float) -> dict[str, Any]:
@@ -325,6 +463,28 @@ def main() -> None:
             "notes": row.get("Notes"),
         })
 
+    monthly_performance = build_monthly_performance(actions_json, quotes, latest_as_of)
+    if monthly_performance:
+        latest_month = latest_as_of[:7]
+        ytd_sold_basis = sum(
+            to_float(row.get("costBasisSold"))
+            for row in monthly_json
+            if str(row.get("month") or "").startswith(str(dt.date.fromisoformat(latest_as_of).year))
+        )
+        latest_ytd_pnl = realized_ytd + total_unrealized
+        latest_denominator = total_cost_basis + ytd_sold_basis
+        for row in monthly_performance:
+            if row.get("month") == latest_month:
+                row.update({
+                    "holdingsValue": rounded(total_market_value),
+                    "costBasis": rounded(total_cost_basis),
+                    "unrealized": rounded(total_unrealized),
+                    "realizedYtd": rounded(realized_ytd),
+                    "ytdPnl": rounded(latest_ytd_pnl),
+                    "ytdPnlPct": rounded(latest_ytd_pnl / latest_denominator if latest_denominator else 0.0),
+                })
+                break
+
     now_utc = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     output = {
         "source": "Notion trading dashboard + Yahoo Finance latest quotes",
@@ -344,6 +504,7 @@ def main() -> None:
         "holdings": holdings_json,
         "actions": actions_json,
         "monthlyRealized": monthly_json,
+        "monthlyPerformance": monthly_performance,
     }
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as fh:
