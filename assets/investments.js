@@ -181,7 +181,7 @@
         y: monthly.map((row) => plotRatio(row.simpleYtdPnlPct ?? row.ytdPnlPct)),
         yaxis: "y2",
         customdata: commonHover,
-        line: { color: "#34d399", width: 3, shape: "spline" },
+        line: { color: "#34d399", width: 3, shape: "linear" },
         marker: { color: "#34d399", size: 9, line: { color: "#06111f", width: 2 } },
         hovertemplate: [
           "<b>%{x}</b>",
@@ -209,7 +209,7 @@
         x: xirrRows.map((row) => row.month),
         y: xirrRows.map((row) => plotRatio(row.ytdXirrPct)),
         customdata: xirrRows.map((row) => [row.monthEnd, Number(row.accountValue) || 0, Number(row.cash) || 0, row.xirrMethod || "—"]),
-        line: { color: "#fbbf24", width: 3, dash: "dash", shape: "spline" },
+        line: { color: "#fbbf24", width: 3, dash: "dash", shape: "linear" },
         marker: { color: "#fbbf24", size: 8, line: { color: "#06111f", width: 2 } },
         hovertemplate: [
           "<b>%{x}</b>",
