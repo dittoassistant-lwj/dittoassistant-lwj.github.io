@@ -66,7 +66,12 @@ td { color: #d8e4f7; }
 
 .bars, .movers, .insight-list { display: grid; gap: .7rem; }
 .combo-chart { display: grid; gap: .6rem; overflow-x: auto; }
-.combo-chart svg { width: 100%; min-width: 720px; height: auto; display: block; }
+.combo-chart > svg { width: 100%; min-width: 720px; height: auto; display: block; }
+.plotly-chart .modebar-btn svg { min-width: 0; width: 1em; height: 1em; }
+.plotly-chart { min-width: 720px; min-height: 420px; width: 100%; }
+.plotly-chart--mini { min-height: 250px; }
+.plotly-chart .modebar { opacity: .72; }
+.plotly-chart .modebar-btn path { fill: #cbd5e1 !important; }
 .combo-summary { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: .2rem; }
 .combo-summary span { min-width: 190px; border: 1px solid rgba(120, 151, 190, .14); border-radius: 14px; background: rgba(3, 7, 18, .28); padding: .7rem .85rem; }
 .combo-summary strong, .combo-summary small { display: block; }

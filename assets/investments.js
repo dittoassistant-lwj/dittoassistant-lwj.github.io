@@ -107,66 +107,6 @@
       return;
     }
 
-    const width = 920;
-    const height = 320;
-    const padding = { top: 24, right: 76, bottom: 56, left: 84 };
-    const plotWidth = width - padding.left - padding.right;
-    const plotHeight = height - padding.top - padding.bottom;
-    const maxValue = Math.max(...monthly.map((row) => Number(row.holdingsValue) || 0), 1);
-    const simpleValues = monthly.map((row) => pctNumber(row.simpleYtdPnlPct ?? row.ytdPnlPct));
-    const xirrRows = monthly.filter((row) => row.ytdXirrPct != null);
-    const minPct = Math.min(0, ...simpleValues);
-    const maxPct = Math.max(0, ...simpleValues);
-    const pctSpan = Math.max(1, maxPct - minPct);
-    const slot = plotWidth / monthly.length;
-    const barWidth = Math.min(54, slot * 0.54);
-    const xCenter = (index) => padding.left + slot * index + slot / 2;
-    const yValue = (value) => padding.top + plotHeight - ((Number(value) || 0) / maxValue) * plotHeight;
-    const yPct = (value) => padding.top + plotHeight - ((pctNumber(value) - minPct) / pctSpan) * plotHeight;
-    const zeroY = yPct(0);
-    const simpleLinePoints = monthly.map((row, index) => `${xCenter(index)},${yPct(row.simpleYtdPnlPct ?? row.ytdPnlPct)}`).join(" ");
-
-    const bars = monthly.map((row, index) => {
-      const x = xCenter(index) - barWidth / 2;
-      const y = yValue(row.holdingsValue);
-      const h = padding.top + plotHeight - y;
-      return `<rect class="combo-bar" x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${barWidth.toFixed(2)}" height="${Math.max(1, h).toFixed(2)}" rx="8"><title>${escapeHtml(row.month)} holdings: ${money(row.holdingsValue)}</title></rect>`;
-    }).join("");
-
-    const simpleDots = monthly.map((row, index) => {
-      const value = row.simpleYtdPnlPct ?? row.ytdPnlPct;
-      const y = yPct(value);
-      return `<g><circle class="combo-dot simple-dot ${Number(value) < 0 ? "negative-dot" : ""}" cx="${xCenter(index).toFixed(2)}" cy="${y.toFixed(2)}" r="5"><title>${escapeHtml(row.month)} simple YTD P/L: ${pct(value)} (${money(row.ytdPnl)})</title></circle><text class="combo-point-label" x="${xCenter(index).toFixed(2)}" y="${(y - 12).toFixed(2)}" text-anchor="middle">${pct(value)}</text></g>`;
-    }).join("");
-
-    const xirrSparkline = (() => {
-      if (xirrRows.length < 2) return `<p class="muted">XIRR needs at least two valid monthly points; it will fill in as the log grows.</p>`;
-      const sparkHeight = 150;
-      const sparkPadding = { top: 22, right: 76, bottom: 34, left: 84 };
-      const sparkPlotWidth = width - sparkPadding.left - sparkPadding.right;
-      const sparkPlotHeight = sparkHeight - sparkPadding.top - sparkPadding.bottom;
-      const values = xirrRows.map((row) => pctNumber(row.ytdXirrPct));
-      const minXirr = Math.min(0, ...values);
-      const maxXirr = Math.max(0, ...values);
-      const xirrSpan = Math.max(1, maxXirr - minXirr);
-      const xirrSlot = sparkPlotWidth / xirrRows.length;
-      const xirrX = (index) => sparkPadding.left + xirrSlot * index + xirrSlot / 2;
-      const xirrY = (value) => sparkPadding.top + sparkPlotHeight - ((pctNumber(value) - minXirr) / xirrSpan) * sparkPlotHeight;
-      const line = xirrRows.map((row, index) => `${xirrX(index)},${xirrY(row.ytdXirrPct)}`).join(" ");
-      const dots = xirrRows.map((row, index) => {
-        const y = xirrY(row.ytdXirrPct);
-        return `<g><circle class="combo-dot xirr-dot ${Number(row.ytdXirrPct) < 0 ? "negative-dot" : ""}" cx="${xirrX(index).toFixed(2)}" cy="${y.toFixed(2)}" r="4"><title>${escapeHtml(row.month)} YTD XIRR: ${pct(row.ytdXirrPct)} annualized</title></circle><text class="combo-point-label xirr-label" x="${xirrX(index).toFixed(2)}" y="${(y - 10).toFixed(2)}" text-anchor="middle">${pct(row.ytdXirrPct)}</text></g>`;
-      }).join("");
-      const sparkLabels = xirrRows.map((row, index) => `<text class="combo-x-label" x="${xirrX(index).toFixed(2)}" y="${sparkHeight - 12}" text-anchor="middle">${escapeHtml(row.month.slice(5))}</text>`).join("");
-      const ticks = [minXirr, 0, maxXirr].filter((value, index, arr) => arr.indexOf(value) === index).map((value) => `<text class="combo-y-label" x="${width - sparkPadding.right + 10}" y="${(sparkPadding.top + sparkPlotHeight - ((value - minXirr) / xirrSpan) * sparkPlotHeight + 4).toFixed(2)}">${pct(value)}</text>`).join("");
-      const zero = xirrY(0);
-      return `<div class="xirr-mini-title"><span><i class="legend-line xirr-legend"></i>YTD XIRR %</span><small>Annualized; separate scale because XIRR can spike early in the year.</small></div><svg class="xirr-mini-chart" viewBox="0 0 ${width} ${sparkHeight}" role="presentation" aria-hidden="true"><line class="combo-zero" x1="${sparkPadding.left}" x2="${width - sparkPadding.right}" y1="${zero.toFixed(2)}" y2="${zero.toFixed(2)}"></line><polyline class="combo-line xirr-line" points="${line}"></polyline>${dots}${sparkLabels}${ticks}</svg>`;
-    })();
-
-    const labels = monthly.map((row, index) => `<text class="combo-x-label" x="${xCenter(index).toFixed(2)}" y="${height - 24}" text-anchor="middle">${escapeHtml(row.month.slice(5))}</text>`).join("");
-    const valueTicks = [0, maxValue / 2, maxValue].map((value) => `<g><line class="combo-grid" x1="${padding.left}" x2="${width - padding.right}" y1="${yValue(value).toFixed(2)}" y2="${yValue(value).toFixed(2)}"></line><text class="combo-y-label" x="${padding.left - 10}" y="${(yValue(value) + 4).toFixed(2)}" text-anchor="end">${money(value)}</text></g>`).join("");
-    const pctTicks = [minPct, 0, maxPct].filter((value, index, arr) => arr.indexOf(value) === index).map((value) => `<text class="combo-y-label" x="${width - padding.right + 10}" y="${(padding.top + plotHeight - ((value - minPct) / pctSpan) * plotHeight + 4).toFixed(2)}">${pct(value)}</text>`).join("");
-
     const latest = monthly[monthly.length - 1];
     const latestSimplePct = latest.simpleYtdPnlPct ?? latest.ytdPnlPct;
     container.innerHTML = `
@@ -175,19 +115,121 @@
         <span class="${signedClass(latest.ytdPnl)}"><strong>${pct(latestSimplePct)}</strong><small>Simple YTD P/L · ${money(latest.ytdPnl)}</small></span>
         <span class="${signedClass(latest.ytdXirrPct ?? 0)}"><strong>${latest.ytdXirrPct == null ? "—" : pct(latest.ytdXirrPct)}</strong><small>YTD XIRR, annualized</small></span>
       </div>
-      <svg viewBox="0 0 ${width} ${height}" role="presentation" aria-hidden="true">
-        ${valueTicks}
-        <line class="combo-zero" x1="${padding.left}" x2="${width - padding.right}" y1="${zeroY.toFixed(2)}" y2="${zeroY.toFixed(2)}"></line>
-        ${bars}
-        <polyline class="combo-line simple-line" points="${simpleLinePoints}"></polyline>
-        ${simpleDots}
-        ${labels}
-        ${pctTicks}
-        <text class="combo-axis-title" x="${padding.left}" y="16">Holdings value</text>
-        <text class="combo-axis-title" x="${width - padding.right}" y="16" text-anchor="end">Simple YTD P/L %</text>
-      </svg>
-      <div class="chart-legend"><span><i class="legend-bar"></i>Holdings value</span><span><i class="legend-line simple-legend"></i>Simple YTD P/L %</span></div>
-      ${xirrSparkline}`;
+      <div id="monthly-performance-plot" class="plotly-chart" aria-label="Interactive monthly holdings value and simple YTD profit loss chart"></div>
+      <div class="xirr-mini-title"><span><i class="legend-line xirr-legend"></i>YTD XIRR %</span><small>Annualized; separate scale because XIRR can spike early in the year. Hover for exact values.</small></div>
+      <div id="monthly-xirr-plot" class="plotly-chart plotly-chart--mini" aria-label="Interactive annualized YTD XIRR chart"></div>`;
+
+    if (!window.Plotly) {
+      $("monthly-performance-plot").innerHTML = `<p class="muted">Interactive charts could not load. Check the Plotly CDN connection.</p>`;
+      $("monthly-xirr-plot").innerHTML = "";
+      return;
+    }
+
+    const plotRatio = (value) => {
+      const number = Number(value) || 0;
+      return Math.abs(number) > 1 ? number / 100 : number;
+    };
+    const months = monthly.map((row) => row.month);
+    const commonHover = monthly.map((row) => [
+      row.monthEnd,
+      Number(row.holdingsValue) || 0,
+      Number(row.cash) || 0,
+      Number(row.accountValue) || 0,
+      Number(row.ytdPnl) || 0,
+      Number(row.realizedYtd) || 0,
+      Number(row.unrealized) || 0,
+      Number(plotRatio(row.simpleYtdPnlPct ?? row.ytdPnlPct)) || 0,
+    ]);
+    const plotConfig = {
+      responsive: true,
+      displaylogo: false,
+      modeBarButtonsToRemove: ["lasso2d", "select2d", "autoScale2d"],
+    };
+    const baseLayout = {
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(3,7,18,0.22)",
+      font: { color: "#cbd5e1", family: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" },
+      margin: { l: 76, r: 76, t: 18, b: 54 },
+      hovermode: "x unified",
+      hoverlabel: { bgcolor: "#08111f", bordercolor: "rgba(148,163,184,.32)", font: { color: "#e5eefb" } },
+      legend: { orientation: "h", y: -0.22, x: 0, font: { color: "#9fb1c9" } },
+      xaxis: { type: "category", tickfont: { color: "#9fb1c9" }, gridcolor: "rgba(148,163,184,.12)", zerolinecolor: "rgba(251,191,36,.35)" },
+    };
+
+    Plotly.newPlot("monthly-performance-plot", [
+      {
+        type: "bar",
+        name: "Holdings value",
+        x: months,
+        y: monthly.map((row) => Number(row.holdingsValue) || 0),
+        customdata: commonHover,
+        marker: { color: "rgba(79,140,255,.74)", line: { color: "rgba(103,232,249,.55)", width: 1 } },
+        hovertemplate: [
+          "<b>%{x}</b>",
+          "Holdings: $%{customdata[1]:,.2f}",
+          "Cash: $%{customdata[2]:,.2f}",
+          "Account value: $%{customdata[3]:,.2f}",
+          "Month end: %{customdata[0]}",
+          "<extra></extra>",
+        ].join("<br>"),
+      },
+      {
+        type: "scatter",
+        mode: "lines+markers",
+        name: "Simple YTD P/L %",
+        x: months,
+        y: monthly.map((row) => plotRatio(row.simpleYtdPnlPct ?? row.ytdPnlPct)),
+        yaxis: "y2",
+        customdata: commonHover,
+        line: { color: "#34d399", width: 3, shape: "spline" },
+        marker: { color: "#34d399", size: 9, line: { color: "#06111f", width: 2 } },
+        hovertemplate: [
+          "<b>%{x}</b>",
+          "Simple YTD P/L: %{y:.2%}",
+          "YTD P/L: $%{customdata[4]:,.2f}",
+          "Realized YTD: $%{customdata[5]:,.2f}",
+          "Unrealized: $%{customdata[6]:,.2f}",
+          "Holdings: $%{customdata[1]:,.2f}",
+          "<extra></extra>",
+        ].join("<br>"),
+      },
+    ], {
+      ...baseLayout,
+      height: 420,
+      yaxis: { title: "Holdings value", tickprefix: "$", separatethousands: true, gridcolor: "rgba(148,163,184,.12)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zerolinecolor: "rgba(148,163,184,.2)" },
+      yaxis2: { title: "Simple YTD P/L %", overlaying: "y", side: "right", tickformat: ".2%", gridcolor: "rgba(0,0,0,0)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zeroline: false },
+    }, plotConfig);
+
+    const xirrRows = monthly.filter((row) => row.ytdXirrPct != null);
+    if (xirrRows.length) {
+      Plotly.newPlot("monthly-xirr-plot", [{
+        type: "scatter",
+        mode: "lines+markers",
+        name: "YTD XIRR %",
+        x: xirrRows.map((row) => row.month),
+        y: xirrRows.map((row) => plotRatio(row.ytdXirrPct)),
+        customdata: xirrRows.map((row) => [row.monthEnd, Number(row.accountValue) || 0, Number(row.cash) || 0, row.xirrMethod || "—"]),
+        line: { color: "#fbbf24", width: 3, dash: "dash", shape: "spline" },
+        marker: { color: "#fbbf24", size: 8, line: { color: "#06111f", width: 2 } },
+        hovertemplate: [
+          "<b>%{x}</b>",
+          "YTD XIRR: %{y:.2%}",
+          "Terminal account value: $%{customdata[1]:,.2f}",
+          "Cash: $%{customdata[2]:,.2f}",
+          "Month end: %{customdata[0]}",
+          "Method: %{customdata[3]}",
+          "<extra></extra>",
+        ].join("<br>"),
+      }], {
+        ...baseLayout,
+        height: 250,
+        margin: { l: 76, r: 76, t: 10, b: 50 },
+        legend: { orientation: "h", y: -0.26, x: 0, font: { color: "#9fb1c9" } },
+        yaxis: { title: "Annualized XIRR %", tickformat: ".2%", gridcolor: "rgba(148,163,184,.12)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zerolinecolor: "rgba(251,191,36,.35)" },
+      }, plotConfig);
+    } else {
+      $("monthly-xirr-plot").innerHTML = `<p class="muted">XIRR needs at least one valid monthly point; it will fill in as the log grows.</p>`;
+    }
   }
 
   function renderBars(id, items) {
