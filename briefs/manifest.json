@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-09-22",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-22.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-22.html",
+      "topPaper": {
+        "title": "Conduit: An Experience Data Plane for Distributed Reinforcement Learning",
+        "arxiv": "https://arxiv.org/abs/2609.24456"
+      },
+      "papers": [
+        {
+          "title": "Conduit: An Experience Data Plane for Distributed Reinforcement Learning",
+          "arxiv": "https://arxiv.org/abs/2609.24456"
+        },
+        {
+          "title": "SPECTRA: Adaptive Execution of Speculative Decoding on a Runtime-Reconfigurable Tiled Architecture",
+          "arxiv": "https://arxiv.org/abs/2609.24847"
+        },
+        {
+          "title": "Tiga: Compiling Graph Message Passing at Scale",
+          "arxiv": "https://arxiv.org/abs/2609.24802"
+        },
+        {
+          "title": "Dissecting How Die Scaling Breaks GPU Fine-grained Scheduling",
+          "arxiv": "https://arxiv.org/abs/2609.24270"
+        }
+      ]
+    },
+    {
       "date": "2026-09-21",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-21.html",
