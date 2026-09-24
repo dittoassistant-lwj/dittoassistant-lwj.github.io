@@ -18,6 +18,11 @@
     return Number(value) >= 0 ? "positive" : "negative";
   }
 
+  function cell(label, html, className = "") {
+    const classAttr = className ? ` class="${className}"` : "";
+    return `<td${classAttr} data-label="${escapeHtml(label)}">${html}</td>`;
+  }
+
   function normalizeTicker(value) {
     return (value || "").trim().toUpperCase();
   }
@@ -58,7 +63,16 @@
     $("dashboard-content").classList.toggle("hidden", (data.holdings || []).length === 0);
     $("holdings-body").innerHTML = holdings.map((h) => {
       const weight = Number(h.allocationPct) || ((Number(data.totals?.holdingsValue) || 0) ? Number(h.marketValue) / Number(data.totals.holdingsValue) : 0);
-      return `<tr><td class="ticker-cell"><strong>${escapeHtml(h.ticker)}</strong><span>${escapeHtml(h.currency || "USD")}</span></td><td>${escapeHtml(h.name || h.assetClass || "—")}</td><td>${numberFormatter.format(Number(h.quantity) || 0)}</td><td>${money(h.averageCost)}</td><td>${money(h.currentPrice)}</td><td>${money(h.marketValue)}</td><td class="${signedClass(h.unrealized)}">${money(h.unrealized)}<br><small>${pct(h.unrealizedPct)}</small></td><td>${pct(weight)}</td></tr>`;
+      return `<tr>${[
+        cell("Ticker", `<strong>${escapeHtml(h.ticker)}</strong><span>${escapeHtml(h.currency || "USD")}</span>`, "ticker-cell"),
+        cell("Asset", escapeHtml(h.name || h.assetClass || "—")),
+        cell("Qty", numberFormatter.format(Number(h.quantity) || 0)),
+        cell("Avg cost", money(h.averageCost)),
+        cell("Last price", money(h.currentPrice)),
+        cell("Market value", money(h.marketValue)),
+        cell("Unrealized", `${money(h.unrealized)}<br><small>${pct(h.unrealizedPct)}</small>`, signedClass(h.unrealized)),
+        cell("Weight", pct(weight)),
+      ].join("")}</tr>`;
     }).join("") || `<tr><td colspan="8" class="muted">No active holdings match this filter.</td></tr>`;
 
     renderBars("allocation-bars", holdings.map((h) => ({ label: h.ticker, value: pctNumber(h.allocationPct), text: `${pct(h.allocationPct)} · ${money(h.marketValue)}` })));
@@ -67,7 +81,15 @@
   }
 
   function renderSummary() {
-    $("summary-body").innerHTML = (data.holdings || []).map((h) => `<tr><td class="ticker-cell"><strong>${escapeHtml(h.ticker)}</strong><span>${escapeHtml(h.currency || "USD")}</span></td><td>${escapeHtml(h.assetClass || "—")}</td><td>${money(h.costBasis)}</td><td>${money(h.marketValue)}</td><td>${escapeHtml(h.riskLevel || "—")}</td><td>${formatDate(h.lastPriceUpdate)}</td><td class="${signedClass(h.unrealized)}">${money(h.unrealized)}<br><small>${pct(h.unrealizedPct)}</small></td></tr>`).join("") || `<tr><td colspan="7" class="muted">No active positions yet.</td></tr>`;
+    $("summary-body").innerHTML = (data.holdings || []).map((h) => `<tr>${[
+      cell("Ticker", `<strong>${escapeHtml(h.ticker)}</strong><span>${escapeHtml(h.currency || "USD")}</span>`, "ticker-cell"),
+      cell("Asset class", escapeHtml(h.assetClass || "—")),
+      cell("Cost basis", money(h.costBasis)),
+      cell("Value", money(h.marketValue)),
+      cell("Risk", escapeHtml(h.riskLevel || "—")),
+      cell("Last update", formatDate(h.lastPriceUpdate)),
+      cell("Total return", `${money(h.unrealized)}<br><small>${pct(h.unrealizedPct)}</small>`, signedClass(h.unrealized)),
+    ].join("")}</tr>`).join("") || `<tr><td colspan="7" class="muted">No active positions yet.</td></tr>`;
 
     const byClass = new Map();
     for (const h of data.holdings || []) byClass.set(h.assetClass || "Unclassified", (byClass.get(h.assetClass || "Unclassified") || 0) + (Number(h.marketValue) || 0));
@@ -88,12 +110,28 @@
     const filter = ($("transaction-filter").value || "").toLowerCase();
     const actions = (data.actions || []).filter((tx) => !filter || [tx.date, tx.type, tx.status, tx.ticker, tx.name, tx.notes].some((field) => String(field || "").toLowerCase().includes(filter)));
     $("transaction-count").textContent = `${actions.length} row${actions.length === 1 ? "" : "s"}`;
-    $("transactions-body").innerHTML = actions.map((tx) => `<tr><td>${formatDate(tx.date)}</td><td><span class="badge ${escapeHtml(String(tx.type || "").toLowerCase())}">${escapeHtml(tx.type || "—")}</span></td><td>${escapeHtml(tx.status || "—")}</td><td class="ticker-cell"><strong>${escapeHtml(tx.ticker)}</strong><span>${escapeHtml(tx.name || "—")}</span></td><td>${tx.type === "Sell" || tx.type === "Buy" || tx.type === "Note" ? numberFormatter.format(Number(tx.quantity) || 0) : "—"}</td><td>${money(tx.price)}</td><td>${money(tx.totalAmount)}</td><td class="${tx.realized == null ? "" : signedClass(tx.realized)}">${tx.realized == null ? "—" : money(tx.realized)}</td></tr>`).join("") || `<tr><td colspan="8" class="muted">No transactions found.</td></tr>`;
+    $("transactions-body").innerHTML = actions.map((tx) => `<tr>${[
+      cell("Date", formatDate(tx.date)),
+      cell("Type", `<span class="badge ${escapeHtml(String(tx.type || "").toLowerCase())}">${escapeHtml(tx.type || "—")}</span>`),
+      cell("Status", escapeHtml(tx.status || "—")),
+      cell("Ticker", `<strong>${escapeHtml(tx.ticker)}</strong><span>${escapeHtml(tx.name || "—")}</span>`, "ticker-cell"),
+      cell("Qty", tx.type === "Sell" || tx.type === "Buy" || tx.type === "Note" ? numberFormatter.format(Number(tx.quantity) || 0) : "—"),
+      cell("Price", money(tx.price)),
+      cell("Total", money(tx.totalAmount)),
+      cell("Realized", tx.realized == null ? "—" : money(tx.realized), tx.realized == null ? "" : signedClass(tx.realized)),
+    ].join("")}</tr>`).join("") || `<tr><td colspan="8" class="muted">No transactions found.</td></tr>`;
   }
 
   function renderRealized() {
     const monthly = data.monthlyRealized || [];
-    $("monthly-body").innerHTML = monthly.map((row) => `<tr><td><strong>${escapeHtml(row.month)}</strong></td><td>${money(row.sellProceeds)}</td><td>${money(row.costBasisSold)}</td><td class="${signedClass(row.realized)}">${money(row.realized)}</td><td class="${signedClass(row.realized)}">${pct(row.realizedPct)}</td><td>${escapeHtml(row.notes || "")}</td></tr>`).join("") || `<tr><td colspan="6" class="muted">No realized gains yet.</td></tr>`;
+    $("monthly-body").innerHTML = monthly.map((row) => `<tr>${[
+      cell("Month", `<strong>${escapeHtml(row.month)}</strong>`),
+      cell("Sell proceeds", money(row.sellProceeds)),
+      cell("Cost basis sold", money(row.costBasisSold)),
+      cell("Realized G/L", money(row.realized), signedClass(row.realized)),
+      cell("Realized G/L %", pct(row.realizedPct), signedClass(row.realized)),
+      cell("Notes", escapeHtml(row.notes || "")),
+    ].join("")}</tr>`).join("") || `<tr><td colspan="6" class="muted">No realized gains yet.</td></tr>`;
     const maxAbs = Math.max(...monthly.map((row) => Math.abs(Number(row.realized) || 0)), 0);
     $("monthly-realized-bars").innerHTML = monthly.length ? monthly.map((row) => `<div class="bar-row"><div class="bar-meta"><strong>${escapeHtml(row.month)}</strong><span class="${signedClass(row.realized)}">${money(row.realized)}</span></div><div class="bar-track"><div class="bar-fill ${Number(row.realized) < 0 ? "bar-negative" : ""}" style="width:${maxAbs ? Math.max(2, Math.abs(Number(row.realized)) / maxAbs * 100) : 2}%"></div></div></div>`).join("") : `<p class="muted">No data yet.</p>`;
   }
@@ -130,6 +168,7 @@
       return Math.abs(number) > 1 ? number / 100 : number;
     };
     const months = monthly.map((row) => row.month);
+    const isCompact = window.matchMedia("(max-width: 720px)").matches;
     const commonHover = monthly.map((row) => [
       row.monthEnd,
       Number(row.holdingsValue) || 0,
@@ -149,10 +188,10 @@
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(3,7,18,0.22)",
       font: { color: "#cbd5e1", family: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" },
-      margin: { l: 76, r: 76, t: 18, b: 54 },
+      margin: isCompact ? { l: 48, r: 18, t: 14, b: 64 } : { l: 76, r: 76, t: 18, b: 54 },
       hovermode: "x unified",
       hoverlabel: { bgcolor: "#08111f", bordercolor: "rgba(148,163,184,.32)", font: { color: "#e5eefb" } },
-      legend: { orientation: "h", y: -0.22, x: 0, font: { color: "#9fb1c9" } },
+      legend: { orientation: "h", y: isCompact ? -0.32 : -0.22, x: 0, font: { color: "#9fb1c9" } },
       xaxis: { type: "category", tickfont: { color: "#9fb1c9" }, gridcolor: "rgba(148,163,184,.12)", zerolinecolor: "rgba(251,191,36,.35)" },
     };
 
@@ -195,7 +234,7 @@
       },
     ], {
       ...baseLayout,
-      height: 420,
+      height: isCompact ? 340 : 420,
       yaxis: { title: "Holdings value", tickprefix: "$", separatethousands: true, gridcolor: "rgba(148,163,184,.12)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zerolinecolor: "rgba(148,163,184,.2)" },
       yaxis2: { title: "Simple YTD P/L %", overlaying: "y", side: "right", tickformat: ".2%", gridcolor: "rgba(0,0,0,0)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zeroline: false },
     }, plotConfig);
@@ -222,9 +261,9 @@
         ].join("<br>"),
       }], {
         ...baseLayout,
-        height: 250,
-        margin: { l: 76, r: 76, t: 10, b: 50 },
-        legend: { orientation: "h", y: -0.26, x: 0, font: { color: "#9fb1c9" } },
+        height: isCompact ? 230 : 250,
+        margin: isCompact ? { l: 48, r: 18, t: 10, b: 58 } : { l: 76, r: 76, t: 10, b: 50 },
+        legend: { orientation: "h", y: isCompact ? -0.36 : -0.26, x: 0, font: { color: "#9fb1c9" } },
         yaxis: { title: "Annualized XIRR %", tickformat: ".2%", gridcolor: "rgba(148,163,184,.12)", tickfont: { color: "#9fb1c9" }, titlefont: { color: "#cbd5e1" }, zerolinecolor: "rgba(251,191,36,.35)" },
       }, plotConfig);
     } else {
