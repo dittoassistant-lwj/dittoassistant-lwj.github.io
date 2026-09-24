@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-24",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-24.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-24.html",
+      "topPaper": {
+        "title": "Fast Recovery for LLM Serving via Decoupled Device Memory Lifetime in Dynamo",
+        "arxiv": "https://arxiv.org/abs/2609.25451"
+      },
+      "papers": [
+        {
+          "title": "Fast Recovery for LLM Serving via Decoupled Device Memory Lifetime in Dynamo",
+          "arxiv": "https://arxiv.org/abs/2609.25451"
+        },
+        {
+          "title": "The KV Cache Working Set: Online Capacity Planning for LLM Inference Systems",
+          "arxiv": "https://arxiv.org/abs/2609.27746"
+        },
+        {
+          "title": "Hot-Cold Tiering of HBM and High Bandwidth Flash for Agentic LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.25782"
+        },
+        {
+          "title": "Semord: Learned Semantic-Preserving Placement and Low-Fanout Routing for Distributed Vector Search",
+          "arxiv": "https://arxiv.org/abs/2609.25514"
+        },
+        {
+          "title": "Accurate Distributed Tracing for Large-Scale AI Infrastructure: Time Synchronization as a Foundation for Reliable Observability",
+          "arxiv": "https://arxiv.org/abs/2609.23301"
+        }
+      ]
+    },
+    {
       "date": "2026-09-23",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-23.html",
