@@ -280,7 +280,7 @@
     return Math.abs(number) <= 1 ? number * 100 : number;
   }
 
-  function switchTab(name) {
+  function switchTab(name, shouldScroll = false) {
     document.querySelectorAll(".tab-button").forEach((button) => {
       const active = button.dataset.tab === name;
       button.classList.toggle("active", active);
@@ -291,6 +291,9 @@
       panel.classList.toggle("active", active);
       panel.hidden = !active;
     });
+    if (shouldScroll && window.matchMedia("(max-width: 720px)").matches) {
+      document.querySelector(".tab-card")?.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
   }
 
   function renderAll() {
@@ -307,7 +310,7 @@
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
-    document.querySelectorAll(".tab-button").forEach((button) => button.addEventListener("click", () => switchTab(button.dataset.tab)));
+    document.querySelectorAll(".tab-button").forEach((button) => button.addEventListener("click", () => switchTab(button.dataset.tab, true)));
     $("holding-filter").addEventListener("input", renderHoldings);
     $("transaction-filter").addEventListener("input", renderTransactions);
     try {
