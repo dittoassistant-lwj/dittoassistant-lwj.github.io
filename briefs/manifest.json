@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-26",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-26.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-26.html",
+      "topPaper": {
+        "title": "Packet-Level In-Network Semantic Adaptation for Unstable Mobile Emergency Networks",
+        "arxiv": "https://arxiv.org/abs/2609.29920"
+      },
+      "papers": [
+        {
+          "title": "Packet-Level In-Network Semantic Adaptation for Unstable Mobile Emergency Networks",
+          "arxiv": "https://arxiv.org/abs/2609.29920"
+        },
+        {
+          "title": "MeshHeal: Two-Timescale Self-Healing for Gray Failures in Decentralized LLM Agent Networks",
+          "arxiv": "https://arxiv.org/abs/2609.29015"
+        },
+        {
+          "title": "SPADE-DFL: Communication-Efficient Decentralized Federated Learning via Derivative-Free Linearized ADMM",
+          "arxiv": "https://arxiv.org/abs/2609.29446"
+        },
+        {
+          "title": "Certified Bank-Aware Fast-Path Coverage for Hardware-Constrained NDN Forwarding Lookup",
+          "arxiv": "https://arxiv.org/abs/2609.29563"
+        },
+        {
+          "title": "PANEM: A Heuristic Latency Model",
+          "arxiv": "https://arxiv.org/abs/2609.29629"
+        }
+      ]
+    },
+    {
       "date": "2026-09-25",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-25.html",
