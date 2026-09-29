@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-29",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-29.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-29.html",
+      "topPaper": {
+        "title": "The Power of Indirection: Scaling Switches Beyond Silicon Boundaries",
+        "arxiv": "https://arxiv.org/abs/2609.31092"
+      },
+      "papers": [
+        {
+          "title": "The Power of Indirection: Scaling Switches Beyond Silicon Boundaries",
+          "arxiv": "https://arxiv.org/abs/2609.31092"
+        },
+        {
+          "title": "Communication-Aware Model Distributed Inference via Latent Representation Compression",
+          "arxiv": "https://arxiv.org/abs/2609.30413"
+        },
+        {
+          "title": "Predictive Rolling-Horizon Optimization for Commitment-Aware Model-Parallel Inference under Spatio-Temporal Edge Dynamics",
+          "arxiv": "https://arxiv.org/abs/2609.31018"
+        },
+        {
+          "title": "The KV Cache Is the New Memory Wall",
+          "arxiv": "https://arxiv.org/abs/2609.30854"
+        },
+        {
+          "title": "DynBranch: Speculative Subgraph Reuse for Dynamic Agentic LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.31047"
+        }
+      ]
+    },
+    {
       "date": "2026-09-28",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-28.html",
