@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-09-30",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-09-30.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-09-30.html",
+      "topPaper": {
+        "title": "Purlin: Separating Orchestration from the Datapath of Collectives",
+        "arxiv": "https://arxiv.org/abs/2609.36954"
+      },
+      "papers": [
+        {
+          "title": "Purlin: Separating Orchestration from the Datapath of Collectives",
+          "arxiv": "https://arxiv.org/abs/2609.36954"
+        },
+        {
+          "title": "HOCCL: Offloading Collective Communication from GPU Cores to Accelerate Distributed Training",
+          "arxiv": "https://arxiv.org/abs/2609.34334"
+        },
+        {
+          "title": "VarioPath: Workload-Aware All-to-All Communication for PCIe GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2609.34340"
+        },
+        {
+          "title": "TopoEP: Topology-Aware Load Balancing for Expert-Parallel MoE Training",
+          "arxiv": "https://arxiv.org/abs/2609.35481"
+        },
+        {
+          "title": "Joint Effects of GPU Server Topology, Parallelism, and Congestion Control on MoE Inference: A Controlled Simulation Study",
+          "arxiv": "https://arxiv.org/abs/2609.37828"
+        }
+      ]
+    },
+    {
       "date": "2026-09-29",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-29.html",
