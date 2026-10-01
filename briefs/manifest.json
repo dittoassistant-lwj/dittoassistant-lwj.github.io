@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-10-01",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-01.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-01.html",
+      "topPaper": {
+        "title": "MoSE: Mode-Switching Expander for Mixed LLM Training and Inference",
+        "arxiv": "https://arxiv.org/abs/2609.39138"
+      },
+      "papers": [
+        {
+          "title": "MoSE: Mode-Switching Expander for Mixed LLM Training and Inference",
+          "arxiv": "https://arxiv.org/abs/2609.39138"
+        },
+        {
+          "title": "Efficient Expert-Parallel Communication on PCIe-Connected Consumer GPUs",
+          "arxiv": "https://arxiv.org/abs/2609.40093"
+        },
+        {
+          "title": "LatencyLab: A DPDK-Based P4 Pipeline Latency Measurement Framework for FPGA SmartNICs",
+          "arxiv": "https://arxiv.org/abs/2609.39978"
+        },
+        {
+          "title": "Preserving Provenance in Shared KV Caches for LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2609.38706"
+        },
+        {
+          "title": "Cascadia: A Control-Plane-Free Alternative to Hyperconverged AI Infrastructure",
+          "arxiv": "https://arxiv.org/abs/2609.38697"
+        }
+      ]
+    },
+    {
       "date": "2026-09-30",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-09-30.html",
