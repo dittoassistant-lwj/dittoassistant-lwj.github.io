@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-02",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-02.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-02.html",
+      "topPaper": {
+        "title": "GPU-Initiated Communication: Dissecting Down to the Bone",
+        "arxiv": "https://arxiv.org/abs/2610.01380"
+      },
+      "papers": [
+        {
+          "title": "GPU-Initiated Communication: Dissecting Down to the Bone",
+          "arxiv": "https://arxiv.org/abs/2610.01380"
+        },
+        {
+          "title": "MINT: Modeling GenAI Impact on Network Traffic",
+          "arxiv": "https://arxiv.org/abs/2609.35742"
+        },
+        {
+          "title": "Towards Simple Models of Complex SmartNICs",
+          "arxiv": "https://arxiv.org/abs/2609.32055"
+        },
+        {
+          "title": "Characterizing the eBPF-Based Data Plane for Multi-Cluster Kubernetes: A Systematic Evaluation of Cilium Cluster Mesh and KVStoreMesh",
+          "arxiv": "https://arxiv.org/abs/2609.38235"
+        }
+      ]
+    },
+    {
       "date": "2026-10-01",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-01.html",
