@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-10-03",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-03.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-03.html",
+      "topPaper": {
+        "title": "MegaFlux: Skew-Resilient MoE Megakernels via Pipelined Expert Replication",
+        "arxiv": "https://arxiv.org/abs/2610.00671"
+      },
+      "papers": [
+        {
+          "title": "MegaFlux: Skew-Resilient MoE Megakernels via Pipelined Expert Replication",
+          "arxiv": "https://arxiv.org/abs/2610.00671"
+        },
+        {
+          "title": "MoE-CORE: Coordinated Expert Offloading and Residency for Memory-Constrained MoE Inference",
+          "arxiv": "https://arxiv.org/abs/2610.01950"
+        },
+        {
+          "title": "Leto: Fast In-Place Recovery for LLM Training on Surviving Hardware",
+          "arxiv": "https://arxiv.org/abs/2610.00687"
+        },
+        {
+          "title": "HAPMoE: Heterogeneity-Aware Automatic Parallelism Planning for Mixture-of-Experts Models Training",
+          "arxiv": "https://arxiv.org/abs/2609.39350"
+        },
+        {
+          "title": "Federated Learning for LLMs over Mobile Networks: Issues and Solutions in the RAN Transport",
+          "arxiv": "https://arxiv.org/abs/2610.01304"
+        }
+      ]
+    },
+    {
       "date": "2026-10-02",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-02.html",
