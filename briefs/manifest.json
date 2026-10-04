@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-04",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-04.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-04.html",
+      "topPaper": {
+        "title": "RingStitch: Demand-Aware Optical Stitching for Fragmented TPU Clusters",
+        "arxiv": "https://arxiv.org/abs/2609.37627"
+      },
+      "papers": [
+        {
+          "title": "RingStitch: Demand-Aware Optical Stitching for Fragmented TPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2609.37627"
+        },
+        {
+          "title": "Mixture-of-Kittens: MoE Megakernel for NVL72s",
+          "arxiv": "https://arxiv.org/abs/2609.36070"
+        },
+        {
+          "title": "Heddle: Learning Structural Templates for Parallelism Planning on Heterogeneous GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2609.34244"
+        },
+        {
+          "title": "WEAVER: A System for AI-RAN Compute Sharing with Foundation Model Training",
+          "arxiv": "https://arxiv.org/abs/2609.35276"
+        }
+      ]
+    },
+    {
       "date": "2026-10-03",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-03.html",
