@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-05",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-05.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-05.html",
+      "topPaper": {
+        "title": "HetCCL: Accelerating LLM Training with Heterogeneous GPUs",
+        "arxiv": "https://arxiv.org/abs/2601.22585"
+      },
+      "papers": [
+        {
+          "title": "HetCCL: Accelerating LLM Training with Heterogeneous GPUs",
+          "arxiv": "https://arxiv.org/abs/2601.22585"
+        },
+        {
+          "title": "Zorse: Optimizing LLM Training Efficiency on Heterogeneous GPU Clusters",
+          "arxiv": "https://arxiv.org/abs/2507.10392"
+        },
+        {
+          "title": "ByteScale: Efficient Scaling of LLM Training with a 2048K Context Length on More Than 12,000 GPUs",
+          "arxiv": "https://arxiv.org/abs/2502.21231"
+        },
+        {
+          "title": "Hiding Communication Cost in Distributed LLM Training via Micro-batch Co-execution",
+          "arxiv": "https://arxiv.org/abs/2411.15871"
+        }
+      ]
+    },
+    {
       "date": "2026-10-04",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-04.html",
