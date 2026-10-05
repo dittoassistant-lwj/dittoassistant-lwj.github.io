@@ -1,7 +1,7 @@
 {
   "source": "Notion trading dashboard + Yahoo Finance latest quotes",
-  "syncedAt": "2026-10-04T02:00:44+00:00",
-  "asOf": "2026-10-04",
+  "syncedAt": "2026-10-05T00:00:56+00:00",
+  "asOf": "2026-10-05",
   "currency": "USD",
   "totals": {
     "holdingsValue": 21132.35,
@@ -12,7 +12,7 @@
     "cash": 1171.652,
     "accountValue": 22304.002
   },
-  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-10-04; public dashboard JSON synced by Ditto.",
+  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-10-05; public dashboard JSON synced by Ditto.",
   "holdings": [
     {
       "ticker": "MU",
@@ -685,7 +685,7 @@
     },
     {
       "month": "2026-10",
-      "monthEnd": "2026-10-04",
+      "monthEnd": "2026-10-05",
       "holdingsValue": 21132.35,
       "cash": 1171.652,
       "accountValue": 22304.002,
@@ -695,7 +695,7 @@
       "ytdPnl": 1450.085,
       "ytdPnlPct": 0.068619,
       "simpleYtdPnlPct": 0.068619,
-      "ytdXirrPct": 2.291262,
+      "ytdXirrPct": 2.253605,
       "xirrMethod": "heuristic_min_external_cash_flows_from_actions",
       "currency": "USD"
     }
