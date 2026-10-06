@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-10-06",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-06.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-06.html",
+      "topPaper": {
+        "title": "RailWave: Adaptive Spatial and Temporal Scheduling for Expert-Parallel Communication",
+        "arxiv": "https://arxiv.org/abs/2610.03415"
+      },
+      "papers": [
+        {
+          "title": "RailWave: Adaptive Spatial and Temporal Scheduling for Expert-Parallel Communication",
+          "arxiv": "https://arxiv.org/abs/2610.03415"
+        },
+        {
+          "title": "Cross-Facility LLM Pre-training on HPC: Elastic Aggregation, Data Leasing, and Queue-Aware Placement",
+          "arxiv": "https://arxiv.org/abs/2610.03457"
+        },
+        {
+          "title": "Beaver: Elastic GPU Sharing between ML and Latency-Critical vRAN Workloads",
+          "arxiv": "https://arxiv.org/abs/2610.02522"
+        },
+        {
+          "title": "AFORE: Attention-FFN Disaggregation with Overlapped Reconfiguration of Experts",
+          "arxiv": "https://arxiv.org/abs/2610.03203"
+        },
+        {
+          "title": "ByteSplat: Efficient Distributed 3D Gaussian Splatting Training via Intra- and Inter-GPU communication reduction",
+          "arxiv": "https://arxiv.org/abs/2610.02851"
+        }
+      ]
+    },
+    {
       "date": "2026-10-05",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-05.html",
