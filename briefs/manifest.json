@@ -1,6 +1,38 @@
 {
   "briefs": [
     {
+      "date": "2026-10-07",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-07.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-07.html",
+      "topPaper": {
+        "title": "NCCL M2N: A Layout- and Topology-Aware Collective for Distributed Tensor Resharding",
+        "arxiv": "https://arxiv.org/abs/2610.07516"
+      },
+      "papers": [
+        {
+          "title": "NCCL M2N: A Layout- and Topology-Aware Collective for Distributed Tensor Resharding",
+          "arxiv": "https://arxiv.org/abs/2610.07516"
+        },
+        {
+          "title": "TRANSIT: Transparent Scale-in for Multi-Node LLM Training",
+          "arxiv": "https://arxiv.org/abs/2610.07593"
+        },
+        {
+          "title": "NeMo-DCR: Bit-Exact Delta-Compressed Refit for Scalable Agentic RL at Trillion-Parameter Scale",
+          "arxiv": "https://arxiv.org/abs/2610.08430"
+        },
+        {
+          "title": "Lachesis: Lifetime-Aware KV Cache Placement for Agent Serving across HBM and High-Bandwidth Flash",
+          "arxiv": "https://arxiv.org/abs/2610.08378"
+        },
+        {
+          "title": "Agentic RCA for Internet-Scale Services Using Constrained Creativity",
+          "arxiv": "https://arxiv.org/abs/2610.08622"
+        }
+      ]
+    },
+    {
       "date": "2026-10-06",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-06.html",
