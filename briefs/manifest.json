@@ -1,6 +1,30 @@
 {
   "briefs": [
     {
+      "date": "2026-10-08",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-08.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-08.html",
+      "topPaper": {
+        "title": "Democratizing MoE inference on commodity GPUs with CoMoE",
+        "arxiv": "https://arxiv.org/abs/2610.09424"
+      },
+      "papers": [
+        {
+          "title": "Democratizing MoE inference on commodity GPUs with CoMoE",
+          "arxiv": "https://arxiv.org/abs/2610.09424"
+        },
+        {
+          "title": "Expert Coupling in MoE Pretraining: Reducing All-to-All Overhead with Correlated Placement and Token Shuffling",
+          "arxiv": "https://arxiv.org/abs/2610.09372"
+        },
+        {
+          "title": "Fast and Memory Efficient Offload Training Framework with Hybrid XPU Computation",
+          "arxiv": "https://arxiv.org/abs/2610.09657"
+        }
+      ]
+    },
+    {
       "date": "2026-10-07",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-07.html",
