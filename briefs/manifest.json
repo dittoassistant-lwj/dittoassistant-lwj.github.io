@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-09",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-09.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-09.html",
+      "topPaper": {
+        "title": "Toward Intelligent Networks via AI-Aware GPU-Native Packet Processing",
+        "arxiv": "https://arxiv.org/abs/2610.12139"
+      },
+      "papers": [
+        {
+          "title": "Toward Intelligent Networks via AI-Aware GPU-Native Packet Processing",
+          "arxiv": "https://arxiv.org/abs/2610.12139"
+        },
+        {
+          "title": "Zepp: Accelerating Distributed MoE Serving under Relaxed Balance Constraints",
+          "arxiv": "https://arxiv.org/abs/2610.11158"
+        },
+        {
+          "title": "IAPRepair: In-Network Aggregation Enhanced Proactive Repair for Erasure-Coded Storage System",
+          "arxiv": "https://arxiv.org/abs/2610.11114"
+        },
+        {
+          "title": "An Experimental Evaluation of Scheduled Transmission and Hardware Timestamping on the Intel E830 NIC",
+          "arxiv": "https://arxiv.org/abs/2610.11589"
+        }
+      ]
+    },
+    {
       "date": "2026-10-08",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-08.html",
