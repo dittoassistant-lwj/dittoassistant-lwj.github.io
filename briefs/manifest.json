@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-11",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-11.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-11.html",
+      "topPaper": {
+        "title": "RiftANN: Efficient Graph Traversal for Vector Search with RDMA-Based Memory Disaggregation",
+        "arxiv": "https://arxiv.org/abs/2610.08990"
+      },
+      "papers": [
+        {
+          "title": "RiftANN: Efficient Graph Traversal for Vector Search with RDMA-Based Memory Disaggregation",
+          "arxiv": "https://arxiv.org/abs/2610.08990"
+        },
+        {
+          "title": "CXDVirt: Low Latency Kernel Module Based CXL-SSD Emulation",
+          "arxiv": "https://arxiv.org/abs/2610.08899"
+        },
+        {
+          "title": "vLLM-Omni Technical Report: A Unified Serving Runtime for Omni-Modality Generation",
+          "arxiv": "https://arxiv.org/abs/2610.09307"
+        },
+        {
+          "title": "NosRacer: Dynamic Detection of Race Conditions in On-Device Network Operating Systems",
+          "arxiv": "https://arxiv.org/abs/2610.11875"
+        }
+      ]
+    },
+    {
       "date": "2026-10-10",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-10.html",
@@ -1115,11 +1143,11 @@
           "arxiv": "https://arxiv.org/abs/2609.01071"
         },
         {
-          "title": "AInfer-PD: Communication-Safe In-Place Prefill–Decode Multiplexing for Distributed MoE Rollouts",
+          "title": "AInfer-PD: Communication-Safe In-Place Prefill\u2013Decode Multiplexing for Distributed MoE Rollouts",
           "arxiv": "https://arxiv.org/abs/2609.00993"
         },
         {
-          "title": "Compressing AI Traffic: Standardized Neural Network Coding of Visual-Token Representations in Split Vision–Language Inference",
+          "title": "Compressing AI Traffic: Standardized Neural Network Coding of Visual-Token Representations in Split Vision\u2013Language Inference",
           "arxiv": "https://arxiv.org/abs/2609.01200"
         }
       ]
@@ -4027,7 +4055,7 @@
           "arxiv": "https://arxiv.org/abs/2605.26930"
         },
         {
-          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don’t Forget the Compute!",
+          "title": "Birkhoff Decompositions and Photonic Interconnects Wait! Don\u2019t Forget the Compute!",
           "arxiv": "https://arxiv.org/abs/2605.26845"
         },
         {
