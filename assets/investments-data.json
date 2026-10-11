@@ -1,7 +1,7 @@
 {
   "source": "Notion trading dashboard + Yahoo Finance latest quotes",
-  "syncedAt": "2026-10-10T02:00:47+00:00",
-  "asOf": "2026-10-10",
+  "syncedAt": "2026-10-11T02:01:09+00:00",
+  "asOf": "2026-10-11",
   "currency": "USD",
   "totals": {
     "holdingsValue": 19522.15,
@@ -12,7 +12,7 @@
     "cash": 1171.652,
     "accountValue": 20693.802
   },
-  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-10-10; public dashboard JSON synced by Ditto.",
+  "summaryNotes": "Latest holding prices refreshed from Yahoo Finance chart API on 2026-10-11; public dashboard JSON synced by Ditto.",
   "holdings": [
     {
       "ticker": "MU",
@@ -33,7 +33,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-10-10",
-      "notes": "Reopened on 2026-09-22 from Ethan's Telegram trade update: bought 7 units @ 1062.361. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Bought 1 unit @ 1046.6 on 2026-10-01; updated quantity 8, cost basis 8483.127, average cost 1060.390875; fees assumed 0. Latest price refreshed from Yahoo Finance chart API on 2026-10-09."
+      "notes": "Reopened on 2026-09-22 from Ethan's Telegram trade update: bought 7 units @ 1062.361. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Bought 1 unit @ 1046.6 on 2026-10-01; updated quantity 8, cost basis 8483.127, average cost 1060.390875; fees assumed 0. Latest price refreshed from Yahoo Finance chart API on 2026-10-10."
     },
     {
       "ticker": "INTC",
@@ -54,7 +54,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-10-10",
-      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-10-09."
+      "notes": "Synced after 2026-09-17 buy: added 4 INTC @ 110.74 (total $442.96). Current price uses latest transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-10-10."
     },
     {
       "ticker": "SNDK",
@@ -75,7 +75,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-10-10",
-      "notes": "Opened from Ethan's Telegram trade update: bought 3 units @ 1726.87 on 2026-09-29. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-10-09."
+      "notes": "Opened from Ethan's Telegram trade update: bought 3 units @ 1726.87 on 2026-09-29. Current price uses transaction-price placeholder until next quote refresh; fees assumed 0 unless corrected. Latest price refreshed from Yahoo Finance chart API on 2026-10-10."
     },
     {
       "ticker": "VOO",
@@ -96,7 +96,7 @@
       "currency": "USD",
       "riskLevel": "",
       "lastPriceUpdate": "2026-10-10",
-      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-10-09."
+      "notes": "Synced from morning-brief portfolio file/config. Latest price refreshed from Yahoo Finance chart API on 2026-10-10."
     },
     {
       "ticker": "SOXL",
@@ -117,7 +117,7 @@
       "currency": "USD",
       "riskLevel": "Speculative",
       "lastPriceUpdate": "2026-10-10",
-      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Sold 22 units @ 138.61 on 2026-09-24; remaining quantity 21, remaining cost basis 2435.349; fees assumed 0. Bought 19 shares @ 151.31 on 2026-09-25; updated quantity 40, cost basis 5310.239, average cost 132.755975; fees assumed 0. Sold all remaining 40 SOXL shares @ 135.76 on 2026-09-28; position closed; fees assumed 0. Bought 5 units @ 166.12 on 2026-10-02; updated quantity 5, cost basis 830.60, average cost 166.12; fees assumed 0. Latest price refreshed from Yahoo Finance chart API on 2026-10-09."
+      "notes": "Opened from 2026-08-28 buy. Current price is transaction-price placeholder until next quote refresh. Fees assumed 0 unless corrected. Sold 22 units @ 138.61 on 2026-09-24; remaining quantity 21, remaining cost basis 2435.349; fees assumed 0. Bought 19 shares @ 151.31 on 2026-09-25; updated quantity 40, cost basis 5310.239, average cost 132.755975; fees assumed 0. Sold all remaining 40 SOXL shares @ 135.76 on 2026-09-28; position closed; fees assumed 0. Bought 5 units @ 166.12 on 2026-10-02; updated quantity 5, cost basis 830.60, average cost 166.12; fees assumed 0. Latest price refreshed from Yahoo Finance chart API on 2026-10-10."
     }
   ],
   "actions": [
@@ -685,7 +685,7 @@
     },
     {
       "month": "2026-10",
-      "monthEnd": "2026-10-10",
+      "monthEnd": "2026-10-11",
       "holdingsValue": 19522.15,
       "cash": 1171.652,
       "accountValue": 20693.802,
@@ -695,7 +695,7 @@
       "ytdPnl": -160.115,
       "ytdPnlPct": -0.008202,
       "simpleYtdPnlPct": -0.008202,
-      "ytdXirrPct": 1.508018,
+      "ytdXirrPct": 1.486777,
       "xirrMethod": "heuristic_min_external_cash_flows_from_actions",
       "currency": "USD"
     }
