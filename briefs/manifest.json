@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-13",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-13.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-13.html",
+      "topPaper": {
+        "title": "PCM: Programmable Congestion Management for Terabit RDMA NICs",
+        "arxiv": "https://arxiv.org/abs/2610.13130"
+      },
+      "papers": [
+        {
+          "title": "PCM: Programmable Congestion Management for Terabit RDMA NICs",
+          "arxiv": "https://arxiv.org/abs/2610.13130"
+        },
+        {
+          "title": "Deploying RDMA for Large-Scale Inference and Training Workloads",
+          "arxiv": "https://arxiv.org/abs/2610.12815"
+        },
+        {
+          "title": "Ofan: Optimal Load Balancing for AI Training",
+          "arxiv": "https://arxiv.org/abs/2610.07230"
+        },
+        {
+          "title": "T-CCL: Resource Efficient and Performant Collective Communication using Tensor Memory Accelerator",
+          "arxiv": "https://arxiv.org/abs/2610.07098"
+        }
+      ]
+    },
+    {
       "date": "2026-10-12",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-12.html",
