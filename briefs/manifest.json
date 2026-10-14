@@ -1,6 +1,34 @@
 {
   "briefs": [
     {
+      "date": "2026-10-14",
+      "title": "Daily AI cluster networking brief",
+      "path": "/briefs/2026-10-14.html",
+      "url": "https://dittoassistant-lwj.github.io/briefs/2026-10-14.html",
+      "topPaper": {
+        "title": "From ASIC to Fleet: Lessons from Building and Operating a Hyperscaler NIC",
+        "arxiv": "https://arxiv.org/abs/2610.07644"
+      },
+      "papers": [
+        {
+          "title": "From ASIC to Fleet: Lessons from Building and Operating a Hyperscaler NIC",
+          "arxiv": "https://arxiv.org/abs/2610.07644"
+        },
+        {
+          "title": "Taking Tokenization off the Host for Agentic LLM Serving",
+          "arxiv": "https://arxiv.org/abs/2610.13325"
+        },
+        {
+          "title": "Adaptive DHiSparse: Speculative Decoding over a Load-Adaptive KV Hierarchy",
+          "arxiv": "https://arxiv.org/abs/2610.13708"
+        },
+        {
+          "title": "Characterizing Parallelism Strategies in LLM Inference: Fundamental Compute-Communication Trade-offs",
+          "arxiv": "https://arxiv.org/abs/2610.05305"
+        }
+      ]
+    },
+    {
       "date": "2026-10-13",
       "title": "Daily AI cluster networking brief",
       "path": "/briefs/2026-10-13.html",
